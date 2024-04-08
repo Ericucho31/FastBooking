@@ -1,14 +1,36 @@
 import React from "react";
 import { StyleSheet, Text, Pressable, View, Image } from "react-native";
 import themeComponent from "../Theme/themeComponent";
+import FirstTimeButton from "../Tags/FirstTimeTag";
+import HourTag from "../Tags/HourTag";
+import DateTag from "../Tags/DateTag";
+import AcceptButton from "../Buttons/AcceptButton";
+import DeclineButton from "../Buttons/DeclineButton";
 
 export default function DateBooked({ imageSource, name, date, hour }) {
 
     return (
-        <View src={themeComponent.views.dateBookedContainer}>
-            <Image
-                source={{ uri: 'https://covalto.com/static/78498ccda70933a5f1e3edc3e40d3cbe/34aca/Hero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp' }}
-                style={themeComponent.images.mini}></Image>
+        <View style={themeComponent.card.dateBookedContainer}>
+            <View style={themeComponent.card.imageContainer}>
+                <Image
+                    source={{ uri: imageSource }}
+                    style={themeComponent.images.mini}>
+                </Image>
+            </View>
+
+            <View style={themeComponent.card.textContainer}>
+                <Text style={themeComponent.headers.header3}>{name}</Text>
+                <FirstTimeButton text={'Primera Vez'} />
+                <View style={{flexDirection:'row', marginBottom:20}}>
+                    <HourTag text={hour} />
+                    <DateTag text={date} />
+                </View>
+
+                <View style={{flexDirection:'row', justifyContent:'flex'}}>
+                    <DeclineButton />
+                    <AcceptButton />
+                </View>
+            </View>
         </View>
 
     )

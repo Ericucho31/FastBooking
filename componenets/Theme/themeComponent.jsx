@@ -17,18 +17,18 @@ const themeComponent = StyleSheet.create({
         header3: {
             fontFamily: theme.fonts.primary,
             fontSize: 16,
-            color: theme.colors.black
+            fontWeight: 'bold',
+            color: theme.colors.primary
         }
     },
 
     background: {
         backgroundView: {
-            flex: 1,
             backgroundColor: theme.colors.grayBackground,
-            padding: 0,
             alignItems: 'center',
-            justifyContent: 'center'
-        }
+            justifyContent: 'center',
+            height:'100%',
+        },
 
     },
 
@@ -48,7 +48,7 @@ const themeComponent = StyleSheet.create({
             borderRadius: 30,
             elevation: 3,
             backgroundColor: theme.colors.primary,
-            marginBottom:10
+            marginBottom: 10
         },
         signIn: {
             width: '75%',
@@ -59,9 +59,69 @@ const themeComponent = StyleSheet.create({
             borderRadius: 30,
             elevation: 3,
             backgroundColor: theme.colors.white,
-            marginBottom:10
-
+            marginBottom: 10
         },
+        firstTime: {
+            width: '50%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            elevation: 3,
+            backgroundColor: theme.colors.primary,
+        },
+        timehour: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            backgroundColor: theme.colors.white,
+            flexDirection:'row',
+            paddingHorizontal:5
+        },
+        accept: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            backgroundColor: theme.colors.primary,
+            flexDirection:'row',
+            paddingHorizontal:5
+        },
+        decline: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: 30,
+            backgroundColor: theme.colors.dangerRed,
+            flexDirection:'row',
+            paddingHorizontal:5
+
+        }
+
+    },
+
+    card: {
+        dateBookedContainer: {
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+            flexDirection: 'row',
+            position: 'relative', 
+            width:'90%',
+            maxWidth: '90%',
+            height:'100%',
+            backgroundColor: theme.colors.blueBackground, 
+            padding:5,
+            borderRadius: 10,
+        },
+        imageContainer:{
+            margin: 5,
+            position: 'relative'
+        },
+
+        textContainer: {
+            
+            maxWidth:'80%',
+            paddingHorizontal:5,
+
+            //backgroundColor: 'white'
+        }
     },
 
     colors: {
@@ -75,7 +135,6 @@ const themeComponent = StyleSheet.create({
             fontWeight: 'bold',
             letterSpacing: 0.25,
             color: 'black'
-
         },
 
         loginText: {
@@ -91,6 +150,27 @@ const themeComponent = StyleSheet.create({
             fontWeight: 'bold',
             letterSpacing: 0.25,
             color: theme.colors.primary,
+        },
+        firstTime: {
+            fontSize: 12,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: 'white',
+        },
+        timehour: {
+            fontSize: 12,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: theme.colors.primary,
+        },
+        acceptDecline: {
+            fontSize: 20,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: 'white',
         }
 
     },
@@ -112,13 +192,7 @@ const themeComponent = StyleSheet.create({
     },
 
     views: {
-        dateBookedContainer: {
-            flex: 1,
-            backgroundColor: theme.colors.blueBackground,
-            padding: 0,
-            alignItems: 'center',
-            justifyContent: 'center'
-        }
+
     }
 });
 

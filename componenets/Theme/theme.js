@@ -12,7 +12,7 @@ cargarFuentes();
 export const theme = {
     colors: {
         primary: '#0165FC', //azul rey
-        blueBackground: '#0165FC', //azul celeste
+        blueBackground: '#D0E3FF', //azul celeste
         grayBackground: '#F7F8FA',
         
         dangerRed: '#D71E3E',
@@ -37,6 +37,7 @@ export const theme = {
             width: 50,
             height: 50,
             borderRadius:50,
+            
         }
     }
 }
