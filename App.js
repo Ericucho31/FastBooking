@@ -4,6 +4,7 @@ import  themeComponent  from './componenets/Theme/themeComponent';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './componenets/Login/Login';
+import LoginButton from './componenets/Buttons/LoginButton';
 
 
 const Stack = createNativeStackNavigator();

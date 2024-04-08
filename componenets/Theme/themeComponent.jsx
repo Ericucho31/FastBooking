@@ -25,13 +25,88 @@ const themeComponent = StyleSheet.create({
             flex: 1,
             backgroundColor: theme.colors.grayBackground,
             padding: 0,
+            alignItems: 'center',
+            justifyContent: 'center'
         }
-        
+
     },
 
     images: {
         primary: theme.image.primary,
         thumbnail: theme.image.thumbnail
+    },
+
+    buttons: {
+        login: {
+            width: '75%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 12,
+            paddingHorizontal: 32,
+            borderRadius: 30,
+            elevation: 3,
+            backgroundColor: theme.colors.primary,
+            marginBottom:10
+        },
+        signIn: {
+            width: '75%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 12,
+            paddingHorizontal: 32,
+            borderRadius: 30,
+            elevation: 3,
+            backgroundColor: theme.colors.white,
+            marginBottom:10
+
+        },
+    },
+
+    colors: {
+        primary: theme.colors.primary,
+    },
+
+    text: {
+        headerTextbox: {
+            fontSize: 16,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: 'black'
+
+        },
+
+        loginText: {
+            fontSize: 24,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: 'white',
+        },
+        signInText: {
+            fontSize: 24,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: theme.colors.primary,
+        }
+
+    },
+
+    textInput: {
+        container: {
+            width: '75%', // Abarca el 75% del dispositivo
+            alignSelf: 'center', // Para centrarlo horizontalmente
+            marginBottom: 10,
+        },
+        textInput: {
+            borderWidth: 1,
+            borderColor: 'gray',
+            borderRadius: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 15,
+            fontSize: 16,
+        },
     }
 });
 
