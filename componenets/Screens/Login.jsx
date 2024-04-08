@@ -3,9 +3,10 @@ import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import TextInputSimple from "../TextBox/TextInputSimple";
 import LoginButton from "../Buttons/LoginButton";
+import SignInButton from "../Buttons/SignInButton";
 import TextInputPassword from "../TextBox/TextInputPassword";
 
-export default function Login() {
+export default function Login({navigation}) {
 
     return (
         <ScrollView>
@@ -22,14 +23,13 @@ export default function Login() {
                     nombre={"**********"} />
 
                 <LoginButton
+                    navigation= {navigation}
                     text={'Iniciar Sesión'}
-                    backgroundStyle={themeComponent.buttons.login}
-                    textStyle={themeComponent.text.loginText} />
+                     />
 
-                <LoginButton
-                    text={'Registrarse'}
-                    backgroundStyle={themeComponent.buttons.signIn}
-                    textStyle={themeComponent.text.signInText} />
+                <SignInButton
+                    navigation= {navigation}
+                    text={'Registrarse'}/>
             </View>
         </ScrollView>
     )

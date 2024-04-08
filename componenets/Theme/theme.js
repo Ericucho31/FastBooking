@@ -30,9 +30,13 @@ export const theme = {
             height: 500,
         },
         thumbnail: {
-            width: 300,
-            height: 300,
-
+            width: 250,
+            height: 250,
+        },
+        mini: {
+            width: 50,
+            height: 50,
+            borderRadius:50,
         }
     }
 }

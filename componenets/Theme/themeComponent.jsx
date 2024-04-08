@@ -1,3 +1,4 @@
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { theme } from './theme'
 import { StyleSheet } from 'react-native'
 
@@ -33,7 +34,8 @@ const themeComponent = StyleSheet.create({
 
     images: {
         primary: theme.image.primary,
-        thumbnail: theme.image.thumbnail
+        thumbnail: theme.image.thumbnail,
+        mini: theme.image.mini
     },
 
     buttons: {
@@ -107,6 +109,16 @@ const themeComponent = StyleSheet.create({
             paddingHorizontal: 15,
             fontSize: 16,
         },
+    },
+
+    views: {
+        dateBookedContainer: {
+            flex: 1,
+            backgroundColor: theme.colors.blueBackground,
+            padding: 0,
+            alignItems: 'center',
+            justifyContent: 'center'
+        }
     }
 });
 
