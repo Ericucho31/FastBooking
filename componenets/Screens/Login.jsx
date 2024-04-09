@@ -5,8 +5,9 @@ import TextInputSimple from "../TextBox/TextInputSimple";
 import LoginButton from "../Buttons/LoginButton";
 import SignInButton from "../Buttons/SignInButton";
 import TextInputPassword from "../TextBox/TextInputPassword";
+import LoginFacebookButton from "../Buttons/LoginFacebookButton";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
 
     return (
         <ScrollView>
@@ -15,21 +16,23 @@ export default function Login({navigation}) {
                     style={themeComponent.images.thumbnail}
                     source={require('../../assets/logo.jpg')} />
 
-                <TextInputSimple 
-                    encabezado={'Correo Electrónico'} 
+                <TextInputSimple
+                    encabezado={'Correo Electrónico'}
                     nombre={"ejemplo@ejemplo.com"} />
-                    
-                <TextInputPassword 
+
+                <TextInputPassword
                     nombre={"**********"} />
 
                 <LoginButton
-                    navigation= {navigation}
+                    navigation={navigation}
                     text={'Iniciar Sesión'}
-                     />
+                />
 
                 <SignInButton
-                    navigation= {navigation}
-                    text={'Registrarse'}/>
+                    navigation={navigation}
+                    text={'Registrarse'} />
+
+                <LoginFacebookButton />
             </View>
         </ScrollView>
     )

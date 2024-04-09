@@ -14,14 +14,13 @@ export default function DateBooked({ imageSource, name, date, hour }) {
             <View style={themeComponent.card.imageContainer}>
                 <Image
                     source={{ uri: imageSource }}
-                    style={themeComponent.images.mini}>
-                </Image>
+                    style={themeComponent.images.mini}/>
             </View>
 
             <View style={themeComponent.card.textContainer}>
                 <Text style={themeComponent.headers.header3}>{name}</Text>
                 <FirstTimeButton text={'Primera Vez'} />
-                <View style={{flexDirection:'row', marginBottom:20}}>
+                <View style={{flexDirection:'row', marginBottom:15}}>
                     <HourTag text={hour} />
                     <DateTag text={date} />
                 </View>
@@ -31,6 +30,7 @@ export default function DateBooked({ imageSource, name, date, hour }) {
                     <AcceptButton />
                 </View>
             </View>
+
         </View>
 
     )

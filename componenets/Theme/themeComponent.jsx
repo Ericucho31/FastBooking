@@ -29,7 +29,6 @@ const themeComponent = StyleSheet.create({
             justifyContent: 'center',
             height:'100%',
         },
-
     },
 
     images: {
@@ -48,7 +47,8 @@ const themeComponent = StyleSheet.create({
             borderRadius: 30,
             elevation: 3,
             backgroundColor: theme.colors.primary,
-            marginBottom: 10
+            marginBottom: 10,
+            flexDirection:'row',
         },
         signIn: {
             width: '75%',
@@ -105,10 +105,10 @@ const themeComponent = StyleSheet.create({
             position: 'relative', 
             width:'90%',
             maxWidth: '90%',
-            height:'100%',
             backgroundColor: theme.colors.blueBackground, 
             padding:5,
             borderRadius: 10,
+            marginBottom:15,
         },
         imageContainer:{
             margin: 5,
@@ -116,10 +116,9 @@ const themeComponent = StyleSheet.create({
         },
 
         textContainer: {
-            
             maxWidth:'80%',
             paddingHorizontal:5,
-
+            marginBottom:5,
             //backgroundColor: 'white'
         }
     },
@@ -150,6 +149,13 @@ const themeComponent = StyleSheet.create({
             fontWeight: 'bold',
             letterSpacing: 0.25,
             color: theme.colors.primary,
+        },
+        loginFacebook: {
+            fontSize: 16,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: 'white',
         },
         firstTime: {
             fontSize: 12,
