@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import DateBooked from "../Cards/DateBooked";
+import MainContainer from "../../navigation/MainContainer";
 
 export default function Home() {
 
@@ -31,8 +32,9 @@ export default function Home() {
                     name={'Jessica Hurtado Sánchez'}
                     hour={'14:00'}
                     date={'Abril 30'} />
-            </View>
 
+            </View>
+        
         </ScrollView>
     )
 }

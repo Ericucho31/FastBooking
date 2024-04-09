@@ -32,7 +32,8 @@ export default function Login({ navigation }) {
                     navigation={navigation}
                     text={'Registrarse'} />
 
-                <LoginFacebookButton />
+                <LoginFacebookButton 
+                    navigation={navigation}/>
             </View>
         </ScrollView>
     )
