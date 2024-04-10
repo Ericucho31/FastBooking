@@ -17,7 +17,7 @@ export default function LoginFacebookButton( {navigation}) {
         <Pressable
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
-            onPress={() => navigation.navigate('MainComponent')}
+            onPress={() => navigation.navigate('Home')}
             android_ripple={{ color: 'white' }}
             style={[themeComponent.buttons.login, pressed && styles.buttonPressed]}
         >

@@ -37,7 +37,11 @@ export const theme = {
             width: 50,
             height: 50,
             borderRadius:50,
-            
+        },
+        micro: {
+            width: 30,
+            height: 30,
+            borderRadius:50,
         }
     }
 }

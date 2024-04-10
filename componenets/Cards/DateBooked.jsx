@@ -25,7 +25,7 @@ export default function DateBooked({ imageSource, name, date, hour }) {
                     <DateTag text={date} />
                 </View>
 
-                <View style={{flexDirection:'row', justifyContent:'flex'}}>
+                <View style={{flexDirection:'row', }}>
                     <DeclineButton />
                     <AcceptButton />
                 </View>

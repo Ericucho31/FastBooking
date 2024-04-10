@@ -27,14 +27,15 @@ const themeComponent = StyleSheet.create({
             backgroundColor: theme.colors.grayBackground,
             alignItems: 'center',
             justifyContent: 'center',
-            height:'100%',
+            height: '100%',
         },
     },
 
     images: {
         primary: theme.image.primary,
         thumbnail: theme.image.thumbnail,
-        mini: theme.image.mini
+        mini: theme.image.mini,
+        micro: theme.image.micro,
     },
 
     buttons: {
@@ -48,7 +49,7 @@ const themeComponent = StyleSheet.create({
             elevation: 3,
             backgroundColor: theme.colors.primary,
             marginBottom: 10,
-            flexDirection:'row',
+            flexDirection: 'row',
         },
         signIn: {
             width: '75%',
@@ -74,25 +75,26 @@ const themeComponent = StyleSheet.create({
             justifyContent: 'center',
             borderRadius: 30,
             backgroundColor: theme.colors.white,
-            flexDirection:'row',
-            paddingHorizontal:5
+            flexDirection: 'row',
+            paddingHorizontal: 5
         },
         accept: {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 30,
             backgroundColor: theme.colors.primary,
-            flexDirection:'row',
-            paddingHorizontal:5
+            flexDirection: 'row',
+            paddingHorizontal: 5,
+            marginRight: 5,
         },
         decline: {
             alignItems: 'center',
             justifyContent: 'center',
             borderRadius: 30,
             backgroundColor: theme.colors.dangerRed,
-            flexDirection:'row',
-            paddingHorizontal:5
-
+            flexDirection: 'row',
+            paddingHorizontal: 5,
+            marginRight: 5,
         }
 
     },
@@ -102,29 +104,95 @@ const themeComponent = StyleSheet.create({
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
             flexDirection: 'row',
-            position: 'relative', 
-            width:'90%',
+            position: 'relative',
+            width: '90%',
             maxWidth: '90%',
-            backgroundColor: theme.colors.blueBackground, 
-            padding:5,
+            backgroundColor: theme.colors.blueBackground,
+            padding: 5,
             borderRadius: 10,
-            marginBottom:15,
+            marginBottom: 15,
         },
-        imageContainer:{
+        imageContainer: {
             margin: 5,
             position: 'relative'
         },
 
         textContainer: {
-            maxWidth:'80%',
-            paddingHorizontal:5,
-            marginBottom:5,
+            maxWidth: '80%',
+            paddingHorizontal: 5,
+            marginBottom: 5,
             //backgroundColor: 'white'
+        },
+
+        calendarDate: {
+            dateBookedContainer: {
+                alignItems: 'flex-start',
+                justifyContent: 'flex-end',
+                flexDirection: 'row',
+                position: 'relative',
+                width: '90%',
+                maxWidth: '90%',
+                backgroundColor: theme.colors.blueBackground,
+                padding: 5,
+                borderRadius: 10,
+                marginBottom: 15,
+            },
+            imageContainer: {
+                margin: 5,
+                position: 'relative'
+            },
+    
+            textContainer: {
+                maxWidth: '65%',
+                paddingHorizontal: 5,
+                marginBottom: 5,
+                //backgroundColor: 'white'
+            },
         }
     },
 
     colors: {
         primary: theme.colors.primary,
+    },
+
+    scrollables: {
+        months: {
+            selected: {
+                alignItems: 'center',
+                backgroundColor: theme.colors.primary,
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                borderRadius: 30
+            },
+            unselected: {
+                alignItems: 'center',
+                backgroundColor: theme.colors.white,
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                borderRadius: 30
+            },
+        },
+
+        days: {
+            selected: {
+                alignItems: 'center',
+                backgroundColor: theme.colors.primary,
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                borderRadius: 10
+            },
+            unselected: {
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor: 'white',
+                borderRadius: 10,
+                borderColor:'#929191',
+                borderWidth:1,
+                width:40,
+                height:40,
+            },
+        },
+
     },
 
     text: {
@@ -177,6 +245,39 @@ const themeComponent = StyleSheet.create({
             fontWeight: 'bold',
             letterSpacing: 0.25,
             color: 'white',
+        },
+        months: {
+            selected: {
+                fontSize: 16,
+                fontFamily: theme.fonts.primary,
+                fontWeight: 'bold',
+                letterSpacing: 0.25,
+                color: theme.colors.white,
+            },
+            unselected: {
+                fontSize: 16,
+                fontFamily: theme.fonts.primary,
+                fontWeight: 'regular',
+                letterSpacing: 0.25,
+                color: 'black',
+            }
+        },
+
+        days: {
+            selected: {
+                fontSize: 16,
+                fontFamily: theme.fonts.primary,
+                fontWeight: 'bold',
+                letterSpacing: 0.25,
+                color: theme.colors.white,
+            },
+            unselected: {
+                fontSize: 16,
+                fontFamily: theme.fonts.primary,
+                fontWeight: 'regular',
+                letterSpacing: 0.25,
+                color: 'black',
+            }
         }
 
     },

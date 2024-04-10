@@ -4,13 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Screens
-import Home from '../componenets/Screens/Citas';
-import Login from '../componenets/Screens/Login';
+import Citas from '../componenets/Screens/Citas';
 import Calendar from '../componenets/Screens/Calendar';
 
 //Screen names
-const homeName = "Home";
-const detailsName = "Calendar";
+const datesName = "Citas";
+const calendarName = "Calendario";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,23 +17,25 @@ function MainContainer() {
   return (
     
       <Tab.Navigator
-        initialRouteName={homeName}
+        initialRouteName={calendarName}
+        
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             let rn = route.name;
 
-            if (rn === homeName) {
-              iconName = focused ? 'home' : 'home-outline';
+            if (rn === datesName) {
+              iconName = focused ? 'book' : 'book-outline';
 
-            } else if (rn === detailsName) {
-              iconName = focused ? 'calendar' : 'calendar-outline';
+            } else if (rn === calendarName) {
+              iconName = focused ? 'calendar-number' : 'calendar-number-outline';
 
             } 
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
+          
         })}
         tabBarOptions={{
           activeTintColor:'#0165FC',
@@ -43,8 +44,8 @@ function MainContainer() {
           style: { padding: 10, height: 70}
         }}>
 
-        <Tab.Screen name={homeName} component={Home} />
-        <Tab.Screen name={detailsName} component={Calendar} />
+        <Tab.Screen name={datesName} component={Citas} />
+        <Tab.Screen name={calendarName} component={Calendar} />
 
       </Tab.Navigator>
     

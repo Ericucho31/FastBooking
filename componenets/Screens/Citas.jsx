@@ -4,7 +4,7 @@ import themeComponent from "../Theme/themeComponent";
 import DateBooked from "../Cards/DateBooked";
 import MainContainer from "../../navigation/MainContainer";
 
-export default function Home() {
+export default function Citas() {
 
     return (
         <ScrollView>
