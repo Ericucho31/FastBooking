@@ -29,6 +29,12 @@ const themeComponent = StyleSheet.create({
             justifyContent: 'center',
             height: '100%',
         },
+        modalView: {
+            backgroundColor: theme.colors.grayBackground,
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+        },
     },
 
     images: {

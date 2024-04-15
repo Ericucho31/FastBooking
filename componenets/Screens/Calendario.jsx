@@ -5,7 +5,7 @@ import Months from "../Scrollables/Months";
 import Days from "../Scrollables/Days";
 import CalendarDate from "../Cards/CalendarDate";
 
-export default function Calendar() {
+export default function Calendario() {
 
     return (
         <View style={{ alignItems: 'center', }}>
