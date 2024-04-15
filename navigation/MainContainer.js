@@ -17,7 +17,7 @@ function MainContainer() {
   return (
     
       <Tab.Navigator
-        initialRouteName={calendarName}
+        initialRouteName={datesName}
         
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {

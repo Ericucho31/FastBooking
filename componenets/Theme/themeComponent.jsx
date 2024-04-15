@@ -81,7 +81,7 @@ const themeComponent = StyleSheet.create({
         accept: {
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: 30,
+            borderRadius: 10,
             backgroundColor: theme.colors.primary,
             flexDirection: 'row',
             paddingHorizontal: 5,
@@ -90,7 +90,7 @@ const themeComponent = StyleSheet.create({
         decline: {
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: 30,
+            borderRadius: 10,
             backgroundColor: theme.colors.dangerRed,
             flexDirection: 'row',
             paddingHorizontal: 5,
@@ -284,8 +284,8 @@ const themeComponent = StyleSheet.create({
 
     textInput: {
         container: {
-            width: '75%', // Abarca el 75% del dispositivo
-            alignSelf: 'center', // Para centrarlo horizontalmente
+            width: '75%',
+            alignSelf: 'center', 
             marginBottom: 10,
         },
         textInput: {
