@@ -5,11 +5,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Screens
 import Citas from '../componenets/Screens/Citas';
-import Calendar from '../componenets/Screens/Calendar';
+import Calendario from '../componenets/Screens/Calendario';
+import PruebaScreen from '../componenets/Screens/Pruebas';
 
 //Screen names
 const datesName = "Citas";
 const calendarName = "Calendario";
+const pruebaName = 'Prueba'
 
 const Tab = createBottomTabNavigator();
 
@@ -31,6 +33,10 @@ function MainContainer() {
               iconName = focused ? 'calendar-number' : 'calendar-number-outline';
 
             } 
+            else if (rn === pruebaName) {
+              iconName = focused ? 'apps' : 'apps-outline';
+
+            } 
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -45,7 +51,8 @@ function MainContainer() {
         }}>
 
         <Tab.Screen name={datesName} component={Citas} />
-        <Tab.Screen name={calendarName} component={Calendar} />
+        <Tab.Screen name={calendarName} component={Calendario} />
+        <Tab.Screen name={pruebaName} component={PruebaScreen} />
 
       </Tab.Navigator>
     
