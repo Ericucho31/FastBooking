@@ -4,13 +4,13 @@ import themeComponent from "../Theme/themeComponent";
 import Months from "../Scrollables/Months";
 import Days from "../Scrollables/Days";
 import CalendarDate from "../Cards/CalendarDate";
+import SetDateModal from "../Modals/SetDateModal";
 
 export default function Calendario() {
 
     return (
         <View style={{ alignItems: 'center', }}>
-            <Months></Months>
-            <Days></Days>
+            <SetDateModal></SetDateModal>
 
             
                 <CalendarDate imageSource={'https://covalto.com/static/78498ccda70933a5f1e3edc3e40d3cbe/34aca/Hero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp'}

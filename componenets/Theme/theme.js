@@ -14,10 +14,10 @@ export const theme = {
         primary: '#0165FC', //azul rey
         blueBackground: '#D0E3FF', //azul celeste
         grayBackground: '#F7F8FA',
-        
         dangerRed: '#D71E3E',
         white: '#FFFFFF',
-        black: '#000'
+        black: '#000',
+        borderGray: '#929191',
     },
 
     fonts: {

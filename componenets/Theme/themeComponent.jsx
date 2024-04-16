@@ -101,7 +101,19 @@ const themeComponent = StyleSheet.create({
             flexDirection: 'row',
             paddingHorizontal: 5,
             marginRight: 5,
-        }
+        },
+        selectDate: {
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 12,
+            paddingHorizontal: 12,
+            borderRadius: 30,
+            borderColor: theme.colors.primary,
+            borderWidth: 1,
+            backgroundColor: theme.colors.white,
+            flexDirection: 'row',
+        },
+
 
     },
 
@@ -159,6 +171,8 @@ const themeComponent = StyleSheet.create({
 
     colors: {
         primary: theme.colors.primary,
+        white: theme.colors.white,
+        borderGray: theme.colors.borderGray,
     },
 
     scrollables: {
@@ -267,6 +281,13 @@ const themeComponent = StyleSheet.create({
                 letterSpacing: 0.25,
                 color: 'black',
             }
+        },
+        selectDate: {
+            fontSize: 16,
+            fontFamily: theme.fonts.primary,
+            fontWeight: 'bold',
+            letterSpacing: 0.25,
+            color: theme.colors.primary,
         },
 
         days: {

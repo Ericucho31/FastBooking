@@ -4,13 +4,13 @@ import themeComponent from "../Theme/themeComponent";
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import SelectDateButton from "../Buttons/PrimaryIconAndtextButton";
 
-export default function PruebaScreen() {
+export default function SetDateModal() {
 
     const [isVisible, setIsVisible] = useState(false);
     const [fecha, setFecha] = useState(Date);
 
     return (
-        <View style={themeComponent.background.modalView}>
+        <View>
 
             <SelectDateButton onPress={()=> setIsVisible(true)} 
             texto={`${fecha ? fecha.dateString : "Selecciona una fecha"}`} 
