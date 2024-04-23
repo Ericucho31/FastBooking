@@ -3,7 +3,7 @@ import { StyleSheet, Text, Pressable, View, Image } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import FirstTimeButton from "../Tags/FirstTimeTag";
 import HourTag from "../Tags/HourTag";
-import MessageButton from "../Buttons/MessageButton";
+import BigIconButton from "../Buttons/BigIconButton";
 import OptionsButton from "../Buttons/OptionsButton";
 
 
@@ -27,7 +27,7 @@ export default function CalendarDate({ imageSource, name, date, hour }) {
 
             </View>
 
-            <MessageButton />
+            <BigIconButton icon={"chatbubble-ellipses-outline"} iconColor={themeComponent.colors.primary} bgColor={"white"}/>
 
             <View>
                 <OptionsButton />

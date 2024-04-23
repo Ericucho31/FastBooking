@@ -4,6 +4,8 @@ import themeComponent from "../Theme/themeComponent";
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import SelectDateButton from "../Buttons/PrimaryIconAndtextButton";
 import GetDayDates from "../Handler/GetDayDates";
+import BigIconButton from "../Buttons/BigIconButton";
+import CreateNewDate from "../Modals/CreateNewDate";
 
 export default function PruebaScreen() {
 
@@ -35,6 +37,7 @@ export default function PruebaScreen() {
             </Modal>
 
             <GetDayDates></GetDayDates>
+            <CreateNewDate></CreateNewDate>
         </View>
 
     )
