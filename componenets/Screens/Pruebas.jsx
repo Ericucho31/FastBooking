@@ -3,6 +3,7 @@ import { StyleSheet, Text, Pressable, View, Button, Modal, } from "react-native"
 import themeComponent from "../Theme/themeComponent";
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import SelectDateButton from "../Buttons/PrimaryIconAndtextButton";
+import GetDayDates from "../Handler/GetDayDates";
 
 export default function PruebaScreen() {
 
@@ -32,6 +33,8 @@ export default function PruebaScreen() {
                     </View>
                 </View>
             </Modal>
+
+            <GetDayDates></GetDayDates>
         </View>
 
     )

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, Pressable, View, Button, Modal, } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import SelectDateButton from "../Buttons/PrimaryIconAndtextButton";
+import IconAndTextButton from "../Buttons/PrimaryIconAndtextButton";
 
 export default function SetDateModal() {
 
@@ -12,7 +12,7 @@ export default function SetDateModal() {
     return (
         <View>
 
-            <SelectDateButton onPress={()=> setIsVisible(true)} 
+            <IconAndTextButton onPress={()=> setIsVisible(true)} 
             texto={`${fecha ? fecha.dateString : "Selecciona una fecha"}`} 
             icon="calendar-outline"/>
 
