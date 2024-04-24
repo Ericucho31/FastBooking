@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Pressable, View, Button, Modal, } from "react-native";
+import { StyleSheet, Text, Pressable, View, Button, Modal, TouchableOpacity} from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import BigIconButton from "../Buttons/BigIconButton";
@@ -9,7 +9,7 @@ export default function CreateNewDate() {
 
     const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
     const [isVisibleForm, setIsVisibleForm] = useState(false);
-    const [fecha, setFecha] = useState(Date);
+
 
     return (
         <View>
@@ -30,7 +30,7 @@ export default function CreateNewDate() {
                             futureScrollRange={0}
                             firstDay={1}
 
-                            onDayPress={(day) => { setFecha(day), setIsVisibleCalendar(false), setIsVisibleForm(true),console.log(day) }}
+                            onDayPress={(day) => { setIsVisibleCalendar(false), setIsVisibleForm(true),console.log(day) }}
                         />
 
                     </View>
@@ -41,9 +41,13 @@ export default function CreateNewDate() {
             <Modal visible={isVisibleForm} animationType='fade' transparent={true}>
                 <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
 
-                    <View style={{ width: '90%', padding: 15, backgroundColo: 'white' }}>
-                        <TextInputSimple encabezado={'Horario'} nombre={'Escriba el horario de la cita'}></TextInputSimple>
-                        <Text>Holaaaa</Text>
+                    <View style={{ padding: 15, backgroundColor: 'white' , borderRadius:30}}>
+                        <TextInputSimple encabezado={'Horario'} nombre={'12:00'}/>
+                        <TextInputSimple encabezado={'Nombre del paciente'} nombre={'Juan Perez'}/>
+
+                        <Button title="Aceptar" 
+                        color={themeComponent.colors.primary} 
+                        onPress={() => setIsVisibleForm(false)}/>
                     </View>
                 </View>
             </Modal>

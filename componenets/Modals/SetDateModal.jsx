@@ -19,7 +19,7 @@ export default function SetDateModal() {
             <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='fade' transparent={true}>
                 <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
 
-                    <View style={{ width: '90%', padding: 15, backgroundColo: 'white' }}>
+                    <View style={{ width: '90%',borderRadius:30, padding: 15, backgroundColor: 'white' }}>
                         <Calendar
                             hideExtraDays={true}
                             pastScrollRange={0}

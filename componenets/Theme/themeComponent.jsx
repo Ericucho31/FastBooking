@@ -311,7 +311,7 @@ const themeComponent = StyleSheet.create({
 
     textInput: {
         container: {
-            width: '75%',
+            width: '80%',
             alignSelf: 'center', 
             marginBottom: 10,
         },
