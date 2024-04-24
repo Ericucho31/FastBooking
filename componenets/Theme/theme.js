@@ -13,7 +13,8 @@ export const theme = {
     colors: {
         primary: '#0165FC', //azul rey
         blueBackground: '#D0E3FF', //azul celeste
-        grayBackground: '#F7F8FA',
+        grayBackground: '#f2f2f2',
+
         dangerRed: '#D71E3E',
         white: '#FFFFFF',
         black: '#000',
@@ -34,14 +35,25 @@ export const theme = {
             height: 250,
         },
         mini: {
-            width: 50,
-            height: 50,
+            
+            width: 70,
+            height: 70,
             borderRadius:50,
         },
         micro: {
             width: 30,
             height: 30,
             borderRadius:50,
+        },
+        calendarDate: {
+            flex: 1, // Para que ocupe todo el espacio disponible
+            width: null, // Para que el ancho se ajuste automáticamente
+            height: null, // Para que el alto se ajuste automáticamente
+            borderRadius:50,
+        },
+        facebookButton: {
+            width: 50,
+            height: 50,
         }
     }
 }

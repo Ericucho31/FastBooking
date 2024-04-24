@@ -19,8 +19,8 @@ export default function DateBooked({ imageSource, name, date, hour }) {
 
             <View style={themeComponent.card.textContainer}>
                 <Text style={themeComponent.headers.header3}>{name}</Text>
-                <FirstTimeButton text={'Primera Vez'} />
-                <View style={{flexDirection:'row', marginBottom:15}}>
+                
+                <View style={{flexDirection:'row', marginBottom:10}}>
                     <HourTag text={hour} />
                     <DateTag text={date} />
                 </View>

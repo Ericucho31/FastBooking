@@ -6,11 +6,20 @@ import Days from "../Scrollables/Days";
 import CalendarDate from "../Cards/CalendarDate";
 import SetDateModal from "../Modals/SetDateModal";
 import CreateNewDate from "../Modals/CreateNewDate";
+import GetDayDates from "../Handler/GetDayDates";
 
 export default function Calendario() {
+    const [jsonData, setJsonData] = useState([]);
+
+    // Función para manejar los datos confirmados del componente hijo
+    const handleConfirmation = (data) => {
+        console.log("Datos confirmados:", data);
+        setJsonData([...jsonData, data]);
+    };
+
 
     return (
-        <View style={{ alignItems: 'center', }}>
+        <View style={{ alignItems: 'center', backgroundColor: themeComponent.colors.grayBackground }}>
 
             <SetDateModal></SetDateModal>
             <CalendarDate imageSource={'https://covalto.com/static/78498ccda70933a5f1e3edc3e40d3cbe/34aca/Hero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp'}
@@ -28,9 +37,11 @@ export default function Calendario() {
                 name={'Jessica Hurtado Sánchez'}
                 hour={'14:00'} />
 
-            <View style={{ position: 'absolute',alignItems: 'flex-end',justifyContent:'center', width: '100%', height:'250%'}}>
-                <CreateNewDate />
-            </View>
+
+            <GetDayDates jsonData={jsonData} />
+
+            <CreateNewDate onConfirmation={handleConfirmation} />
+
         </View>
     )
 }

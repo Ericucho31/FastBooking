@@ -33,8 +33,13 @@ export default function Citas() {
                     hour={'14:00'}
                     date={'Abril 30'} />
 
+                <DateBooked imageSource={'https://pymstatic.com/5844/conversions/personas-emocionales-wide_webp.webp'}
+                    name={'Jessica Hurtado Sánchez'}
+                    hour={'14:00'}
+                    date={'Abril 30'} />
+
             </View>
-        
+
         </ScrollView>
     )
 }

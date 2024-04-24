@@ -7,21 +7,20 @@ import BigIconButton from "../Buttons/BigIconButton";
 import OptionsButton from "../Buttons/OptionsButton";
 
 
-export default function CalendarDate({ imageSource, name, date, hour }) {
+export default function CalendarDate({ imageSource, name, hour }) {
 
     return (
         <View style={themeComponent.card.calendarDate.dateBookedContainer}>
             <View style={themeComponent.card.calendarDate.imageContainer}>
                 <Image
                     source={{ uri: imageSource }}
-                    style={themeComponent.images.micro} />
+                    style={themeComponent.images.calendarDate} />
             </View>
 
             <View style={themeComponent.card.calendarDate.textContainer}>
                 <Text style={themeComponent.headers.header3}>{name}</Text>
 
-                <View style={{ flexDirection: 'row' }}>
-                    <FirstTimeButton text={'Primera Vez'} />
+                <View style={{ flexDirection: 'row'}}>
                     <HourTag text={hour} />
                 </View>
 

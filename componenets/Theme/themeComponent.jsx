@@ -40,8 +40,10 @@ const themeComponent = StyleSheet.create({
     images: {
         primary: theme.image.primary,
         thumbnail: theme.image.thumbnail,
+        facebookButton: theme.image.facebookButton,
         mini: theme.image.mini,
         micro: theme.image.micro,
+        calendarDate: theme.image.calendarDate
     },
 
     buttons: {
@@ -119,51 +121,60 @@ const themeComponent = StyleSheet.create({
 
     card: {
         dateBookedContainer: {
-            alignItems: 'flex-start',
+            alignItems: 'center',
             justifyContent: 'flex-start',
             flexDirection: 'row',
             position: 'relative',
             width: '90%',
             maxWidth: '90%',
             backgroundColor: theme.colors.blueBackground,
-            padding: 5,
+            //padding: 5,
             borderRadius: 10,
             marginBottom: 15,
         },
         imageContainer: {
-            margin: 5,
-            position: 'relative'
+            flex:1,
+            position: 'relative',
+            //backgroundColor:'blue',
         },
 
         textContainer: {
-            maxWidth: '80%',
-            paddingHorizontal: 5,
+            flex:3,
+            maxWidth: '90%',
             marginBottom: 5,
             //backgroundColor: 'white'
         },
 
         calendarDate: {
             dateBookedContainer: {
-                alignItems: 'flex-start',
-                justifyContent: 'flex-end',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
                 flexDirection: 'row',
-                position: 'relative',
                 width: '90%',
+                minHeight:75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
                 maxWidth: '90%',
                 backgroundColor: theme.colors.blueBackground,
-                padding: 5,
+                //padding: 5,
                 borderRadius: 10,
                 marginBottom: 15,
             },
             imageContainer: {
-                margin: 5,
-                position: 'relative'
+                flex: 1, // Para que ocupe todo el espacio disponible
+                width: null, // Para que el ancho se ajuste automáticamente
+                height: null, // Para que el alto se ajuste automáticamente
+                backgroundColor:theme.colors.grayBackground,
+                
+                borderBottomRightRadius:50,
+                borderTopRightRadius:50,
             },
-    
+
             textContainer: {
+                flex: 2,
                 maxWidth: '65%',
                 paddingHorizontal: 5,
                 marginBottom: 5,
+               
+
                 //backgroundColor: 'white'
             },
         }
@@ -173,6 +184,7 @@ const themeComponent = StyleSheet.create({
         primary: theme.colors.primary,
         white: theme.colors.white,
         borderGray: theme.colors.borderGray,
+        grayBackground: theme.colors.grayBackground
     },
 
     scrollables: {
@@ -202,14 +214,14 @@ const themeComponent = StyleSheet.create({
                 borderRadius: 10
             },
             unselected: {
-                justifyContent:'center',
-                alignItems:'center',
+                justifyContent: 'center',
+                alignItems: 'center',
                 backgroundColor: 'white',
                 borderRadius: 10,
-                borderColor:'#929191',
-                borderWidth:1,
-                width:40,
-                height:40,
+                borderColor: '#929191',
+                borderWidth: 1,
+                width: 40,
+                height: 40,
             },
         },
 
@@ -312,10 +324,11 @@ const themeComponent = StyleSheet.create({
     textInput: {
         container: {
             width: '80%',
-            alignSelf: 'center', 
+            alignSelf: 'center',
             marginBottom: 10,
         },
         textInput: {
+            backgroundColor:theme.colors.white,
             borderWidth: 1,
             borderColor: 'gray',
             borderRadius: 5,

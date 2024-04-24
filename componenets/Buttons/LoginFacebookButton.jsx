@@ -23,7 +23,7 @@ export default function LoginFacebookButton( {navigation}) {
         >
             <Image 
             source={{ uri: 'https://cdn.pixabay.com/photo/2021/06/15/12/51/facebook-6338507_1280.png' }}
-            style={themeComponent.images.mini}/>
+            style={themeComponent.images.facebookButton}/>
             <Text style={themeComponent.text.loginFacebook}>Ingresar con Facebook</Text>
         </Pressable>
     );

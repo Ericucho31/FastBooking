@@ -1,45 +1,22 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Pressable, View, Button, Modal, } from "react-native";
-import themeComponent from "../Theme/themeComponent";
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import SelectDateButton from "../Buttons/PrimaryIconAndtextButton";
+import { View, Button } from "react-native";
 import GetDayDates from "../Handler/GetDayDates";
-import BigIconButton from "../Buttons/BigIconButton";
 import CreateNewDate from "../Modals/CreateNewDate";
 
 export default function PruebaScreen() {
+    const [jsonData, setJsonData] = useState([]);
 
-    const [isVisible, setIsVisible] = useState(false);
-    const [fecha, setFecha] = useState(Date);
+    // Función para manejar los datos confirmados del componente hijo
+    const handleConfirmation = (data) => {
+        console.log("Datos confirmados:", data);
+        // Agregar el nuevo JSON al arreglo existente
+        setJsonData([...jsonData, data]);
+    };
 
     return (
-        <View style={themeComponent.background.modalView}>
-
-            <SelectDateButton onPress={()=> setIsVisible(true)} 
-            texto={`${fecha ? fecha.dateString : "Selecciona una fecha"}`} 
-            icon="calendar-outline"/>
-
-            <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='fade' transparent={true}>
-                <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-
-                    <View style={{ width: '90%', padding: 15, backgroundColo: 'white' }}>
-                        <Calendar
-                            hideExtraDays={true}
-                            pastScrollRange={0}
-                            futureScrollRange={0}
-                            firstDay={1}
-
-                            onDayPress={(day) => { setFecha(day), setIsVisible(false), console.log(day) }}
-                        />
-
-                    </View>
-                </View>
-            </Modal>
-
-            <GetDayDates></GetDayDates>
-            <CreateNewDate></CreateNewDate>
+        <View style={{ alignItems: 'center' }}>
+            <GetDayDates jsonData={jsonData} />
+            <CreateNewDate onConfirmation={handleConfirmation} />
         </View>
-
-    )
-
+    );
 }
