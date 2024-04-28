@@ -55,5 +55,11 @@ export const theme = {
             width: 50,
             height: 50,
         }
+,
+        newDateRequest: {
+            width: 70,
+            height: 70,
+            borderRadius:10,
+        },
     }
 }

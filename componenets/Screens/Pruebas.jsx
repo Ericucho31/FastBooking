@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Button } from "react-native";
 import GetDayDates from "../Handler/GetDayDates";
 import CreateNewDate from "../Modals/CreateNewDate";
+import NewDateRequest from "../Cards/NewDateRequest";
 
 export default function PruebaScreen() {
     const [jsonData, setJsonData] = useState([]);
@@ -16,6 +17,7 @@ export default function PruebaScreen() {
     return (
         <View style={{ alignItems: 'center' }}>
             <GetDayDates jsonData={jsonData} />
+            <NewDateRequest></NewDateRequest>
             <CreateNewDate onConfirmation={handleConfirmation} />
         </View>
     );

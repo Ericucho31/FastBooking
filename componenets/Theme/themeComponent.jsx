@@ -43,7 +43,8 @@ const themeComponent = StyleSheet.create({
         facebookButton: theme.image.facebookButton,
         mini: theme.image.mini,
         micro: theme.image.micro,
-        calendarDate: theme.image.calendarDate
+        calendarDate: theme.image.calendarDate,
+        newDateRequest: theme.image.newDateRequest,
     },
 
     buttons: {
@@ -133,13 +134,13 @@ const themeComponent = StyleSheet.create({
             marginBottom: 15,
         },
         imageContainer: {
-            flex:1,
+            flex: 1,
             position: 'relative',
             //backgroundColor:'blue',
         },
 
         textContainer: {
-            flex:3,
+            flex: 3,
             maxWidth: '90%',
             marginBottom: 5,
             //backgroundColor: 'white'
@@ -151,7 +152,7 @@ const themeComponent = StyleSheet.create({
                 justifyContent: 'flex-start',
                 flexDirection: 'row',
                 width: '90%',
-                minHeight:75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
+                minHeight: 75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
                 maxWidth: '90%',
                 backgroundColor: theme.colors.blueBackground,
                 //padding: 5,
@@ -162,10 +163,10 @@ const themeComponent = StyleSheet.create({
                 flex: 1, // Para que ocupe todo el espacio disponible
                 width: null, // Para que el ancho se ajuste automáticamente
                 height: null, // Para que el alto se ajuste automáticamente
-                backgroundColor:theme.colors.grayBackground,
-                
-                borderBottomRightRadius:50,
-                borderTopRightRadius:50,
+                backgroundColor: theme.colors.grayBackground,
+
+                borderBottomRightRadius: 50,
+                borderTopRightRadius: 50,
             },
 
             textContainer: {
@@ -173,11 +174,39 @@ const themeComponent = StyleSheet.create({
                 maxWidth: '65%',
                 paddingHorizontal: 5,
                 marginBottom: 5,
-               
+
 
                 //backgroundColor: 'white'
             },
+        },
+        newDateRequest: {
+            mainContainer: {
+                //flex:1,
+                alignItems: 'flex-start',
+                justifyContent: 'space-evenly',
+                //flexDirection: 'row',
+                width: '90%',
+                minHeight: 75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
+                maxWidth: '90%',
+                backgroundColor: theme.colors.white,
+                padding: 10,
+                borderRadius: 10,
+                marginBottom: 15,
+
+                shadowColor: '#000',
+                shadowOffset: {
+                    width: 0,
+                    height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5, // Esto es necesario para que la sombra se muestre en dispositivos Android
+
+
+            }
         }
+
+
     },
 
     colors: {
@@ -328,7 +357,7 @@ const themeComponent = StyleSheet.create({
             marginBottom: 10,
         },
         textInput: {
-            backgroundColor:theme.colors.white,
+            backgroundColor: theme.colors.white,
             borderWidth: 1,
             borderColor: 'gray',
             borderRadius: 5,
