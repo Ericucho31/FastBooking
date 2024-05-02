@@ -1,5 +1,6 @@
 import * as Font from 'expo-font'
 import { useFonts } from 'expo-font'
+import { Settings } from 'react-native';
 
 export const cargarFuentes = async() => {
     await Font.loadAsync({
@@ -19,6 +20,8 @@ export const theme = {
         white: '#FFFFFF',
         black: '#000',
         borderGray: '#929191',
+        dividerGray: 'rgba(0, 0, 0, 0.12)',
+        green: '#04DA54'
     },
 
     fonts: {
@@ -61,5 +64,11 @@ export const theme = {
             height: 70,
             borderRadius:10,
         },
+        Settings: {
+            width: 120,
+            height: 120,
+            borderRadius:60,
+        },
+
     }
 }

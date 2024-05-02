@@ -9,7 +9,7 @@ export default function BigIconButton({icon, iconColor, bgColor, onPress}) {
             <TouchableOpacity 
                 style={{backgroundColor:bgColor, padding:10, borderRadius:50}}
                 onPress={onPress}>
-                <Ionicons name={icon} size={32} color={iconColor} />
+                <Ionicons name={icon} size={28} color={iconColor} />
             </TouchableOpacity>
         </View>
     )

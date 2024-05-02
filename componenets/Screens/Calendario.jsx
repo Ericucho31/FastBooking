@@ -26,16 +26,16 @@ export default function Calendario() {
                 name={'Juan Rodriguez Torres de la Cruz'}
                 hour={'12:00'} />
 
-            <CalendarDate imageSource={'https://images.hola.com/imagenes/estar-bien/20221018219233/buenas-personas-caracteristicas/1-153-242/getty-chica-feliz-t.jpg?tx=w_680'}
-                name={'Irene López Saenz'}
-                hour={'16:00'} />
-
             <CalendarDate imageSource={'https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg'}
                 name={'Sabastián Garcia Carranza'}
                 hour={'12:00'} />
             <CalendarDate imageSource={'https://pymstatic.com/5844/conversions/personas-emocionales-wide_webp.webp'}
-                name={'Jessica Hurtado Sánchez'}
+                name={'Maria Zaragoza'}
                 hour={'14:00'} />
+
+            <CalendarDate imageSource={'https://images.hola.com/imagenes/estar-bien/20221018219233/buenas-personas-caracteristicas/1-153-242/getty-chica-feliz-t.jpg?tx=w_680'}
+                name={'Irene López Saenz'}
+                hour={'16:00'} />
 
 
             <GetDayDates jsonData={jsonData} />

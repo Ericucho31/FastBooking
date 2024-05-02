@@ -45,6 +45,7 @@ const themeComponent = StyleSheet.create({
         micro: theme.image.micro,
         calendarDate: theme.image.calendarDate,
         newDateRequest: theme.image.newDateRequest,
+        settings: theme.image.Settings,
     },
 
     buttons: {
@@ -204,6 +205,46 @@ const themeComponent = StyleSheet.create({
 
 
             }
+        },
+        notification: {
+            mainContainer: {
+                //flex:1,
+                alignItems: 'flex-start',
+                //justifyContent: 'space-evenly',
+                flexDirection: 'row',
+                width: '90%',
+                minHeight: 75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
+                maxWidth: '90%',
+                backgroundColor: theme.colors.white,
+                padding: 10,
+                borderRadius: 10,
+                marginBottom: 15,
+
+                shadowColor: '#000',
+                shadowOffset: {
+                    width: 0,
+                    height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5, // Esto es necesario para que la sombra se muestre en dispositivos Android
+
+
+            }
+
+        },
+
+        settings: {
+            width: '100%',
+            flexDirection:'row',
+            alignItems:'center', 
+            backgroundColor:'white', 
+            padding: 10,
+            borderColor: theme.colors.dividerGray,
+            borderTopWidth: 0,
+            borderLeftWidth: 0,
+            borderRightWidth: 0,
+            borderBottomWidth: 1, // Ancho del borde inferior
         }
 
 
@@ -213,7 +254,9 @@ const themeComponent = StyleSheet.create({
         primary: theme.colors.primary,
         white: theme.colors.white,
         borderGray: theme.colors.borderGray,
-        grayBackground: theme.colors.grayBackground
+        grayBackground: theme.colors.grayBackground,
+        dangerRed: theme.colors.dangerRed,
+        green: theme.colors.green,
     },
 
     scrollables: {
@@ -260,7 +303,7 @@ const themeComponent = StyleSheet.create({
         headerTextbox: {
             fontSize: 16,
             fontFamily: theme.fonts.primary,
-            fontWeight: 'bold',
+            fontWeight: 'regular',
             letterSpacing: 0.25,
             color: 'black'
         },
@@ -346,6 +389,19 @@ const themeComponent = StyleSheet.create({
                 letterSpacing: 0.25,
                 color: 'black',
             }
+        },
+
+        cancelar: {
+            fontFamily: theme.fonts.primary,
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: theme.colors.dangerRed
+        },
+        logOut: {
+            fontFamily: theme.fonts.primary,
+            fontSize: 16,
+            fontWeight: 'bold',
+            color: theme.colors.borderGray,
         }
 
     },

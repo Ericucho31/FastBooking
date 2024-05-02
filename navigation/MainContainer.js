@@ -7,15 +7,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Citas from '../componenets/Screens/Citas';
 import Calendario from '../componenets/Screens/Calendario';
 import PruebaScreen from '../componenets/Screens/Pruebas';
+import SettingsScreen from '../componenets/Screens/Setting';
+import Notification from '../componenets/Cards/NotificationCard';
+import NotififcationsScreen from '../componenets/Screens/Notifications';
 
 //Screen names
 const datesName = "Citas";
 const calendarName = "Calendario";
-const pruebaName = 'Prueba'
+const pruebaName = 'Prueba';
+const notificationsName = 'Notificaciones';
+const settingsName = 'Ajustes';
+
 
 const Tab = createBottomTabNavigator();
 
-function MainContainer() {
+function MainContainer({navigation}) {
   return (
     
       <Tab.Navigator
@@ -33,8 +39,11 @@ function MainContainer() {
               iconName = focused ? 'calendar-number' : 'calendar-number-outline';
 
             } 
-            else if (rn === pruebaName) {
-              iconName = focused ? 'apps' : 'apps-outline';
+            else if (rn === notificationsName) {
+              iconName = focused ? 'notifications' : 'notifications-outline';
+            } 
+            else if (rn === settingsName) {
+              iconName = focused ? 'settings' : 'settings-outline';
 
             } 
 
@@ -52,7 +61,8 @@ function MainContainer() {
 
         <Tab.Screen name={datesName} component={Citas} />
         <Tab.Screen name={calendarName} component={Calendario} />
-        <Tab.Screen name={pruebaName} component={PruebaScreen} />
+        <Tab.Screen name={notificationsName} component={NotififcationsScreen} />
+        <Tab.Screen name={settingsName} component={SettingsScreen} initialParams={{ navigation: navigation}} />
 
       </Tab.Navigator>
     
