@@ -46,6 +46,10 @@ function MainContainer({navigation}) {
               iconName = focused ? 'settings' : 'settings-outline';
 
             } 
+            else if (rn === pruebaName) {
+              iconName = focused ? 'apps' : 'apps-outline';
+
+            } 
 
             // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
@@ -62,7 +66,8 @@ function MainContainer({navigation}) {
         <Tab.Screen name={datesName} component={Citas} />
         <Tab.Screen name={calendarName} component={Calendario} />
         <Tab.Screen name={notificationsName} component={NotififcationsScreen} />
-        <Tab.Screen name={settingsName} component={SettingsScreen} initialParams={{ navigation: navigation}} />
+        <Tab.Screen name={settingsName} component={SettingsScreen} />
+        <Tab.Screen name={pruebaName} component={PruebaScreen} />
 
       </Tab.Navigator>
     

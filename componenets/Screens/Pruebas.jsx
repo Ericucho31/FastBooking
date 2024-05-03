@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { View, Button } from "react-native";
-import GetDayDates from "../Handler/GetDayDates";
-import CreateNewDate from "../Modals/CreateNewDate";
-import NewDateRequest from "../Cards/NewDateRequest";
-import Accordion from "../Buttons/EjemploAccordeon";
+import BigIconButton from "../Buttons/BigIconButton";
+import themeComponent from "../Theme/themeComponent";
+import SimpleModal from "../Modals/SimpleModal";
+import NotififcationCard from "../Cards/NotificationCard";
 
 export default function PruebaScreen() {
     const [jsonData, setJsonData] = useState([]);
+    const [isVisible, setIsVisible] = useState(false);
+
+    // Función para cambiar la visibilidad del modal
+    const toggleModalVisibility = () => {
+        setIsVisible(!isVisible);
+    };
+
 
     // Función para manejar los datos confirmados del componente hijo
     const handleConfirmation = (data) => {
@@ -18,12 +25,15 @@ export default function PruebaScreen() {
     return (
         <View style={{ alignItems: 'center' }}>
 
-            <GetDayDates jsonData={jsonData} />
-            <NewDateRequest imageSource={'https://pymstatic.com/5844/conversions/personas-emocionales-wide_webp.webp'}
-                name={'Jessica Hurtado Sánchez'}
-                hour={'14:00'}
-                date={'Abril 30'}></NewDateRequest>
-            <CreateNewDate onConfirmation={handleConfirmation} />
+            <BigIconButton icon={'balloon-outline'} iconColor={'white'} bgColor={themeComponent.colors.green} onPress={toggleModalVisibility} />
+            <SimpleModal isVisible={isVisible} toggleModalVisibility={toggleModalVisibility}
+                Component={<NotififcationCard
+                    icon={'calendar-outline'}
+                    color={themeComponent.colors.primary}
+                    header={'Citas pendientes de aceptación'}
+                    description={'Cuenta con 6 citas pendientes de ser respondidas, ingrese a la pestaña de Citas para marcarlas'} 
+                    />} 
+            />
         </View>
     );
 }

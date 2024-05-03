@@ -14,9 +14,9 @@ export default function SettingsScreen({}) {
     }
 
     return (
-        <View style={{ alignItems: 'center', backgroundColor: 'white' }}>
+        <View style={{  backgroundColor: 'white' }}>
 
-            <View>
+            <View style={{ justifyContent:'center',alignItems: 'center'}}>
                 <Image style={themeComponent.images.settings} source={{ uri: 'https://hips.hearstapps.com/hmg-prod/images/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg?crop=0.66698xw:1xh;center,top&resize=1200:*' }} />
                 <Text style={themeComponent.headers.header3}>Dr. Heriberto Torres Magón</Text>
             </View>
