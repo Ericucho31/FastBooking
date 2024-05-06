@@ -4,11 +4,18 @@ import themeComponent from "../Theme/themeComponent";
 import { Divider, Avatar } from '@rneui/themed';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import BigIconButton from "../Buttons/BigIconButton";
+import SimpleModal from "../Modals/SimpleModal";
 
 export default function NewDateRequest({ imageSource, name, date, hour }) {
 
     const [expandido, setExpandido] = useState(false);
     const [animation, setAnimation] = useState(new Animated.Value(0));
+    const [modalVisibility, setModalVisibility] = useState(false);
+
+    // Función para cambiar la visibilidad del modal
+    const toggleModalVisibility = () => {
+        setModalVisibility(!modalVisibility);
+    };
 
     const accionarBotonOpciones = () => {
         if (expandido) {
@@ -77,7 +84,8 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
             </View>
 
             <Animated.View style={[{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }, animatedStyle]}>
-                <TouchableOpacity style={{flex:1, alignItems:'center'}}>
+                <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}
+                    onPress={toggleModalVisibility}>
                     <View >
                         <Text style={themeComponent.text.cancelar}>Denegar</Text>
                     </View>
@@ -86,11 +94,13 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
                 <Divider orientation="vertical" width={1} style={{ margin: 10 }}></Divider>
 
-                <TouchableOpacity style={{flex:1, alignItems:'center'}}>
+                <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={toggleModalVisibility}>
                     <View>
                         <Text style={themeComponent.headers.header3}>Reagendar</Text>
                     </View>
                 </TouchableOpacity>
+
+                <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility} />
 
             </Animated.View>
 
