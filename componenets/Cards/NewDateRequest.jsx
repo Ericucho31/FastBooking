@@ -1,21 +1,32 @@
 import React, { useState } from "react";
 import { View, Text, Image, Animated, TouchableOpacity } from "react-native";
 import themeComponent from "../Theme/themeComponent";
-import { Divider, Avatar } from '@rneui/themed';
+import { Divider } from '@rneui/themed';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import BigIconButton from "../Buttons/BigIconButton";
 import SimpleModal from "../Modals/SimpleModal";
+import ConfirmationModal from "../Modals/ConfirmationModal";
 
 export default function NewDateRequest({ imageSource, name, date, hour }) {
-
     const [expandido, setExpandido] = useState(false);
     const [animation, setAnimation] = useState(new Animated.Value(0));
     const [modalVisibility, setModalVisibility] = useState(false);
+    const [aceptado, setAceptado] = useState('No aceptado');
 
     // Función para cambiar la visibilidad del modal
     const toggleModalVisibility = () => {
         setModalVisibility(!modalVisibility);
     };
+
+    const aceptarCita = () => {
+        if(aceptado === 'Ha sido aceptado')
+            {
+                setAceptado('Siempre no');
+            }
+            else {
+                setAceptado('Ha sido aceptado');
+            }
+    }
 
     const accionarBotonOpciones = () => {
         if (expandido) {
@@ -63,6 +74,7 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
                 <View style={{ width: '50%' }}>
                     <Text style={themeComponent.headers.header3}>{name}</Text>
+                    <Text>{aceptado}</Text>
                 </View>
 
                 <View style={{}}>
@@ -70,8 +82,8 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
                         <BigIconButton
                             icon={'checkmark-outline'}
                             iconColor={'white'}
-                            bgColor={themeComponent.colors.primary} />
-
+                            bgColor={themeComponent.colors.primary} 
+                            onPress={aceptarCita}/>
                     </View>
 
                     <BigIconButton
@@ -86,22 +98,17 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
             <Animated.View style={[{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }, animatedStyle]}>
                 <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}
                     onPress={toggleModalVisibility}>
-                    <View >
-                        <Text style={themeComponent.text.cancelar}>Denegar</Text>
-                    </View>
-
+                    <Text style={themeComponent.text.cancelar}>Denegar</Text>
                 </TouchableOpacity>
 
                 <Divider orientation="vertical" width={1} style={{ margin: 10 }}></Divider>
 
                 <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={toggleModalVisibility}>
-                    <View>
-                        <Text style={themeComponent.headers.header3}>Reagendar</Text>
-                    </View>
+                    <Text style={themeComponent.headers.header3}>Reagendar</Text>
                 </TouchableOpacity>
 
-                <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility} />
-
+                <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
+                    Component={<ConfirmationModal />} />
             </Animated.View>
 
         </View>

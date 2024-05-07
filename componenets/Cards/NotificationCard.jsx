@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image, Animated, TouchableOpacity } from "react-native";
 import themeComponent from "../Theme/themeComponent";
-import { Divider, Avatar } from '@rneui/themed';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import BigIconButton from "../Buttons/BigIconButton";
 
 export default function NotififcationCard({ icon, color, header, description, onPress}) {

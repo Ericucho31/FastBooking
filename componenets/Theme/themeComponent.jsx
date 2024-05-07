@@ -202,7 +202,8 @@ const themeComponent = StyleSheet.create({
                 shadowOpacity: 0.25,
                 shadowRadius: 3.84,
                 elevation: 5, // Esto es necesario para que la sombra se muestre en dispositivos Android
-
+            },
+            aceptarCita: {
 
             }
         },
@@ -233,12 +234,21 @@ const themeComponent = StyleSheet.create({
             }
 
         },
+        confirmation: {
+
+            width: '90%',
+            minHeight: 75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
+            maxWidth: '90%',
+            backgroundColor: theme.colors.white,
+            padding: 8,
+            borderRadius: 10,
+        },
 
         settings: {
             width: '100%',
-            flexDirection:'row',
-            alignItems:'center', 
-            backgroundColor:'white', 
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: 'white',
             padding: 10,
             borderColor: theme.colors.dividerGray,
             borderTopWidth: 0,

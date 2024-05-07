@@ -4,6 +4,7 @@ import BigIconButton from "../Buttons/BigIconButton";
 import themeComponent from "../Theme/themeComponent";
 import SimpleModal from "../Modals/SimpleModal";
 import NotififcationCard from "../Cards/NotificationCard";
+import AcceptedDate from "../Cards/AccepedDate";
 
 export default function PruebaScreen() {
     const [jsonData, setJsonData] = useState([]);
@@ -34,6 +35,7 @@ export default function PruebaScreen() {
                     description={'Cuenta con 6 citas pendientes de ser respondidas, ingrese a la pestaña de Citas para marcarlas'} 
                     />} 
             />
+            <AcceptedDate></AcceptedDate>
         </View>
     );
 }
