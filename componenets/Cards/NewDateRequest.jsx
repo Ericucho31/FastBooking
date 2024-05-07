@@ -6,54 +6,17 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import BigIconButton from "../Buttons/BigIconButton";
 import SimpleModal from "../Modals/SimpleModal";
 import ConfirmationModal from "../Modals/ConfirmationModal";
+import useAnimation from "./logicJS/animationNewDateRequest";
 
 export default function NewDateRequest({ imageSource, name, date, hour }) {
-    const [expandido, setExpandido] = useState(false);
-    const [animation, setAnimation] = useState(new Animated.Value(0));
+    const { toggleAnimation, animatedStyle } = useAnimation();
     const [modalVisibility, setModalVisibility] = useState(false);
-    const [aceptado, setAceptado] = useState('No aceptado');
+    const [aceptado, setAceptado] = useState(true);
+    const [denegado, setDenegado] = useState('no denegado');
 
     // Función para cambiar la visibilidad del modal
     const toggleModalVisibility = () => {
         setModalVisibility(!modalVisibility);
-    };
-
-    const aceptarCita = () => {
-        if(aceptado === 'Ha sido aceptado')
-            {
-                setAceptado('Siempre no');
-            }
-            else {
-                setAceptado('Ha sido aceptado');
-            }
-    }
-
-    const accionarBotonOpciones = () => {
-        if (expandido) {
-            Animated.timing(animation, {
-                toValue: 0,
-                duration: 300,
-                useNativeDriver: false,
-            }).start();
-
-        } else {
-            Animated.timing(animation, {
-                toValue: 1,
-                duration: 300,
-                useNativeDriver: false,
-            }).start();
-        }
-        setExpandido(!expandido)
-    }
-
-    const heightInterpolate = animation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 50], // Adjust height as needed
-    });
-
-    const animatedStyle = {
-        height: heightInterpolate,
-        width: '100%',
     };
 
     return (
@@ -74,23 +37,23 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
                 <View style={{ width: '50%' }}>
                     <Text style={themeComponent.headers.header3}>{name}</Text>
-                    <Text>{aceptado}</Text>
+                    <Text>{denegado}</Text>
                 </View>
 
-                <View style={{}}>
+                <View>
                     <View style={{ marginBottom: 5 }}>
                         <BigIconButton
                             icon={'checkmark-outline'}
                             iconColor={'white'}
-                            bgColor={themeComponent.colors.primary} 
-                            onPress={aceptarCita}/>
+                            bgColor={themeComponent.colors.primary}
+                        />
                     </View>
 
                     <BigIconButton
                         icon={'ellipsis-horizontal'}
                         iconColor={'white'}
                         bgColor={'gray'}
-                        onPress={accionarBotonOpciones} />
+                        onPress={toggleAnimation} />
                 </View>
 
             </View>
@@ -108,7 +71,9 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
                 </TouchableOpacity>
 
                 <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
-                    Component={<ConfirmationModal />} />
+                    Component={<ConfirmationModal name={name}
+                        onCancel={toggleModalVisibility}
+                        onPress={() => setDenegado('denegado')} />} />
             </Animated.View>
 
         </View>
