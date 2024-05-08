@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { View, Text, Animated, TouchableOpacity } from "react-native";
 import themeComponent from "../Theme/themeComponent";
-import { Divider } from "@rneui/base";
 
-export default function AcceptedDate({color, onPress }) {
+export default function AcceptedDate({ name, onPress }) {
 
     const [expandido, setExpandido] = useState(false);
     const [animation, setAnimation] = useState(new Animated.Value(0));
 
     return (
-        <View style={themeComponent.card.newDateRequest.mainContainer}>
-            <Text>La cita ha sido aceptada</Text>
-        </View>
- 
+        <Animated.View style={themeComponent.card.newDateRequest.aceptarCita}>
+            <Text style={themeComponent.text.loginFacebook}>La cita de {name} ha sido confirmada</Text>
+        </Animated.View>
     )
 }

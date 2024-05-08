@@ -7,20 +7,32 @@ import BigIconButton from "../Buttons/BigIconButton";
 import SimpleModal from "../Modals/SimpleModal";
 import ConfirmationModal from "../Modals/ConfirmationModal";
 import useAnimation from "./logicJS/animationNewDateRequest";
+import AcceptedDate from "./AccepedDate";
 
 export default function NewDateRequest({ imageSource, name, date, hour }) {
     const { toggleAnimation, animatedStyle } = useAnimation();
     const [modalVisibility, setModalVisibility] = useState(false);
-    const [aceptado, setAceptado] = useState(true);
+    const [aceptado, setAceptado] = useState(false);
     const [denegado, setDenegado] = useState('no denegado');
+    const [finalizado, setFinalizado] = useState(true);
 
     // Función para cambiar la visibilidad del modal
     const toggleModalVisibility = () => {
         setModalVisibility(!modalVisibility);
     };
 
+    const handleAccept = () => {
+        setAceptado(true);
+        setTimeout(() => {
+            setAceptado(false); // Oculta el componente después de 3 segundos
+        }, 3000); // 3000 milisegundos = 3 segundos
+
+        //resto del acciones para manejar la aceptación de la cita
+    }
+
     return (
         <View style={themeComponent.card.newDateRequest.mainContainer}>
+
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name={'calendar-outline'} size={16} color={themeComponent.colors.primary} />
                 <Text style={themeComponent.headers.header3}>{date}, {hour} </Text>
@@ -46,6 +58,7 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
                             icon={'checkmark-outline'}
                             iconColor={'white'}
                             bgColor={themeComponent.colors.primary}
+                            onPress={handleAccept}
                         />
                     </View>
 
@@ -75,6 +88,8 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
                         onCancel={toggleModalVisibility}
                         onPress={() => setDenegado('denegado')} />} />
             </Animated.View>
+
+            {aceptado && ( <AcceptedDate name={name}/>)}
 
         </View>
     )

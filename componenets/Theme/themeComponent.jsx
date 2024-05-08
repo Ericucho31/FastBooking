@@ -204,6 +204,25 @@ const themeComponent = StyleSheet.create({
                 elevation: 5, // Esto es necesario para que la sombra se muestre en dispositivos Android
             },
             aceptarCita: {
+                flex: 1,
+                display:'flex', 
+                position:'absolute',
+                height: '115%', 
+                width: '105.5%', 
+                alignItems:'center',
+                justifyContent:'center',
+                backgroundColor: theme.colors.green,
+                borderRadius: 10,
+                shadowColor: '#000',
+                shadowOffset: {
+                    width: 0,
+                    height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5, // Esto es necesario para que la sombra se muestre en dispositivos Android
+            
+                
 
             }
         },
