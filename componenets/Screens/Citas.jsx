@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
 import themeComponent from "../Theme/themeComponent";
-import DateBooked from "../Cards/DateBooked";
-import MainContainer from "../../navigation/MainContainer";
 import NewDateRequest from "../Cards/NewDateRequest";
 
 export default function Citas() {

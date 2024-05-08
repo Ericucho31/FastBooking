@@ -19,7 +19,7 @@ export default function ConfirmationModal({name, color, onPress, onCancel }) {
 
     return (
         <View style={themeComponent.card.confirmation} >
-            <Text style={themeComponent.text.selectDate}>¿Estás seguro que quieres denegar la petición de {name}?</Text>
+            <Text style={themeComponent.text.selectDate}>¿Estás seguro que quieres denegar la cita de {name}?</Text>
 
             <View style={{ flexDirection: 'row', marginTop: 15 }}>
 

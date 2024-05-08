@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Divider } from "@rneui/base";
 
 export default function SettingsCard({ icon, iconColor, cardName, textColor, onPress}) {
 

@@ -67,7 +67,7 @@ function MainContainer({navigation}) {
         <Tab.Screen name={calendarName} component={Calendario} />
         <Tab.Screen name={notificationsName} component={NotififcationsScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
-        <Tab.Screen name={pruebaName} component={PruebaScreen} />
+       
 
       </Tab.Navigator>
     

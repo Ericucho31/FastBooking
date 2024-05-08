@@ -1,11 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, Pressable, View, Image } from "react-native";
 import themeComponent from "../Theme/themeComponent";
-import FirstTimeButton from "../Tags/FirstTimeTag";
 import HourTag from "../Tags/HourTag";
 import DateTag from "../Tags/DateTag";
-import AcceptButton from "../Buttons/AcceptButton";
-import DeclineButton from "../Buttons/DeclineButton";
 
 export default function DateBooked({ imageSource, name, date, hour }) {
 
@@ -26,8 +23,6 @@ export default function DateBooked({ imageSource, name, date, hour }) {
                 </View>
 
                 <View style={{flexDirection:'row', }}>
-                    <DeclineButton />
-                    <AcceptButton />
                 </View>
             </View>
 

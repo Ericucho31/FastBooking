@@ -8,10 +8,14 @@ import SimpleModal from "../Modals/SimpleModal";
 import ConfirmationModal from "../Modals/ConfirmationModal";
 import useAnimation from "./logicJS/animationNewDateRequest";
 import AcceptedDate from "./AccepedDate";
+import RescheduleModal from "./RescheduleModal";
 
 export default function NewDateRequest({ imageSource, name, date, hour }) {
     const { toggleAnimation, animatedStyle } = useAnimation();
     const [modalVisibility, setModalVisibility] = useState(false);
+    const [modalReagendar, setModalReagendar] = useState(false);
+
+    const [fechaRecibida, setFechaRecibida] = useState(date);
     const [aceptado, setAceptado] = useState(false);
     const [denegado, setDenegado] = useState('no denegado');
     const [finalizado, setFinalizado] = useState(true);
@@ -20,6 +24,19 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
     const toggleModalVisibility = () => {
         setModalVisibility(!modalVisibility);
     };
+
+    // Función para cambiar la visibilidad del modal
+    const toggleModalReagendar = () => {
+        setModalReagendar(!modalReagendar);
+    };
+
+    // Función para manejar la actualización de la fecha
+    const handleDateUpdate = (newDate) => {
+        setFechaRecibida(newDate.toDateString());
+
+        //manejo del resto de actualizaciones para la nueva fecha
+    };
+
 
     const handleAccept = () => {
         setAceptado(true);
@@ -35,7 +52,7 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name={'calendar-outline'} size={16} color={themeComponent.colors.primary} />
-                <Text style={themeComponent.headers.header3}>{date}, {hour} </Text>
+                <Text style={themeComponent.headers.header3}>{fechaRecibida}, {hour} </Text>
             </View>
 
             <Divider orientation="vertical" width={1}></Divider>
@@ -79,17 +96,24 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
                 <Divider orientation="vertical" width={1} style={{ margin: 10 }}></Divider>
 
-                <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={toggleModalVisibility}>
+                <TouchableOpacity style={{ flex: 1, alignItems: 'center' }}
+                    onPress={toggleModalReagendar}>
                     <Text style={themeComponent.headers.header3}>Reagendar</Text>
                 </TouchableOpacity>
 
-                <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
-                    Component={<ConfirmationModal name={name}
-                        onCancel={toggleModalVisibility}
-                        onPress={() => setDenegado('denegado')} />} />
             </Animated.View>
 
-            {aceptado && ( <AcceptedDate name={name}/>)}
+            <SimpleModal isVisible={modalReagendar} toggleModalVisibility={toggleModalReagendar}
+                Component={<RescheduleModal onDateSelected={handleDateUpdate}
+                    SimpleModalToggle={toggleModalReagendar} />} />
+
+
+            <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
+                Component={<ConfirmationModal name={name}
+                    onCancel={toggleModalVisibility}
+                    onPress={() => setDenegado('denegado')} />} />
+
+            {aceptado && (<AcceptedDate name={name} />)}
 
         </View>
     )

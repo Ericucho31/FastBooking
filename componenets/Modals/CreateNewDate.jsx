@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, Pressable, View, Button, Modal, TouchableOpacity } from "react-native";
+import { View, Button, Modal, TouchableOpacity } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import BigIconButton from "../Buttons/BigIconButton";
 import TextInputSimple from "../TextBox/TextInputSimple";
