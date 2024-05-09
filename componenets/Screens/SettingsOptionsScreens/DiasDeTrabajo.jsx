@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 import BigIconButton from "../../Buttons/BigIconButton";
 import { useNavigation } from '@react-navigation/native';
 import { CheckBox } from '@rneui/themed';
@@ -29,6 +29,8 @@ export default function DiasDeTrabajo() {
                     day={item} 
                 />
             ))}
+
+            <Button title="Aceptar" onPress={Back}/>
         </View>
     )
 }
