@@ -7,10 +7,14 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function SettingsScreen({}) {
     const navigation = useNavigation();
+    
 
     const LogOut = () => {
-        
         navigation.navigate('Login')
+    }
+
+    const DiasDeTrabajo = () => {
+        navigation.navigate('DiasDeTrabajoSetting')
     }
 
     return (
@@ -23,7 +27,8 @@ export default function SettingsScreen({}) {
 
             <SettingsCard icon={'calendar-outline'}
                 iconColor={themeComponent.colors.primary}
-                cardName={'Dias libres'} />
+                cardName={'Días de trabajo'}
+                onPress={DiasDeTrabajo} />
 
             <SettingsCard icon={'time-outline'}
                 iconColor={themeComponent.colors.primary}

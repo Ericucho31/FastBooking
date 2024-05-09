@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './componenets/Screens/Login';
 import MainContainer from './navigation/MainContainer';
+import DiasDeTrabajo from './componenets/Screens/SettingsOptionsScreens/DiasDeTrabajo';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,6 +15,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={MainContainer} />
+        <Stack.Screen name="DiasDeTrabajoSetting" component={DiasDeTrabajo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
