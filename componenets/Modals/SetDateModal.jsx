@@ -7,13 +7,13 @@ import IconAndTextButton from "../Buttons/PrimaryIconAndtextButton";
 export default function SetDateModal() {
 
     const [isVisible, setIsVisible] = useState(false);
-    const [fecha, setFecha] = useState(Date);
+    const [fecha, setFecha] = useState();
 
     return (
         <View>
 
             <IconAndTextButton onPress={()=> setIsVisible(true)} 
-            texto={`${fecha ? fecha.dateString : "Selecciona una fecha"}`} 
+            texto={`${fecha ? fecha.dateString : new Date().toDateString()}`} 
             icon="calendar-outline"/>
 
             <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='fade' transparent={true}>
