@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import { StyleSheet, ScrollView, Text, View, Image } from "react-native";
+import { View } from "react-native";
 import themeComponent from "../Theme/themeComponent";
-import Months from "../Scrollables/Months";
-import Days from "../Scrollables/Days";
 import CalendarDate from "../Cards/CalendarDate";
 import SetDateModal from "../Modals/SetDateModal";
 import CreateNewDate from "../Modals/CreateNewDate";
-import GetDayDates from "../Handler/GetDayDates";
+import CitasJson from "../../ddinamico.json"
 
 export default function Calendario() {
-    const [jsonData, setJsonData] = useState([]);
+    const [jsonData, setJsonData] = useState([CitasJson]);
 
-    // Función para manejar los datos confirmados del componente hijo
+    // Función para manejar los dato confirmados del componente hijo
     const handleConfirmation = (data) => {
         console.log("Datos confirmados:", data);
-        setJsonData([...jsonData, data]);
+        CitasJson.citas.push(data); //primero lo agregamos al JSON
+        setJsonData(CitasJson); //y luego actualizamos el valor del useState
     };
 
 
@@ -22,26 +21,19 @@ export default function Calendario() {
         <View style={{ alignItems: 'center', backgroundColor: themeComponent.colors.grayBackground }}>
 
             <SetDateModal></SetDateModal>
-            <CalendarDate imageSource={'https://covalto.com/static/78498ccda70933a5f1e3edc3e40d3cbe/34aca/Hero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp'}
-                name={'Juan Rodriguez Torres de la Cruz'}
-                hour={'12:00'} />
 
-            <CalendarDate imageSource={'https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg'}
-                name={'Sabastián Garcia Carranza'}
-                hour={'12:00'} />
-            <CalendarDate imageSource={'https://pymstatic.com/5844/conversions/personas-emocionales-wide_webp.webp'}
-                name={'Maria Zaragoza'}
-                hour={'14:00'} />
+            <View>
+                {CitasJson.citas.map((item, index) => {
+                    return (<CalendarDate
+                        key={index}
+                        imageSource={item.imageSource}
+                        name={item.name}
+                        hour={item.hour} />
+                    )
+                })}
 
-            <CalendarDate imageSource={'https://images.hola.com/imagenes/estar-bien/20221018219233/buenas-personas-caracteristicas/1-153-242/getty-chica-feliz-t.jpg?tx=w_680'}
-                name={'Irene López Saenz'}
-                hour={'16:00'} />
-
-
-            <GetDayDates jsonData={jsonData} />
-
+            </View>
             <CreateNewDate onConfirmation={handleConfirmation} />
-
         </View>
     )
 }

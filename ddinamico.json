@@ -1,17 +1,22 @@
-
-{"citas": [{
-    "nombre": "Pedro",
-    "hora": "18:00",
-    "fecha": "12 de mayo"
-},
 {
-    "nombre": "Maria",
-    "hora": "10:00",
-    "fecha": "12 de junio"
-}]}
-
-
-
-
-
-
+    "citas": [
+        {
+            "name": "Pedro Perez Jimenez",
+            "hour": "18:00",
+            "date": "12 de mayo",
+            "imageSource": "https://covalto.com/static/78498ccda70933a5f1e3edc3e40d3cbe/34aca/Hero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp"
+        },
+        {
+            "name": "Juan Luis Perez de la Garza",
+            "hour": "10:00",
+            "date": "12 de junio",
+            "imageSource": "https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg"
+        },
+        {
+            "name": "Maria Garcia Lopez",
+            "hour": "10:00",
+            "date": "12 de junio",
+            "imageSource": "https://pymstatic.com/5844/conversions/personas-emocionales-wide_webp.webp"
+        }
+    ]
+}

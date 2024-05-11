@@ -13,7 +13,7 @@ export default function CreateNewDate({onConfirmation}) {
     const [isVisibleForm, setIsVisibleForm] = useState(false);
     const [isResultVisible, setIsResultVisble] = useState(false);
 
-    const [dateSelected, setDateSelected] = useState(null);
+    const [dateSelected, setDateSelected] = useState();
     const [hourSelected, setHourSelected] = useState(null);
     const [clientsName, setClientsName] = useState(null);
 
@@ -28,7 +28,7 @@ export default function CreateNewDate({onConfirmation}) {
      const handleConfirmation = () => {
         const data = {
             name: clientsName,
-            //date: dateSelected,
+            date: dateSelected,
             hour: hourSelected,
             imageSource: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgP-lSza80x010-8Qiymbco975wl0qdIsa5O5PrAOdAQ&s",
         };

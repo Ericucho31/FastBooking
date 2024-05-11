@@ -16,6 +16,8 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
     const [modalReagendar, setModalReagendar] = useState(false);
 
     const [fechaRecibida, setFechaRecibida] = useState(date);
+    const [horaRecibida, setHoraRecibida] = useState(hour);
+
     const [aceptado, setAceptado] = useState(false);
     const [denegado, setDenegado] = useState('no denegado');
     const [finalizado, setFinalizado] = useState(true);
@@ -33,7 +35,7 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
     // Función para manejar la actualización de la fecha
     const handleDateUpdate = (newDate) => {
         setFechaRecibida(newDate.toDateString());
-
+        setHoraRecibida(newDate.toLocaleTimeString());
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
@@ -52,7 +54,7 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name={'calendar-outline'} size={16} color={themeComponent.colors.primary} />
-                <Text style={themeComponent.headers.header3}>{fechaRecibida}, {hour} </Text>
+                <Text style={themeComponent.headers.header3}>{fechaRecibida}, {horaRecibida} </Text>
             </View>
 
             <Divider orientation="vertical" width={1}></Divider>
