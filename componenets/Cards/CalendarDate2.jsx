@@ -11,7 +11,7 @@ import AcceptedDate from "./AccepedDate";
 import RescheduleModal from "./RescheduleModal";
 import { useDataContext } from '../Context/GlobalStateContext';
 
-export default function NewDateRequest({ imageSource, name, date, hour, id }) {
+export default function CalendarDate2({ imageSource, name, date, hour, id }) {
     const { state, dispatch } = useDataContext();
 
     const { toggleAnimation, animatedStyle } = useAnimation();
@@ -20,9 +20,6 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
 
     const [fechaRecibida, setFechaRecibida] = useState(date);
     const [horaRecibida, setHoraRecibida] = useState(hour);
-
-    const [aceptado, setAceptado] = useState(false);
-    const [finalizado, setFinalizado] = useState(true);
 
     // Función para cambiar la visibilidad del modal
     const toggleModalVisibility = () => {
@@ -41,25 +38,9 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
-
-    const handleAccept = (id) => {
-        setAceptado(true);
-        setTimeout(() => {
-            setAceptado(false); // Oculta el componente después de 3 segundos
-            confirmDate(id)
-            removeDate(id)
-        }, 3000); // 3000 milisegundos = 3 segundos
-
-        //resto del acciones para manejar la aceptación de la cita
-    }
-
-    const confirmDate = id => {
-        dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
-      };
-
     const removeDate = id => {
-        dispatch({ type: 'REMOVE_DATE', payload: id });
-      };
+        dispatch({ type: 'REMOVE_DATE_BOOKED', payload: id });
+    };
 
     return (
         <View style={themeComponent.card.newDateRequest.mainContainer}>
@@ -71,9 +52,9 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
 
             <Divider orientation="vertical" width={1}></Divider>
 
-            <View style={{ flex: 1, width: '100%'}}>
+            <View style={{ flex: 1, width: '100%' }}>
 
-                <View style={{ flexDirection: 'row', justifyContent:'space-between' ,alignItems: 'center', paddingTop: 5, }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 5, }}>
                     <Image
                         style={themeComponent.images.newDateRequest}
                         source={{ uri: imageSource }} />
@@ -85,23 +66,11 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
                         <Text style={themeComponent.headers.header3}>{name}</Text>
                     </View>
 
-                    <View>
-                        <View style={{ marginBottom: 5 }}>
-                            <BigIconButton
-                                icon={'checkmark-outline'}
-                                iconColor={'white'}
-                                bgColor={themeComponent.colors.primary}
-                                onPress={() => handleAccept(id)}
-                            />
-                        </View>
-
-                        <BigIconButton
-                            icon={'ellipsis-horizontal'}
-                            iconColor={'white'}
-                            bgColor={'gray'}
-                            onPress={toggleAnimation} />
-                    </View>
-
+                    <BigIconButton
+                        icon={'ellipsis-horizontal'}
+                        iconColor={'white'}
+                        bgColor={'gray'}
+                        onPress={toggleAnimation} />
                 </View>
 
             </View>
@@ -130,8 +99,6 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
                 Component={<ConfirmationModal name={name}
                     onCancel={toggleModalVisibility}
                     onPress={() => removeDate(id)} />} />
-
-            {aceptado && (<AcceptedDate name={name} />)}
 
         </View>
     )

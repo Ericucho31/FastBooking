@@ -4,11 +4,11 @@ import CitasJson from '../../dinamico.json'
 const DataContext = createContext();
 
 const initialState = {
-    citasPendientes: CitasJson.citas,
-    citasAgendadas:[],
+  citasPendientes: CitasJson.citas,
+  citasAgendadas: [],
 
-  };
-  
+};
+
 const dataReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_DATE':
@@ -21,11 +21,16 @@ const dataReducer = (state, action) => {
         ...state,
         citasPendientes: state.citasPendientes.filter(cita => cita.id !== action.payload),
       };
-      case 'CONFIRM_DATE_REQUEST':
-        return{
-          ...state,
+    case 'CONFIRM_DATE_REQUEST':
+      return {
+        ...state,
         citasAgendadas: [...state.citasAgendadas, state.citasPendientes.find(cita => cita.id === action.payload)],
-        };
+      };
+    case 'REMOVE_DATE_BOOKED':
+      return {
+        ...state,
+        citasAgendadas: state.citasAgendadas.filter(cita => cita.id !== action.payload),
+      };
 
     default:
       return state;

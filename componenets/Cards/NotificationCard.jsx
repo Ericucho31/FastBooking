@@ -5,9 +5,6 @@ import BigIconButton from "../Buttons/BigIconButton";
 
 export default function NotififcationCard({ icon, color, header, description, onPress}) {
 
-    const [expandido, setExpandido] = useState(false);
-    const [animation, setAnimation] = useState(new Animated.Value(0));
-
      // Estilo dinámico para header3 con color personalizado
      const header3Style = {
         ...themeComponent.headers.header3,

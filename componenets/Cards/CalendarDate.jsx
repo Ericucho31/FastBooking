@@ -6,7 +6,7 @@ import BigIconButton from "../Buttons/BigIconButton";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
-export default function CalendarDate({ imageSource, name, hour, id}) {
+export default function CalendarDate({ imageSource, name, hour, id }) {
 
     return (
         <View style={themeComponent.card.calendarDate.dateBookedContainer}>
@@ -25,13 +25,12 @@ export default function CalendarDate({ imageSource, name, hour, id}) {
 
             </View>
 
-            <BigIconButton icon={"chatbubble-ellipses-outline"} iconColor={themeComponent.colors.primary} bgColor={"white"} />
+            <BigIconButton icon={"chatbubble-ellipses-outline"} iconColor={"white"} bgColor={themeComponent.colors.primary} />
 
-            <TouchableOpacity >
-                <Ionicons name="chevron-down-outline" size={24} color={themeComponent.colors.primary}></Ionicons>
-            </TouchableOpacity>
-
-
+            <BigIconButton
+                icon={'ellipsis-horizontal'}
+                iconColor={'white'}
+                bgColor={'gray'} />
         </View>
 
     )

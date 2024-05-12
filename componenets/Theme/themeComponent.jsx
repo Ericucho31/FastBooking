@@ -155,7 +155,7 @@ const themeComponent = StyleSheet.create({
                 width: '90%',
                 minHeight: 75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
                 maxWidth: '90%',
-                backgroundColor: theme.colors.blueBackground,
+                backgroundColor: theme.colors.white,
                 //padding: 5,
                 borderRadius: 10,
                 marginBottom: 15,
@@ -180,9 +180,31 @@ const themeComponent = StyleSheet.create({
                 //backgroundColor: 'white'
             },
         },
+        calendarDate2: {
+            mainContainer: {
+                alignItems: 'flex-start',
+                //justifyContent: 'space-evenly',
+                height:150,
+                width: '90%',
+                //minHeight: 200, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
+                maxWidth: '90%',
+                backgroundColor: theme.colors.white,
+                padding: 10,
+                borderRadius: 10,
+                marginBottom: 15,
+
+                /*shadowColor: '#000',
+                shadowOffset: {
+                    width: 0,
+                    height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5, */ // Esto es necesario para que la sombra se muestre en dispositivos Android
+            },
+        },
         newDateRequest: {
             mainContainer: {
-                
                 alignItems: 'flex-start',
                 //justifyContent: 'space-evenly',
                 width: '100%',
@@ -220,9 +242,6 @@ const themeComponent = StyleSheet.create({
                 shadowOpacity: 0.25,
                 shadowRadius: 3.84,
                 elevation: 5, // Esto es necesario para que la sombra se muestre en dispositivos Android
-            
-                
-
             }
         },
         notification: {
