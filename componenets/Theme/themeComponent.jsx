@@ -182,13 +182,12 @@ const themeComponent = StyleSheet.create({
         },
         newDateRequest: {
             mainContainer: {
-                //flex:1,
+                
                 alignItems: 'flex-start',
-                justifyContent: 'space-evenly',
-                //flexDirection: 'row',
-                width: '90%',
+                //justifyContent: 'space-evenly',
+                width: '100%',
                 minHeight: 75, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
-                maxWidth: '90%',
+                maxWidth: '100%',
                 backgroundColor: theme.colors.white,
                 padding: 10,
                 borderRadius: 10,

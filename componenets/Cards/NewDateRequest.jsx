@@ -9,8 +9,11 @@ import ConfirmationModal from "../Modals/ConfirmationModal";
 import useAnimation from "./logicJS/animationNewDateRequest";
 import AcceptedDate from "./AccepedDate";
 import RescheduleModal from "./RescheduleModal";
+import { useDataContext } from '../Context/GlobalStateContext';
 
-export default function NewDateRequest({ imageSource, name, date, hour }) {
+export default function NewDateRequest({ imageSource, name, date, hour, id }) {
+    const { state, dispatch } = useDataContext();
+
     const { toggleAnimation, animatedStyle } = useAnimation();
     const [modalVisibility, setModalVisibility] = useState(false);
     const [modalReagendar, setModalReagendar] = useState(false);
@@ -40,14 +43,23 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
     };
 
 
-    const handleAccept = () => {
+    const handleAccept = (id) => {
         setAceptado(true);
         setTimeout(() => {
             setAceptado(false); // Oculta el componente después de 3 segundos
+            confirmDate(id)
         }, 3000); // 3000 milisegundos = 3 segundos
 
         //resto del acciones para manejar la aceptación de la cita
     }
+
+    const confirmDate = id => {
+        dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
+      };
+
+    const removeDate = id => {
+        dispatch({ type: 'REMOVE_DATE', payload: id });
+      };
 
     return (
         <View style={themeComponent.card.newDateRequest.mainContainer}>
@@ -59,33 +71,37 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
 
             <Divider orientation="vertical" width={1}></Divider>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 5, }}>
-                <Image
-                    style={themeComponent.images.newDateRequest}
-                    source={{ uri: imageSource }} />
+            <View style={{ flex: 1, width: '100%'}}>
 
-                <Divider orientation="vertical" width={1} style={{ margin: 10 }}></Divider>
+                <View style={{ flexDirection: 'row', justifyContent:'space-between' ,alignItems: 'center', paddingTop: 5, }}>
+                    <Image
+                        style={themeComponent.images.newDateRequest}
+                        source={{ uri: imageSource }} />
 
-                <View style={{ width: '50%' }}>
-                    <Text style={themeComponent.headers.header3}>{name}</Text>
-                    <Text>{denegado}</Text>
-                </View>
 
-                <View>
-                    <View style={{ marginBottom: 5 }}>
-                        <BigIconButton
-                            icon={'checkmark-outline'}
-                            iconColor={'white'}
-                            bgColor={themeComponent.colors.primary}
-                            onPress={handleAccept}
-                        />
+                    <Divider orientation="vertical" width={1} style={{ margin: 10 }}></Divider>
+
+                    <View style={{ width: '50%' }}>
+                        <Text style={themeComponent.headers.header3}>{name}</Text>
                     </View>
 
-                    <BigIconButton
-                        icon={'ellipsis-horizontal'}
-                        iconColor={'white'}
-                        bgColor={'gray'}
-                        onPress={toggleAnimation} />
+                    <View>
+                        <View style={{ marginBottom: 5 }}>
+                            <BigIconButton
+                                icon={'checkmark-outline'}
+                                iconColor={'white'}
+                                bgColor={themeComponent.colors.primary}
+                                onPress={() => confirmDate(id)}
+                            />
+                        </View>
+
+                        <BigIconButton
+                            icon={'ellipsis-horizontal'}
+                            iconColor={'white'}
+                            bgColor={'gray'}
+                            onPress={toggleAnimation} />
+                    </View>
+
                 </View>
 
             </View>
@@ -113,7 +129,7 @@ export default function NewDateRequest({ imageSource, name, date, hour }) {
             <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
                 Component={<ConfirmationModal name={name}
                     onCancel={toggleModalVisibility}
-                    onPress={() => setDenegado('denegado')} />} />
+                    onPress={() => removeDate(id)} />} />
 
             {aceptado && (<AcceptedDate name={name} />)}
 

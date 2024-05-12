@@ -1,18 +1,21 @@
 {
     "citas": [
         {
+            "id": 1,
             "name": "Pedro Perez Jimenez",
             "hour": "18:00",
             "date": "12 de mayo",
             "imageSource": "https://covalto.com/static/78498ccda70933a5f1e3edc3e40d3cbe/34aca/Hero_Mobile_Cuenta_Personas_V1_1_8046e424ea.webp"
         },
         {
+            "id": 2,
             "name": "Juan Luis Perez de la Garza",
             "hour": "10:00",
             "date": "12 de junio",
             "imageSource": "https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg"
         },
         {
+            "id": 3,
             "name": "Maria Garcia Lopez",
             "hour": "10:00",
             "date": "12 de junio",

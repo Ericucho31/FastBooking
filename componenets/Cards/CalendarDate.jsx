@@ -6,7 +6,7 @@ import BigIconButton from "../Buttons/BigIconButton";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 
-export default function CalendarDate({ imageSource, name, hour }) {
+export default function CalendarDate({ imageSource, name, hour, id}) {
 
     return (
         <View style={themeComponent.card.calendarDate.dateBookedContainer}>

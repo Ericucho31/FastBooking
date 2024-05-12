@@ -5,7 +5,6 @@ import themeComponent from "../Theme/themeComponent";
 import SimpleModal from "../Modals/SimpleModal";
 import NotififcationCard from "../Cards/NotificationCard";
 import AcceptedDate from "../Cards/AccepedDate";
-import CountdownBar from "../Others/CountdownBar";
 import RescheduleModal from "../Cards/RescheduleModal";
 
 export default function PruebaScreen() {

@@ -27,6 +27,7 @@ export default function CreateNewDate({onConfirmation}) {
      // Función para manejar la confirmación del botón
      const handleConfirmation = () => {
         const data = {
+            id:10,
             name: clientsName,
             date: dateSelected,
             hour: hourSelected,
