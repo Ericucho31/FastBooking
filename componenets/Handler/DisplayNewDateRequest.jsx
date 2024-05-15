@@ -7,7 +7,8 @@ import NoCitasPendientes from '../Others/NoCItasPendientes';
 const DisplayNewDateRequests = () => {
     const { state, dispatch } = useDataContext();
 
-    console.log(state)
+    console.log(JSON.stringify(state, null, 2));
+
 
     return (
         <View style={{ flex: 1 }}>

@@ -10,6 +10,7 @@ import PruebaScreen from '../componenets/Screens/Pruebas';
 import SettingsScreen from '../componenets/Screens/Setting';
 import NotififcationsScreen from '../componenets/Screens/Notifications';
 import { useDataContext } from '../componenets/Context/GlobalStateContext';
+import CalendarAgendaScreen from '../componenets/Screens/CalendarAgenda';
 
 //Screen names
 const datesName = "Citas";
@@ -81,10 +82,10 @@ function MainContainer({ navigation }) {
       }}>
 
       <Tab.Screen name={datesName} component={Citas} options={{tabBarBadge: state.citasPendientes.length !== 0 ? state.citasPendientes.length : null}}/>
-      <Tab.Screen name={calendarName} component={Calendario} />
+      <Tab.Screen name={calendarName} component={CalendarAgendaScreen} />
       <Tab.Screen name={notificationsName} component={NotififcationsScreen} />
       <Tab.Screen name={settingsName} component={SettingsScreen} />
-      <Tab.Screen name={pruebaName} component={PruebaScreen} />
+  
 
     </Tab.Navigator>
   );

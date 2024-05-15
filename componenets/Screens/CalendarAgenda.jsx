@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import { TouchableOpacity, SafeAreaView, StyleSheet, Text, View } from "react-native";
-
-import themeComponent from "../Theme/themeComponent";
 import { Agenda } from "react-native-calendars";
 import { useDataContext } from "../Context/GlobalStateContext";
 import CalendarDate2 from "../Cards/CalendarDate2";
 
-
-
-export default function PruebaScreen() {
+export default function CalendarAgendaScreen() {
 
     const { state, dispatch } = useDataContext();
-    
 
     return (
         <SafeAreaView style={styles.container}>
@@ -21,8 +16,8 @@ export default function PruebaScreen() {
                     return <View>
                         <Text>No hay citas para este día </Text>
                     </View>;
-                  }}
-                
+                }}
+
                 renderItem={(item, isFirst) => (
                     <CalendarDate2
                         id={item.data.id}

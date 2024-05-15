@@ -21,8 +21,6 @@ export default function Calendario() {
         setJsonData(CitasJson); //y luego actualizamos el valor del useState
     };
 
-    console.log(state);
-
     return (
         <View style={{ alignItems: 'center', backgroundColor: themeComponent.colors.grayBackground }}>
             <SetDateModal></SetDateModal>

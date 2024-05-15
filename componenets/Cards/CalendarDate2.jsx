@@ -7,7 +7,6 @@ import BigIconButton from "../Buttons/BigIconButton";
 import SimpleModal from "../Modals/SimpleModal";
 import ConfirmationModal from "../Modals/ConfirmationModal";
 import useAnimation from "./logicJS/animationNewDateRequest";
-import AcceptedDate from "./AccepedDate";
 import RescheduleModal from "./RescheduleModal";
 import { useDataContext } from '../Context/GlobalStateContext';
 
@@ -38,8 +37,8 @@ export default function CalendarDate2({ imageSource, name, date, hour, id }) {
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
-    const removeDate = id => {
-        dispatch({ type: 'REMOVE_DATE_BOOKED', payload: id });
+    const removeDate = (fecha, id) => {
+        dispatch({ type: 'REMOVE_DATE_BOOKED', payload: {fecha, id} });
     };
 
     return (
@@ -47,7 +46,7 @@ export default function CalendarDate2({ imageSource, name, date, hour, id }) {
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name={'calendar-outline'} size={16} color={themeComponent.colors.primary} />
-                <Text style={themeComponent.headers.header3}>{fechaRecibida}, {horaRecibida} </Text>
+                <Text style={themeComponent.headers.header3}> {horaRecibida} </Text>
             </View>
 
             <Divider orientation="vertical" width={1}></Divider>
@@ -98,7 +97,7 @@ export default function CalendarDate2({ imageSource, name, date, hour, id }) {
             <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
                 Component={<ConfirmationModal name={name}
                     onCancel={toggleModalVisibility}
-                    onPress={() => removeDate(id)} />} />
+                    onPress={() => removeDate(fechaRecibida, id)} />} />
 
         </View>
     )
