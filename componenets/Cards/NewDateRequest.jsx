@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { View, Text, Image, Animated, TouchableOpacity } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import { Divider } from '@rneui/themed';
@@ -10,9 +10,11 @@ import useAnimation from "./logicJS/animationNewDateRequest";
 import AcceptedDate from "./AccepedDate";
 import RescheduleModal from "./RescheduleModal";
 import { useDataContext } from '../Context/GlobalStateContext';
+import convertirFecha from "../Handler/ConvertirFecha";
 
 export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     const { state, dispatch } = useDataContext();
+    const timeoutRef = useRef(null);
 
     const { toggleAnimation, animatedStyle } = useAnimation();
     const [modalVisibility, setModalVisibility] = useState(false);
@@ -37,14 +39,15 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     // Función para manejar la actualización de la fecha
     const handleDateUpdate = (newDate) => {
         setFechaRecibida(newDate.toDateString());
-        setHoraRecibida(newDate.toLocaleTimeString());
+        setHoraRecibida(newDate.toTimeString());
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
 
     const handleAccept = (id) => {
         setAceptado(true);
-        setTimeout(() => {
+
+        timeoutRef.current = setTimeout(() => {
             setAceptado(false); // Oculta el componente después de 3 segundos
             confirmDate(id)
             removeDate(id)
@@ -55,25 +58,31 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
 
     const confirmDate = id => {
         dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
-      };
+    };
 
     const removeDate = id => {
         dispatch({ type: 'REMOVE_DATE', payload: id });
-      };
+    };
+
+    const cancelarAccion = () => {
+        setAceptado(false);
+
+        clearTimeout(timeoutRef.current);
+    }
 
     return (
         <View style={themeComponent.card.newDateRequest.mainContainer}>
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name={'calendar-outline'} size={16} color={themeComponent.colors.primary} />
-                <Text style={themeComponent.headers.header3}>{fechaRecibida}, {horaRecibida} </Text>
+                <Text style={themeComponent.headers.header3}>{convertirFecha(fechaRecibida)}, {horaRecibida} </Text>
             </View>
 
             <Divider orientation="vertical" width={1}></Divider>
 
-            <View style={{ flex: 1, width: '100%'}}>
+            <View style={{ flex: 1, width: '100%' }}>
 
-                <View style={{ flexDirection: 'row', justifyContent:'space-between' ,alignItems: 'center', paddingTop: 5, }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 5, }}>
                     <Image
                         style={themeComponent.images.newDateRequest}
                         source={{ uri: imageSource }} />
@@ -131,7 +140,7 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
                     onCancel={toggleModalVisibility}
                     onPress={() => removeDate(id)} />} />
 
-            {aceptado && (<AcceptedDate name={name} />)}
+            {aceptado && (<AcceptedDate name={name} onPress={cancelarAccion} />)}
 
         </View>
     )

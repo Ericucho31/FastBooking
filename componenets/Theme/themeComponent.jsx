@@ -61,6 +61,18 @@ const themeComponent = StyleSheet.create({
             marginBottom: 10,
             flexDirection: 'row',
         },
+        facebookLogin: {
+            width: '75%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            paddingVertical: 12,
+            paddingHorizontal: 0,
+            borderRadius: 30,
+            elevation: 3,
+            backgroundColor: theme.colors.primary,
+            marginBottom: 10,
+            flexDirection: 'row',
+        },
         signIn: {
             width: '75%',
             alignItems: 'center',
@@ -370,7 +382,7 @@ const themeComponent = StyleSheet.create({
             color: theme.colors.primary,
         },
         loginFacebook: {
-            fontSize: 16,
+            fontSize: 20,
             fontFamily: theme.fonts.primary,
             fontWeight: 'bold',
             letterSpacing: 0.25,

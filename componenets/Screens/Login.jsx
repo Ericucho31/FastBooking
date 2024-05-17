@@ -5,7 +5,7 @@ import TextInputSimple from "../TextBox/TextInputSimple";
 import LoginButton from "../Buttons/LoginButton";
 import SignInButton from "../Buttons/SignInButton";
 import TextInputPassword from "../TextBox/TextInputPassword";
-import LoginFacebookButton from "../Buttons/LoginFacebookButton";
+import BigLoginButton from "../Buttons/BigLoginButton";
 
 export default function Login({ navigation }) {
 
@@ -32,8 +32,9 @@ export default function Login({ navigation }) {
                     navigation={navigation}
                     text={'Registrarse'} />
 
-                <LoginFacebookButton 
-                    navigation={navigation}/>
+                <BigLoginButton text={'Ingresar con Facebook'}
+                    iconName={'logo-facebook'}
+                    iconColor={'white'} />
             </View>
         </ScrollView>
     )
