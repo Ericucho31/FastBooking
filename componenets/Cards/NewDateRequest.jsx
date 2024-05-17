@@ -66,7 +66,6 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
 
     const cancelarAccion = () => {
         setAceptado(false);
-
         clearTimeout(timeoutRef.current);
     }
 
