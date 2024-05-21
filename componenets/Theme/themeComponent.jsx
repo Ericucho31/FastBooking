@@ -382,7 +382,7 @@ const themeComponent = StyleSheet.create({
             color: theme.colors.primary,
         },
         loginFacebook: {
-            fontSize: 20,
+            fontSize: 18,
             fontFamily: theme.fonts.primary,
             fontWeight: 'bold',
             letterSpacing: 0.25,
@@ -467,11 +467,12 @@ const themeComponent = StyleSheet.create({
 
     textInput: {
         container: {
-            width: '80%',
+            width: '100%',
             alignSelf: 'center',
             marginBottom: 10,
         },
         textInput: {
+            width: '90%',
             backgroundColor: theme.colors.white,
             borderWidth: 1,
             borderColor: 'gray',

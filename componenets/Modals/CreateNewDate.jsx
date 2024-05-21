@@ -5,9 +5,12 @@ import BigIconButton from "../Buttons/BigIconButton";
 import TextInputSimple from "../TextBox/TextInputSimple";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import PrimaryIconAndtextButton from "../Buttons/PrimaryIconAndtextButton";
+import { useDataContext } from "../Context/GlobalStateContext";
+import SimpleModal from "./SimpleModal";
 
 
-export default function CreateNewDate({onConfirmation}) {
+export default function CreateNewDate() {
+    const { state, dispatch } = useDataContext();
 
     const [isVisibleCalendar, setIsVisibleCalendar] = useState(false);
     const [isVisibleForm, setIsVisibleForm] = useState(false);
@@ -17,25 +20,41 @@ export default function CreateNewDate({onConfirmation}) {
     const [hourSelected, setHourSelected] = useState(null);
     const [clientsName, setClientsName] = useState(null);
 
+    function convertirFecha(fecha) {
+        // Divide la fecha en partes separadas por '/'
+        const partes = fecha.split('/');
+
+        // Extrae el día, mes y año de las partes
+        const dia = partes[0];
+        const mes = partes[1];
+        const año = partes[2];
+
+        // Crea la nueva cadena en formato 'yyyy-mm-dd'
+        const nuevaFecha = `${año}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
+
+        return nuevaFecha;
+    }
 
     // Función de devolución de llamada para manejar el cambio de texto
     const handleName = (text) => {
         setClientsName(text);
-        console.log("Texto ingresado:", text);
+
     };
 
-     // Función para manejar la confirmación del botón
-     const handleConfirmation = () => {
+    // Función para manejar la confirmación del botón
+    const handleConfirmation = () => {
         const data = {
-            id:10,
+            id: state.id,
             name: clientsName,
-            date: dateSelected,
+            date: convertirFecha(dateSelected.toLocaleDateString()),
             hour: hourSelected,
-            imageSource: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgP-lSza80x010-8Qiymbco975wl0qdIsa5O5PrAOdAQ&s",
+            imageSource: "https://cdn-icons-png.flaticon.com/512/9131/9131529.png",
         };
-        
+        console.log(JSON.stringify(data, null, 2));
+
         // Llama a la función de devolución de llamada del componente padre
-        onConfirmation(data);
+        dispatch({ type: 'CREATE_NEW_DATE', payload: data });
+
         //cierra la ventana modal
         setIsResultVisble(false);
     };
@@ -58,7 +77,8 @@ export default function CreateNewDate({onConfirmation}) {
                 onConfirm={(date) => {
                     setDateSelected(date),
                         setIsVisibleCalendar(false),
-                        setIsVisibleForm(true)
+                        setIsVisibleForm(true),
+                        console.log(dateSelected)
                 }}
             />
             <DateTimePickerModal
@@ -70,26 +90,30 @@ export default function CreateNewDate({onConfirmation}) {
                     setHourSelected(formattedHour);
                     setIsVisibleForm(false); // Cambiado de true a false
                     setIsResultVisble(true);
+                    
                 }}
             />
 
             <Modal visible={isResultVisible} animationType='fade' transparent={true}>
                 <View style={{ alignItems: 'center', height: '100%', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+                    
+                    <View style={{ width:'90%', alignItems: 'center',backgroundColor: 'white', borderRadius:30}}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <PrimaryIconAndtextButton onPress={() => { setIsVisibleCalendar(true) }}
+                                texto={dateSelected ? dateSelected.toLocaleDateString() : ''}
+                                icon={'calendar-outline'} />
 
-                    <View style={{flexDirection:'row'}}>
-                        <PrimaryIconAndtextButton onPress={() => { setIsVisibleCalendar(true) }}
-                            texto={dateSelected ? dateSelected.toLocaleDateString() : ''}
-                            icon={'calendar-outline'} />
+                            <PrimaryIconAndtextButton onPress={() => { setIsVisibleForm(true) }}
+                                texto={hourSelected}
+                                icon={'time-outline'} />
+                        </View>
 
-                        <PrimaryIconAndtextButton onPress={() => { setIsVisibleForm(true) }}
-                            texto={hourSelected}
-                            icon={'time-outline'} />
+
+                        <TextInputSimple onTextChange={handleName} encabezado={'Nombre'} />
+
+                        <Button title="Confirmar" onPress={handleConfirmation} />
+
                     </View>
-
-
-                    <TextInputSimple onTextChange={handleName} encabezado={'Nombre'} />
-
-                    <Button title="Confirmar" onPress={ handleConfirmation} />
 
                 </View>
 

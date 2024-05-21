@@ -4,13 +4,14 @@ import themeComponent from "../Theme/themeComponent";
 import SettingsCard from "../Cards/SettingsCard";
 import { Divider } from "@rneui/base";
 import { useNavigation } from '@react-navigation/native';
+import { FIREBASE_AUTH } from "../../FirebaseConfig";
 
 export default function SettingsScreen({}) {
     const navigation = useNavigation();
     
 
     const LogOut = () => {
-        navigation.navigate('Login')
+        FIREBASE_AUTH.signOut()
     }
 
     const DiasDeTrabajo = () => {

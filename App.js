@@ -7,24 +7,49 @@ import MainContainer from './navigation/MainContainer';
 import DiasDeTrabajo from './componenets/Screens/SettingsOptionsScreens/DiasDeTrabajo';
 import { DataProvider } from './componenets/Context/GlobalStateContext';
 import { CounterProvider } from './componenets/Context/GlobalStateExample';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useEffect, useState } from 'react';
+import { User, onAuthStateChanged } from 'firebase/auth'
+import { FIREBASE_AUTH } from './FirebaseConfig';
 
 const Stack = createNativeStackNavigator();
 
-export default function App() {
+const MainApp = createNativeStackNavigator();
+
+function InsideMainApp() {
   return (
-    <NavigationContainer>
-      <DataProvider>
+    <MainApp.Navigator >
+      <MainApp.Screen name="MainComponent" component={MainContainer}/>
+    </MainApp.Navigator>
+  )
 
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={MainContainer} />
-          <Stack.Screen name="DiasDeTrabajoSetting" component={DiasDeTrabajo} />
-        </Stack.Navigator>
+}
+export default function App() {
+  const [user, setUser] = useState(null);
 
-      </DataProvider>
+  useEffect(() => {
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      console.log('user', user)
+      setUser(user)
+    });
+  }, []);
 
-    </NavigationContainer>
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <DataProvider>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+
+            {user ? (
+              <Stack.Screen name="Inside" component={InsideMainApp}/>
+
+            ) : (<Stack.Screen name="Login" component={Login} />)}
+
+
+          </Stack.Navigator>
+        </DataProvider>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 

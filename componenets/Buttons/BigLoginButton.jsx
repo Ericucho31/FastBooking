@@ -25,7 +25,7 @@ export default function BigLoginButton({text, iconName, iconColor, bgColor}) {
             android_ripple={{ color: 'white' }}
             style={[themeComponent.buttons.facebookLogin, pressed && styles.buttonPressed]}
         >
-            <Ionicons name={iconName} color={iconColor} size={36} />
+            <Ionicons name={iconName} color={iconColor} size={28} />
             <Text style={themeComponent.text.loginFacebook}>{text}</Text>
         </Pressable>
     );

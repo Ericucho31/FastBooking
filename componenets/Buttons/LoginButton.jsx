@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, Pressable } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 
-export default function LoginButton( {navigation, text}) {
+export default function LoginButton( {onPress, text}) {
     const [pressed, setPressed] = useState(false);
 
     const handlePressIn = () => {
@@ -17,7 +17,7 @@ export default function LoginButton( {navigation, text}) {
         <Pressable
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
-            onPress={() => navigation.navigate('Home')}
+            onPress={onPress}
             android_ripple={{ color: 'white' }}
             style={[themeComponent.buttons.login, pressed && styles.buttonPressed]}
         >

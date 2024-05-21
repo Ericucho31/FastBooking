@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { BackHandler, Alert } from 'react-native';
+import { BackHandler, Alert, SafeAreaView } from 'react-native';
+import { DataProvider } from '../componenets/Context/GlobalStateContext';
 
 // Screens
 import Citas from '../componenets/Screens/Citas';
@@ -23,7 +24,7 @@ const Tab = createBottomTabNavigator();
 
 function MainContainer({ navigation }) {
 
-  const {state, dispatch} = useDataContext()
+  const { state, dispatch } = useDataContext()
 
   useEffect(() => {
     const backHandler = navigation.addListener('beforeRemove', (e) => {
@@ -38,56 +39,58 @@ function MainContainer({ navigation }) {
       }
     });
 
-    
+
   }, [navigation]);
 
   return (
+    <SafeAreaView style={{flex:1, marginTop:30}}>
+      <Tab.Navigator
+        initialRouteName={datesName}
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            let rn = route.name;
 
-    <Tab.Navigator
-      initialRouteName={datesName}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          let rn = route.name;
+            if (rn === datesName) {
+              iconName = focused ? 'book' : 'book-outline';
 
-          if (rn === datesName) {
-            iconName = focused ? 'book' : 'book-outline';
+            } else if (rn === calendarName) {
+              iconName = focused ? 'calendar-number' : 'calendar-number-outline';
 
-          } else if (rn === calendarName) {
-            iconName = focused ? 'calendar-number' : 'calendar-number-outline';
+            }
+            else if (rn === notificationsName) {
+              iconName = focused ? 'notifications' : 'notifications-outline';
+            }
+            else if (rn === settingsName) {
+              iconName = focused ? 'settings' : 'settings-outline';
 
-          }
-          else if (rn === notificationsName) {
-            iconName = focused ? 'notifications' : 'notifications-outline';
-          }
-          else if (rn === settingsName) {
-            iconName = focused ? 'settings' : 'settings-outline';
+            }
+            else if (rn === pruebaName) {
+              iconName = focused ? 'apps' : 'apps-outline';
 
-          }
-          else if (rn === pruebaName) {
-            iconName = focused ? 'apps' : 'apps-outline';
+            }
 
-          }
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
 
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
+        })}
+        tabBarOptions={{
+          activeTintColor: '#0165FC',
+          inactiveTintColor: 'grey',
+          labelStyle: { paddingBottom: 10, fontSize: 10 },
+          style: { padding: 10, height: 70 }
+        }}>
 
-      })}
-      tabBarOptions={{
-        activeTintColor: '#0165FC',
-        inactiveTintColor: 'grey',
-        labelStyle: { paddingBottom: 10, fontSize: 10 },
-        style: { padding: 10, height: 70 }
-      }}>
+        <Tab.Screen name={datesName} component={Citas} options={{ tabBarBadge: state.citasPendientes.length !== 0 ? state.citasPendientes.length : null }} />
+        <Tab.Screen name={calendarName} component={CalendarAgendaScreen} />
+        <Tab.Screen name={notificationsName} component={NotififcationsScreen} />
+        <Tab.Screen name={settingsName} component={SettingsScreen} />
 
-      <Tab.Screen name={datesName} component={Citas} options={{tabBarBadge: state.citasPendientes.length !== 0 ? state.citasPendientes.length : null}}/>
-      <Tab.Screen name={calendarName} component={CalendarAgendaScreen} />
-      <Tab.Screen name={notificationsName} component={NotififcationsScreen} />
-      <Tab.Screen name={settingsName} component={SettingsScreen} />
-  
 
-    </Tab.Navigator>
+      </Tab.Navigator>
+    </SafeAreaView>
   );
 }
 

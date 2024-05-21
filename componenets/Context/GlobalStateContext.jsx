@@ -7,9 +7,9 @@ import eliminarCitaPorIdYFecha from '../Handler/EliminarCitaAgendada';
 const DataContext = createContext();
 
 const initialState = {
+  id:6,
   citasPendientes: CitasJson.citas,
   citasAgendadas: {}
-
 };
 
 const dataReducer = (state, action) => {
@@ -36,6 +36,23 @@ const dataReducer = (state, action) => {
         ...state,
         citasAgendadas: eliminarCitaPorIdYFecha(state.citasAgendadas, action.payload.fecha, action.payload.id),
         //state.citasAgendadas.filter(cita => cita.id !== action.payload),
+      };
+      case 'ID_INCREMENT':
+      return {
+        ...state,
+        id: state.id++,
+        //state.citasAgendadas.filter(cita => cita.id !== action.payload),
+      };
+      case 'CREATE_NEW_DATE':
+      const newId = state.id + 1; // calcula el nuevo id
+      const newCita = {
+        ...action.payload,
+        id: newId, // usa el nuevo id en la nueva cita
+      };
+      return {
+        ...state,
+        citasAgendadas: agregarCita(state.citasAgendadas, newCita),
+        id: newId, // actualiza el id en el estado
       };
 
     default:
