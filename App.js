@@ -18,8 +18,8 @@ const MainApp = createNativeStackNavigator();
 
 function InsideMainApp() {
   return (
-    <MainApp.Navigator >
-      <MainApp.Screen name="MainComponent" component={MainContainer}/>
+    <MainApp.Navigator  screenOptions={{ headerShown: false }}>
+      <MainApp.Screen  name="MainComponent" component={MainContainer}/>
     </MainApp.Navigator>
   )
 

@@ -50,7 +50,7 @@ const themeComponent = StyleSheet.create({
 
     buttons: {
         login: {
-            width: '75%',
+            width: '90%',
             alignItems: 'center',
             justifyContent: 'center',
             paddingVertical: 12,
@@ -62,7 +62,7 @@ const themeComponent = StyleSheet.create({
             flexDirection: 'row',
         },
         facebookLogin: {
-            width: '75%',
+            width: '90%',
             alignItems: 'center',
             justifyContent: 'center',
             paddingVertical: 12,
@@ -74,7 +74,7 @@ const themeComponent = StyleSheet.create({
             flexDirection: 'row',
         },
         signIn: {
-            width: '75%',
+            width: '90%',
             alignItems: 'center',
             justifyContent: 'center',
             paddingVertical: 12,
@@ -468,7 +468,7 @@ const themeComponent = StyleSheet.create({
     textInput: {
         container: {
             width: '100%',
-            alignSelf: 'center',
+            alignItems: 'center',
             marginBottom: 10,
         },
         textInput: {

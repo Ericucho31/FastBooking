@@ -11,6 +11,7 @@ export default function LoginComponent() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState();
 
     const auth = FIREBASE_AUTH;
 
@@ -23,6 +24,7 @@ export default function LoginComponent() {
         }
         catch (error) {
             console.log(error)
+            setError('El correo o contraseña ingresados son incorrectos')
         }
         finally {
             setLoading(false)
@@ -34,7 +36,6 @@ export default function LoginComponent() {
         try {
             const response = await createUserWithEmailAndPassword(auth, email, password)
             console.log(response);
-            alert('Checa tus mails')
         }
         catch (error) {
             console.log(error)
@@ -45,7 +46,11 @@ export default function LoginComponent() {
     }
 
     return (
-        <View>
+        <View style={{width:'90%',}}>
+            {error && (
+                <Text style={themeComponent.text.cancelar}>{error}</Text>
+            )}
+
             <View style={themeComponent.textInput.container}>
                 <Text style={themeComponent.text.headerTextbox}>Correo Electrónico</Text>
                 <TextInput style={themeComponent.textInput.textInput} value={email} placeholder="Email" autoCapitalize="none" onChangeText={(text) => setEmail(text)} />
@@ -57,7 +62,7 @@ export default function LoginComponent() {
             </View>
 
             {loading ? <ActivityIndicator size="large" color="#00ff00" />
-                : <View style={{ width: '100%' }}>
+                : <View style={{ width: '100%', alignItems:'center' }}>
                     <LoginButton onPress={logIn} text={'Iniciar Sesión'} />
                     <SignInButton onPress={signUp} text={'Registrarse'} />
                 </View>

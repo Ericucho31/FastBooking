@@ -19,11 +19,6 @@ export default function Login({ navigation }) {
 
                 <LoginComponent/>
 
-                
-
-                <BigLoginButton text={'Ingresar con Facebook'}
-                    iconName={'logo-facebook'}
-                    iconColor={'white'} />
             </View>
         </View>
     )
