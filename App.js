@@ -1,12 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './componenets/Screens/Login';
 import MainContainer from './navigation/MainContainer';
-import DiasDeTrabajo from './componenets/Screens/SettingsOptionsScreens/DiasDeTrabajo';
 import { DataProvider } from './componenets/Context/GlobalStateContext';
-import { CounterProvider } from './componenets/Context/GlobalStateExample';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect, useState } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth'

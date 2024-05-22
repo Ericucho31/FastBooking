@@ -45,10 +45,10 @@ export default function CreateNewDate() {
     const handleConfirmation = () => {
         const data = {
             id: state.id,
-            name: clientsName,
-            date: convertirFecha(dateSelected.toLocaleDateString()),
-            hour: hourSelected,
-            imageSource: "https://cdn-icons-png.flaticon.com/512/9131/9131529.png",
+            clientName: clientsName,
+            startDate: convertirFecha(dateSelected.toLocaleDateString()),
+            startTime: hourSelected,
+            userImage: "https://cdn-icons-png.flaticon.com/512/9131/9131529.png",
         };
         console.log(JSON.stringify(data, null, 2));
 

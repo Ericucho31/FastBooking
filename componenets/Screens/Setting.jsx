@@ -26,15 +26,6 @@ export default function SettingsScreen({}) {
                 <Text style={themeComponent.headers.header3}>Dr. Heriberto Torres Magón</Text>
             </View>
 
-            <SettingsCard icon={'calendar-outline'}
-                iconColor={themeComponent.colors.primary}
-                cardName={'Días de trabajo'}
-                onPress={DiasDeTrabajo} />
-
-            <SettingsCard icon={'time-outline'}
-                iconColor={themeComponent.colors.primary}
-                cardName={'Horario de atención'} />
-
             <SettingsCard icon={'close-circle-outline'}
                 iconColor={themeComponent.colors.dangerRed}
                 cardName={'Bloquear agenda'}

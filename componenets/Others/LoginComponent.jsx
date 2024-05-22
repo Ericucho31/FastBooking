@@ -53,12 +53,12 @@ export default function LoginComponent() {
 
             <View style={themeComponent.textInput.container}>
                 <Text style={themeComponent.text.headerTextbox}>Correo Electrónico</Text>
-                <TextInput style={themeComponent.textInput.textInput} value={email} placeholder="Email" autoCapitalize="none" onChangeText={(text) => setEmail(text)} />
+                <TextInput style={themeComponent.textInput.textInput} value={email} placeholder="Ejemplo@ejemplo.com" autoCapitalize="none" onChangeText={(text) => setEmail(text)} />
             </View>
 
             <View style={themeComponent.textInput.container}>
-                <Text style={themeComponent.text.headerTextbox}>Correo Electrónico</Text>
-                <TextInput style={themeComponent.textInput.textInput} value={password} secureTextEntry={true} placeholder="Password" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
+                <Text style={themeComponent.text.headerTextbox}>Contraseña</Text>
+                <TextInput style={themeComponent.textInput.textInput} value={password} secureTextEntry={true} placeholder="******" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
             </View>
 
             {loading ? <ActivityIndicator size="large" color="#00ff00" />

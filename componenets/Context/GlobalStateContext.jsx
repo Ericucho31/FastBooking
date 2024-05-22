@@ -1,19 +1,25 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import CitasJson from '../../dinamico.json'
 import CitaPendienteAAgendada from '../Handler/CItaPendienteAAgendada';
 import agregarCita from '../Handler/CitaAgendada';
 import eliminarCitaPorIdYFecha from '../Handler/EliminarCitaAgendada';
+import { GetAllAvailableDates, GetDateById } from "../Handler/API/APIHandler";
 
 const DataContext = createContext();
 
 const initialState = {
-  id:6,
-  citasPendientes: CitasJson.citas,
+  id:1000,
+  citasPendientes: [],
   citasAgendadas: {}
 };
 
 const dataReducer = (state, action) => {
   switch (action.type) {
+    case 'SET_INITIAL_DATA':
+      return {
+        ...state,
+        citasPendientes: action.payload,
+      };
     case 'ADD_DATE':
       return {
         ...state,
@@ -62,6 +68,19 @@ const dataReducer = (state, action) => {
 
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userDatesData = await GetDateById({ id: 2 });
+        dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } 
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

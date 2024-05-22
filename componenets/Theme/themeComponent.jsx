@@ -362,7 +362,7 @@ const themeComponent = StyleSheet.create({
         headerTextbox: {
             fontSize: 16,
             fontFamily: theme.fonts.primary,
-            fontWeight: 'regular',
+            fontWeight: 'bold',
             letterSpacing: 0.25,
             color: 'black'
         },

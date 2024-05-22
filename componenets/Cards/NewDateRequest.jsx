@@ -23,6 +23,9 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     const [fechaRecibida, setFechaRecibida] = useState(date);
     const [horaRecibida, setHoraRecibida] = useState(hour);
 
+    const [imageUrl, setImageUrl] = useState(imageSource);
+    const fallbackImageSource = 'https://cdn-icons-png.flaticon.com/512/9131/9131529.png';
+
     const [aceptado, setAceptado] = useState(false);
     const [finalizado, setFinalizado] = useState(true);
 
@@ -74,7 +77,7 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Ionicons name={'calendar-outline'} size={16} color={themeComponent.colors.primary} />
-                <Text style={themeComponent.headers.header3}>{convertirFecha(fechaRecibida)}, {horaRecibida} </Text>
+                <Text style={themeComponent.headers.header3}>{fechaRecibida}, {horaRecibida} </Text>
             </View>
 
             <Divider orientation="vertical" width={1}></Divider>
@@ -84,7 +87,8 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingTop: 5, }}>
                     <Image
                         style={themeComponent.images.newDateRequest}
-                        source={{ uri: imageSource }} />
+                        source={{ uri: imageUrl }}
+                        onError={() => setImageUrl(fallbackImageSource)} />
 
 
                     <Divider orientation="vertical" width={1} style={{ margin: 10 }}></Divider>
