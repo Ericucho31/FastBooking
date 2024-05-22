@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { TouchableOpacity, SafeAreaView, StyleSheet, Text, View } from "react-native";
-
 import themeComponent from "../Theme/themeComponent";
-import { Agenda } from "react-native-calendars";
 import { useDataContext } from "../Context/GlobalStateContext";
-import CalendarDate2 from "../Cards/CalendarDate2";
-
-
+import BigIconButton from "../Buttons/BigIconButton";
+import { GetAllAvailableDates } from "../Handler/API/APIHandler";
 
 export default function PruebaScreen() {
 
@@ -15,24 +12,7 @@ export default function PruebaScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Agenda
-                items={state.citasAgendadas}
-                renderEmptyDate={() => {
-                    return <View>
-                        <Text>No hay citas para este día </Text>
-                    </View>;
-                  }}
-                
-                renderItem={(item, isFirst) => (
-                    <CalendarDate2
-                        id={item.data.id}
-                        imageSource={item.data.imageSource}
-                        date={item.data.date}
-                        name={item.data.name}
-                        hour={item.data.hour} />
-
-                )}
-            />
+            <BigIconButton icon={'menu'} iconColor={'white'} bgColor={themeComponent.colors.primary} onPress={console.log(GetAllAvailableDates(1))}/>
         </SafeAreaView>
     );
 };
