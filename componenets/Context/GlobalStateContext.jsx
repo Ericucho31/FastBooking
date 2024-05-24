@@ -1,14 +1,13 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import CitasJson from '../../dinamico.json'
-import CitaPendienteAAgendada from '../Handler/CItaPendienteAAgendada';
 import agregarCita from '../Handler/CitaAgendada';
 import eliminarCitaPorIdYFecha from '../Handler/EliminarCitaAgendada';
-import { GetAllAvailableDates, GetDateById } from "../Handler/API/APIHandler";
+import { GetAllAvailableDates, GetDateById, GetUserInfoById } from "../Handler/API/APIHandler";
 
 const DataContext = createContext();
 
 const initialState = {
   id:1000,
+  userData:{},
   citasPendientes: [],
   citasAgendadas: {}
 };
@@ -20,6 +19,12 @@ const dataReducer = (state, action) => {
         ...state,
         citasPendientes: action.payload,
       };
+      case 'SET_USER_DATA':
+      return {
+        ...state,
+        userData: action.payload,
+      };
+
     case 'ADD_DATE':
       return {
         ...state,
@@ -72,8 +77,10 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userDatesData = await GetDateById({ id: 2 });
+        const userDatesData = await GetDateById({ id: 25 });
         dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
+        const userData = await GetUserInfoById({ id: 25 });
+        dispatch({ type: 'SET_USER_DATA', payload: userData });
       } catch (error) {
         console.error('Error fetching data:', error);
       } 

@@ -4,6 +4,7 @@ import { Agenda } from "react-native-calendars";
 import { useDataContext } from "../Context/GlobalStateContext";
 import CalendarDate2 from "../Cards/CalendarDate2";
 import CreateNewDate from "../Modals/CreateNewDate";
+import themeComponent from "../Theme/themeComponent";
 
 export default function CalendarAgendaScreen() {
 
@@ -23,8 +24,8 @@ export default function CalendarAgendaScreen() {
             <Agenda
                 items={state.citasAgendadas}
                 renderEmptyData={() => {
-                    return <View style={{alignItems:'center', marginTop:50}}>
-                        <Text>No hay citas para este día </Text>
+                    return <View style={{justifyContent:'center', alignItems:'center', marginTop:50}}>
+                        <Text style={themeComponent.headers.header3}>No hay citas para este día </Text>
                     </View>;
                 }}
 

@@ -5,10 +5,11 @@ import SettingsCard from "../Cards/SettingsCard";
 import { Divider } from "@rneui/base";
 import { useNavigation } from '@react-navigation/native';
 import { FIREBASE_AUTH } from "../../FirebaseConfig";
+import { useDataContext } from "../Context/GlobalStateContext";
 
 export default function SettingsScreen({}) {
     const navigation = useNavigation();
-    
+    const { state, dispatch } = useDataContext();
 
     const LogOut = () => {
         FIREBASE_AUTH.signOut()
@@ -22,8 +23,8 @@ export default function SettingsScreen({}) {
         <View style={{  backgroundColor: 'white' }}>
 
             <View style={{ justifyContent:'center',alignItems: 'center'}}>
-                <Image style={themeComponent.images.settings} source={{ uri: 'https://hips.hearstapps.com/hmg-prod/images/portrait-of-a-happy-young-doctor-in-his-clinic-royalty-free-image-1661432441.jpg?crop=0.66698xw:1xh;center,top&resize=1200:*' }} />
-                <Text style={themeComponent.headers.header3}>Dr. Heriberto Torres Magón</Text>
+                <Image style={themeComponent.images.settings} source={{ uri: state.userData.imageUrl }} />
+                <Text style={themeComponent.headers.header3}>{state.userData.fullName}</Text>
             </View>
 
             <SettingsCard icon={'close-circle-outline'}

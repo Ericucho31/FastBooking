@@ -5,7 +5,7 @@ import themeComponent from "../Theme/themeComponent";
 export default function NoCitasPendientes() {
 
     return (
-        <View>
+        <View style={{alignItems:'center'}}>
             <Text style={themeComponent.headers.header3}>No hay citas pendientes</Text>
         </View>
 

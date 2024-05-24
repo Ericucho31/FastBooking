@@ -20,7 +20,6 @@ export default function LoginComponent() {
         try {
             const response = await signInWithEmailAndPassword(auth, email, password)
             console.log(response);
-            alert('Checa tus mails')
         }
         catch (error) {
             console.log(error)

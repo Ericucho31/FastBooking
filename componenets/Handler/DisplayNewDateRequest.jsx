@@ -11,7 +11,7 @@ const DisplayNewDateRequests = () => {
 
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent:'center'}}>
             {state.citasPendientes.length === 0 && (<NoCitasPendientes></NoCitasPendientes>)}
             {state.citasPendientes.length > 0 && ( // Renderiza el FlatList solo si hay datos
                 <FlatList
