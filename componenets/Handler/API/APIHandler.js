@@ -3,7 +3,7 @@ import axios from 'axios';
 async function GetAllAvailableDates({ status }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {
-        const response = await axios.get(`https://24a5-187-188-39-222.ngrok-free.app/api/Appointment/GetAllAppointments/${status}`)
+        const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/GetAllAppointments/${status}`)
         const citas = response.data;
         return citas;
 
@@ -16,7 +16,7 @@ async function GetAllAvailableDates({ status }) {
 async function GetDateById({ id }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {
-        const response = await axios.get(`https://24a5-187-188-39-222.ngrok-free.app/api/Appointment/GetAppointmentsUser/${id}`)
+        const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/GetAppointmentsUser/${id}`)
         return response.data;
 
     } catch (error) {
@@ -28,7 +28,7 @@ async function GetDateById({ id }) {
 async function GetUserInfoById({ id }) {
     //eric: 25
     try {
-        const response = await axios.get(`https://24a5-187-188-39-222.ngrok-free.app/api/User/read/${id}`)
+        const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/User/read/${id}`)
         const userData = response.data;
 
         const userInfo = {
@@ -48,4 +48,17 @@ async function GetUserInfoById({ id }) {
     }
 }
 
-export { GetAllAvailableDates, GetDateById, GetUserInfoById };
+async function CreateNewUser({ user }) {
+    //eric: 25
+    try {
+        const response = await axios.post('https://a4b3-187-190-138-154.ngrok-free.app/api/User/register', user)
+        const status = response.status;
+        return status;
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+        throw error;
+    }
+}
+
+export { GetAllAvailableDates, GetDateById, GetUserInfoById, CreateNewUser};

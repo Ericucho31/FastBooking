@@ -10,6 +10,7 @@ import { useDataContext } from "../Context/GlobalStateContext";
 export default function SettingsScreen({}) {
     const navigation = useNavigation();
     const { state, dispatch } = useDataContext();
+    const {userImageUri, setUserImageUri} = useState(state.userData.imageUrl);
 
     const LogOut = () => {
         FIREBASE_AUTH.signOut()
@@ -19,11 +20,15 @@ export default function SettingsScreen({}) {
         navigation.navigate('DiasDeTrabajoSetting')
     }
 
+    const setErrorImage = () => {
+        setUserImageUri('https://cdn-icons-png.flaticon.com/512/9131/9131529.png')
+    }
+
     return (
         <View style={{  backgroundColor: 'white' }}>
 
             <View style={{ justifyContent:'center',alignItems: 'center'}}>
-                <Image style={themeComponent.images.settings} source={{ uri: state.userData.imageUrl }} />
+                <Image style={themeComponent.images.settings} source={{ uri: userImageUri }} onError={() =>setErrorImage}/>
                 <Text style={themeComponent.headers.header3}>{state.userData.fullName}</Text>
             </View>
 

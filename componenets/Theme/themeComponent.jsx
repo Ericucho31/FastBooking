@@ -196,7 +196,7 @@ const themeComponent = StyleSheet.create({
             mainContainer: {
                 alignItems: 'flex-start',
                 //justifyContent: 'space-evenly',
-                height:150,
+                height: 150,
                 width: '90%',
                 //minHeight: 200, //indica la altura mínima del contenedor, sin importar lo que tenga adentro
                 maxWidth: '90%',
@@ -238,12 +238,12 @@ const themeComponent = StyleSheet.create({
             },
             aceptarCita: {
                 flex: 1,
-                display:'flex', 
-                position:'absolute',
-                height: '115%', 
-                width: '105.5%', 
-                alignItems:'center',
-                justifyContent:'center',
+                display: 'flex',
+                position: 'absolute',
+                height: '115%',
+                width: '105.5%',
+                alignItems: 'center',
+                justifyContent: 'center',
                 backgroundColor: theme.colors.green,
                 borderRadius: 10,
                 shadowColor: '#000',
@@ -316,6 +316,26 @@ const themeComponent = StyleSheet.create({
         grayBackground: theme.colors.grayBackground,
         dangerRed: theme.colors.dangerRed,
         green: theme.colors.green,
+    },
+    modal: {
+        registerModal: {
+            backgroundView: {
+                backgroundColor: 'rgba(0,0,0,0.5)',
+                alignItems: 'center',
+                justifyContent: 'flex-end',
+                height: '100%'
+            },
+            mainView: {
+                borderTopLeftRadius: 30, 
+                borderTopRightRadius:30 ,
+                padding: 30, 
+                backgroundColor: 'white',
+                 width:'100%'
+            }
+
+
+        }
+
     },
 
     scrollables: {
@@ -468,11 +488,23 @@ const themeComponent = StyleSheet.create({
     textInput: {
         container: {
             width: '100%',
-            alignItems: 'center',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
             marginBottom: 10,
+            
         },
         textInput: {
-            width: '90%',
+            width: '100%',
+            backgroundColor: theme.colors.white,
+            borderWidth: 1,
+            borderColor: 'gray',
+            borderRadius: 5,
+            paddingVertical: 10,
+            paddingHorizontal: 15,
+            fontSize: 16,
+        },
+        passwordInput: {
+            width: '87%',
             backgroundColor: theme.colors.white,
             borderWidth: 1,
             borderColor: 'gray',

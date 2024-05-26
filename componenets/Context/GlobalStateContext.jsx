@@ -77,9 +77,9 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userDatesData = await GetDateById({ id: 25 });
+        const userDatesData = await GetDateById({ id: 2 });
         dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
-        const userData = await GetUserInfoById({ id: 25 });
+        const userData = await GetUserInfoById({ id: 2 });
         dispatch({ type: 'SET_USER_DATA', payload: userData });
       } catch (error) {
         console.error('Error fetching data:', error);

@@ -86,6 +86,8 @@ function MainContainer({ navigation }) {
         <Tab.Screen name={datesName} component={Citas} options={{ tabBarBadge: state.citasPendientes.length !== 0 ? state.citasPendientes.length : null }} />
         <Tab.Screen name={calendarName} component={CalendarAgendaScreen} />
         <Tab.Screen name={settingsName} component={SettingsScreen} />
+        <Tab.Screen name={pruebaName} component={PruebaScreen} />
+        
 
 
       </Tab.Navigator>

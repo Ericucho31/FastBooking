@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View , FlatList} from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import { WebView } from 'react-native-webview';
 
 import { GetAllAvailableDates, GetDateById } from "../Handler/API/APIHandler";
 import NewDateRequest from "../Cards/NewDateRequest";
+import PayPalButton from "../Buttons/PaypalButton";
+import RegisterModal from "../Modals/RegisterModal";
+import { Button } from "@rneui/base";
 
 export default function PruebaScreen() {
 
-    const allDates= async () => {
-        const allDates = await GetAllAvailableDates({status:1})
+    const allDates = async () => {
+        const allDates = await GetAllAvailableDates({ status: 1 })
         console.log(JSON.stringify(allDates, null, 2));
         return allDates;
     }
     const userDates = async () => {
-        const userDates = await GetDateById({id:2})
+        const userDates = await GetDateById({ id: 2 })
         console.log(JSON.stringify(userDates, null, 2));
         return userDates;
     }
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isVisible, setIsVIsible] = useState(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -35,14 +40,19 @@ export default function PruebaScreen() {
         getData();
     }, []);
 
+    const toggleVisibility = () => {
+        setIsVIsible(!isVisible)
+    }
+
 
 
     return (
         <View style={styles.container}>
-            <FlatList data={data} 
-            
-            renderItem={({item}) => 
-                <View>
+            <FlatList data={data}
+
+                renderItem={({ item }) =>
+                    <View>
+                        {/*
                     <NewDateRequest 
                     id={item.id}
                     name={item.clientName}
@@ -50,8 +60,13 @@ export default function PruebaScreen() {
                     date={item.startDate}
                     imageSource={item.userImage}/>
                     <Text>{item.clientName}</Text>
-                </View>
-            }/>
+*/}
+
+                    </View>
+                } />
+            <RegisterModal isVisible={isVisible} toggleModalVisibility={toggleVisibility} />
+            <Button title={'Abrir modal'} onPress={toggleVisibility} />
+
         </View>
     );
 };
