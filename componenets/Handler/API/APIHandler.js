@@ -17,9 +17,8 @@ async function GetAllAvailableDates({ status }) {
 async function GetDateById({ id }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {
-        console.log(id)
         const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/GetAppointmentsUser/${id}`)
-        console.log(response)
+        console.log(response.data)
         return response.data;
 
     } catch (error) {
@@ -52,7 +51,7 @@ async function GetUserInfoById({ id }) {
 }
 
 async function GetUserInfoByToken({ token }) {
-    //eric: 25
+
     try {
         const userData = jwtDecode(token)
 
@@ -81,7 +80,7 @@ async function CreateNewUser({ user }) {
         return status;
 
     } catch (error) {
-        console.error('Error al obtener los datos:', error);
+        console.error('Error al crear los datos:', error);
         throw error;
     }
 }
@@ -90,7 +89,7 @@ async function LoginUser({ user }) {
     //eric: 25
     try {
         const response = await axios.post('https://a4b3-187-190-138-154.ngrok-free.app/api/User/login', user)
-        console.log(response.data.token)
+        //console.log(response.data.token)
         const token = response.data.token;
         return token;
 

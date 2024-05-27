@@ -50,15 +50,14 @@ export default function PruebaScreen() {
 
                 renderItem={({ item }) =>
                     <View>
-                        {/*
-                    <NewDateRequest 
-                    id={item.id}
-                    name={item.clientName}
-                    hour={item.startTime} 
-                    date={item.startDate}
-                    imageSource={item.userImage}/>
-                    <Text>{item.clientName}</Text>
-*/}
+
+                        <NewDateRequest
+                            id={item.id}
+                            name={item.clientName}
+                            hour={item.startTime}
+                            date={item.startDate}
+                            imageSource={item.userImage} />
+                        <Text>{item.clientName}</Text>
 
                     </View>
                 } />

@@ -11,15 +11,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function SettingsScreen({}) {
     const navigation = useNavigation();
     const { state, dispatch } = useDataContext();
-    const {userImageUri, setUserImageUri} = useState();
+    const [userImageUri, setUserImageUri] = useState();
 
-    const LogOut = () => {
-        FIREBASE_AUTH.signOut()
-    }
-
-    const DiasDeTrabajo = () => {
-        navigation.navigate('DiasDeTrabajoSetting')
-    }
 
     const setErrorImage = () => {
         setUserImageUri('https://cdn-icons-png.flaticon.com/512/9131/9131529.png')
@@ -40,18 +33,18 @@ export default function SettingsScreen({}) {
             const imagenUri = await state.userData.imageUrl;
             setUserImageUri(imagenUri)
           } catch (err) {
-            setError('Error al cargar la imagen');
+            setUserImageUri('https://cdn-icons-png.flaticon.com/512/9131/9131529.png')
           } 
         };
     
         fetchImageUrl();
-      }, []);
+      }, [state.userData]);
 
     return (
         <View style={{  backgroundColor: 'white' }}>
 
             <View style={{ justifyContent:'center',alignItems: 'center'}}>
-                <Image style={themeComponent.images.settings} source={{ uri: userImageUri }} onError={() =>setErrorImage}/>
+                <Image style={themeComponent.images.settings} source={{ uri: userImageUri }} onError={setErrorImage}/>
                 <Text style={themeComponent.headers.header3}>{state.userData.fullName}</Text>
             </View>
 

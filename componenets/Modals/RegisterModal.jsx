@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Modal, Text, Button } from "react-native";
+import { View, Modal, Text, Button, KeyboardAvoidingView, Platform } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TextInputRegister from "../TextBox/TextInputRegister";
@@ -61,12 +61,6 @@ export default function RegisterModal({ isVisible, toggleModalVisibility, confir
             setProfessionError(null);
         }
 
-        if (image == '') {
-            setImageError(requiredField);
-            valid = false;
-        } else {
-            setImageError(null);
-        }
 
         if (!validateEmail(email)) {
             setEmailError('*Correo electrónico incorrecto');
@@ -102,15 +96,16 @@ export default function RegisterModal({ isVisible, toggleModalVisibility, confir
                 phoneNumber: phone,
                 address: address,
                 profession: profession,
-                imageUrl: image
+                imageUrl: 'https://cdn-icons-png.flaticon.com/512/9131/9131529.png'
             }
 
             console.log(userRegistration)
             const status = await CreateNewUser({ user: userRegistration })
             console.log(status)
             if (status == '200') {
-                console.log('El usuario' + {name} + 'se ha registrado de manera exitosa')
+                console.log('El usuario' + { name } + 'se ha registrado de manera exitosa')
                 toggleModalVisibility()
+                setConfirmacion(true);
             }
         }
 
@@ -118,29 +113,34 @@ export default function RegisterModal({ isVisible, toggleModalVisibility, confir
 
 
     return (
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={{ flex: 1 }}
+            keyboardVerticalOffset={100}
+        >
 
-        <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='slide' transparent={true}>
-            <View style={themeComponent.modal.registerModal.backgroundView}>
+            <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='slide' transparent={true}>
+                <View style={themeComponent.modal.registerModal.backgroundView}>
 
-                <View style={themeComponent.modal.registerModal.mainView}>
+                    <View style={themeComponent.modal.registerModal.mainView}>
 
-                    <Ionicons name={'close'} size={28} color={'red'} onPress={toggleModalVisibility} />
-                    <View style={{ alignSelf: 'center' }}>
-                        <Text style={themeComponent.headers.header2}>Ingresa tus datos</Text>
+                        <Ionicons name={'close'} size={28} color={'red'} onPress={toggleModalVisibility} />
+                        <View style={{ alignSelf: 'center' }}>
+                            <Text style={themeComponent.headers.header2}>Ingresa tus datos</Text>
+                        </View>
+
+                        <TextInputRegister encabezado={'Nombre completo'} anyText={name} setText={setName} errorMessage={nameError} />
+                        <TextInputRegister encabezado={'Teléfono'} anyText={phone} setText={setPhone} errorMessage={phoneError} />
+                        <TextInputRegister encabezado={'Dirección'} anyText={address} setText={setAddress} errorMessage={addressError} />
+                        <TextInputRegister encabezado={'Profesión/Oficio'} anyText={profession} setText={setProfession} errorMessage={professionError} />
+                        <TextInputRegister encabezado={'Correo Electrónico'} anyText={email} setText={setEmail} errorMessage={emailError} />
+                        <TextInputPassword encabezado={'Contraseña'} anyText={password} setText={setPassword} errorMessage={passwordError} />
+
+                        <Button title="Confirmar" onPress={datosIngresados} />
                     </View>
-
-                    <TextInputRegister encabezado={'Nombre completo'} anyText={name} setText={setName} errorMessage={nameError} />
-                    <TextInputRegister encabezado={'Teléfono'} anyText={phone} setText={setPhone} errorMessage={phoneError} />
-                    <TextInputRegister encabezado={'Dirección'} anyText={address} setText={setAddress} errorMessage={addressError}/>
-                    <TextInputRegister encabezado={'Profesión/Oficio'} anyText={profession} setText={setProfession} errorMessage={professionError} />
-                    <TextInputRegister encabezado={'Foto de perfil'} anyText={image} setText={setImage} errorMessage={imageError}/>
-                    <TextInputRegister encabezado={'Correo Electrónico'} anyText={email} setText={setEmail} errorMessage={emailError} />
-                    <TextInputPassword encabezado={'Contraseña'} anyText={password} setText={setPassword} errorMessage={passwordError}/>
-
-                    <Button title="Confirmar" onPress={datosIngresados} />
                 </View>
-            </View>
-        </Modal>
+            </Modal>
+        </KeyboardAvoidingView>
 
 
 

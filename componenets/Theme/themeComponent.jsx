@@ -330,7 +330,7 @@ const themeComponent = StyleSheet.create({
                 borderTopRightRadius:30 ,
                 padding: 30, 
                 backgroundColor: 'white',
-                 width:'100%'
+                 width:'100%',
             }
 
 
