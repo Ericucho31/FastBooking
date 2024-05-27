@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Image, Text } from "react-native";
 import themeComponent from "../Theme/themeComponent";
 import SettingsCard from "../Cards/SettingsCard";
@@ -6,11 +6,12 @@ import { Divider } from "@rneui/base";
 import { useNavigation } from '@react-navigation/native';
 import { FIREBASE_AUTH } from "../../FirebaseConfig";
 import { useDataContext } from "../Context/GlobalStateContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SettingsScreen({}) {
     const navigation = useNavigation();
     const { state, dispatch } = useDataContext();
-    const {userImageUri, setUserImageUri} = useState(state.userData.imageUrl);
+    const {userImageUri, setUserImageUri} = useState();
 
     const LogOut = () => {
         FIREBASE_AUTH.signOut()
@@ -23,6 +24,28 @@ export default function SettingsScreen({}) {
     const setErrorImage = () => {
         setUserImageUri('https://cdn-icons-png.flaticon.com/512/9131/9131529.png')
     }
+
+    const removeToken = async () => {
+        try {
+          await AsyncStorage.removeItem('jwtToken');
+          dispatch({ type: 'SET_USER_TOKEN', payload: {} });
+        } catch (error) {
+          console.error('Error removing token', error);
+        }
+      };
+
+      useEffect(() => {
+        const fetchImageUrl = async () => {
+          try {
+            const imagenUri = await state.userData.imageUrl;
+            setUserImageUri(imagenUri)
+          } catch (err) {
+            setError('Error al cargar la imagen');
+          } 
+        };
+    
+        fetchImageUrl();
+      }, []);
 
     return (
         <View style={{  backgroundColor: 'white' }}>
@@ -41,7 +64,7 @@ export default function SettingsScreen({}) {
                 iconColor={themeComponent.colors.borderGray}
                 cardName={'Cerrar Sesión'}
                 textColor={themeComponent.text.logOut} 
-                onPress={LogOut}/>
+                onPress={removeToken}/>
 
         </View>
     );

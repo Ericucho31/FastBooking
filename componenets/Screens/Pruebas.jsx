@@ -3,8 +3,6 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import { WebView } from 'react-native-webview';
 
 import { GetAllAvailableDates, GetDateById } from "../Handler/API/APIHandler";
-import NewDateRequest from "../Cards/NewDateRequest";
-import PayPalButton from "../Buttons/PaypalButton";
 import RegisterModal from "../Modals/RegisterModal";
 import { Button } from "@rneui/base";
 

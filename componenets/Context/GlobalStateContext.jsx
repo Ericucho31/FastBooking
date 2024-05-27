@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import agregarCita from '../Handler/CitaAgendada';
 import eliminarCitaPorIdYFecha from '../Handler/EliminarCitaAgendada';
-import { GetAllAvailableDates, GetDateById, GetUserInfoById } from "../Handler/API/APIHandler";
+import { GetAllAvailableDates, GetDateById, GetUserInfoById, GetUserInfoByToken } from "../Handler/API/APIHandler";
 
 const DataContext = createContext();
 
 const initialState = {
-  id:1000,
-  userData:{},
+  token: {},
+  userData: {},
   citasPendientes: [],
   citasAgendadas: {}
 };
@@ -19,10 +19,16 @@ const dataReducer = (state, action) => {
         ...state,
         citasPendientes: action.payload,
       };
-      case 'SET_USER_DATA':
+    case 'SET_USER_DATA':
       return {
         ...state,
         userData: action.payload,
+      };
+
+    case 'SET_USER_TOKEN':
+      return {
+        ...state,
+        token: action.payload,
       };
 
     case 'ADD_DATE':
@@ -34,7 +40,7 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         citasPendientes:
-         state.citasPendientes.filter(cita => cita.id !== action.payload),
+          state.citasPendientes.filter(cita => cita.id !== action.payload),
       };
     case 'CONFIRM_DATE_REQUEST':
       const citaPendiente = state.citasPendientes.find(cita => cita.id === action.payload); //encuentra la cita pendiente para después pasarla a cita agendada
@@ -48,13 +54,13 @@ const dataReducer = (state, action) => {
         citasAgendadas: eliminarCitaPorIdYFecha(state.citasAgendadas, action.payload.fecha, action.payload.id),
         //state.citasAgendadas.filter(cita => cita.id !== action.payload),
       };
-      case 'ID_INCREMENT':
+    case 'ID_INCREMENT':
       return {
         ...state,
         id: state.id++,
         //state.citasAgendadas.filter(cita => cita.id !== action.payload),
       };
-      case 'CREATE_NEW_DATE':
+    case 'CREATE_NEW_DATE':
       const newId = state.id + 1; // calcula el nuevo id
       const newCita = {
         ...action.payload,
@@ -76,18 +82,20 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const userDatesData = await GetDateById({ id: 2 });
-        dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
-        const userData = await GetUserInfoById({ id: 2 });
-        dispatch({ type: 'SET_USER_DATA', payload: userData });
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } 
-    };
+      if (state.token) {
+        try {
+          const userData = await GetUserInfoByToken({ token: state.token });
+          dispatch({ type: 'SET_USER_DATA', payload: userData });
+          const userDatesData = await GetDateById({ id: state.userData.id });
+          dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
 
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+    };
     fetchData();
-  }, []);
+  }, [state.token]);
 
   return (
     <DataContext.Provider value={{ state, dispatch }}>

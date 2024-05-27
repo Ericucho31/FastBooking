@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 async function GetAllAvailableDates({ status }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
@@ -16,7 +17,9 @@ async function GetAllAvailableDates({ status }) {
 async function GetDateById({ id }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {
+        console.log(id)
         const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/GetAppointmentsUser/${id}`)
+        console.log(response)
         return response.data;
 
     } catch (error) {
@@ -48,6 +51,28 @@ async function GetUserInfoById({ id }) {
     }
 }
 
+async function GetUserInfoByToken({ token }) {
+    //eric: 25
+    try {
+        const userData = jwtDecode(token)
+
+        const userInfo = {
+            id: userData.userId,
+            fullName: userData.FullName,
+            email: userData.email,
+            phoneNumber: userData.PhoneNumber,
+            address: userData.Address,
+            profession: userData.Profession,
+            imageUrl: userData.ImageUrl,
+        }
+        return userInfo;
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+        throw error;
+    }
+}
+
 async function CreateNewUser({ user }) {
     //eric: 25
     try {
@@ -61,4 +86,18 @@ async function CreateNewUser({ user }) {
     }
 }
 
-export { GetAllAvailableDates, GetDateById, GetUserInfoById, CreateNewUser};
+async function LoginUser({ user }) {
+    //eric: 25
+    try {
+        const response = await axios.post('https://a4b3-187-190-138-154.ngrok-free.app/api/User/login', user)
+        console.log(response.data.token)
+        const token = response.data.token;
+        return token;
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+        throw error;
+    }
+}
+
+export { GetAllAvailableDates, GetDateById, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken};

@@ -3,7 +3,7 @@ import { View, TextInput, Text, Pressable } from 'react-native';
 import themeComponent from '../Theme/themeComponent';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const TextInputPassword = ({ encabezado, anyText, setText }) => {
+const TextInputPassword = ({ encabezado, anyText, setText, errorMessage }) => {
   const [isVisible, setIsVisible] = useState(true)
   const [iconName, setIconName] = useState('eye-off-outline')
 
@@ -24,7 +24,15 @@ const TextInputPassword = ({ encabezado, anyText, setText }) => {
 
   return (
     <View style={themeComponent.textInput.container}>
-      <Text style={themeComponent.headers.header3}>{encabezado}</Text>
+      <View style={{ flexDirection: 'row', width: '100%' }}>
+        <Text style={themeComponent.headers.header3}>{encabezado}</Text>
+
+        <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'flex-end' }}>
+          <Text style={themeComponent.text.errorMessage}>{errorMessage}</Text>
+        </View>
+
+      </View>
+      
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <TextInput
           style={themeComponent.textInput.passwordInput}

@@ -481,6 +481,12 @@ const themeComponent = StyleSheet.create({
             fontSize: 16,
             fontWeight: 'bold',
             color: theme.colors.borderGray,
+        },
+        errorMessage: {
+            fontFamily: theme.fonts.primary,
+            fontSize: 12,
+            fontWeight: 'regular',
+            color: theme.colors.dangerRed
         }
 
     },

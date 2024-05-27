@@ -12,7 +12,7 @@ export default function Login({ navigation }) {
                     style={themeComponent.images.thumbnail}
                     source={require('../../assets/logo.jpg')} />
 
-                <LoginComponent/>
+                <LoginComponent navigation={navigation}/>
 
             </View>
         </View>

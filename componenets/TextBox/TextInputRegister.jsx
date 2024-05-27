@@ -3,7 +3,7 @@ import { View, TextInput, Text } from 'react-native';
 import themeComponent from '../Theme/themeComponent';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const TextInputRegister = ({ encabezado, anyText, setText, isPassword, passwordStyle}) => {
+const TextInputRegister = ({ encabezado, anyText, setText, errorMessage }) => {
   //const [textInputStlye, setTextInputStyle] = useState()
 
   const handleTextChange = (text) => {
@@ -13,12 +13,18 @@ const TextInputRegister = ({ encabezado, anyText, setText, isPassword, passwordS
 
   return (
     <View style={themeComponent.textInput.container}>
-      <Text style={themeComponent.headers.header3}>{encabezado}</Text>
+      <View style={{ flexDirection: 'row', width:'100%' }}>
+        <Text style={themeComponent.headers.header3}>{encabezado}</Text>
+
+        <View style={{flex:1, alignItems:'flex-end', justifyContent:'flex-end'}}>
+          <Text style={themeComponent.text.errorMessage}>{errorMessage}</Text>
+        </View>
+
+      </View>
       <TextInput
-        style={[themeComponent.textInput.textInput, passwordStyle]}
+        style={themeComponent.textInput.textInput}
         onChangeText={handleTextChange} // Manejador de eventos para actualizar el estado local
         value={anyText} // Valor del TextInput controlado por el estado local
-        secureTextEntry={isPassword}
       />
     </View>
   );

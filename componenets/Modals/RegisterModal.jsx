@@ -6,51 +6,120 @@ import TextInputRegister from "../TextBox/TextInputRegister";
 import TextInputPassword from "../TextBox/TextInputPassword";
 import { CreateNewUser } from "../Handler/API/APIHandler";
 
-export default function RegisterModal({ isVisible, toggleModalVisibility }) {
+export default function RegisterModal({ isVisible, toggleModalVisibility, confirmacion, setConfirmacion }) {
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [address, setAddress] = useState('');
     const [profession, setProfession] = useState('');
     const [image, setImage] = useState('');
     const [email, setEmail] = useState('');
+
     const [password, setPassword] = useState('');
+
+    const [nameError, setNameError] = useState('');
+    const [phoneError, setphoneError] = useState('');
+    const [addressError, setAddressError] = useState('');
+    const [professionError, setProfessionError] = useState('');
+    const [imageError, setImageError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [requiredField, setRequiredField] = useState('*Obligatorio');
 
     const validateEmail = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
+    const verificacionDatos = () => {
+        let valid = true;
 
-    const datosIngresados = async () => {
-
-        if (validateEmail(email) == false) {
-            console.log('Correo electrónico incorrecto')
+        if (name == '') {
+            setNameError(requiredField);
+            valid = false;
+        } else {
+            setNameError(null);
         }
 
-        const userRegistration = {
-            fullName: name,
-            email: email,
-            password: password,
-            phoneNumber: phone,
-            address: address,
-            profession: profession,
-            imageUrl: image
+        if (phone == '') {
+            setphoneError(requiredField);
+            valid = false;
+        } else {
+            setphoneError(null);
         }
-        
-        console.log(userRegistration)
-        const status= await CreateNewUser({user: userRegistration})
-        console.log(status)
-        if(status == 200) {
 
+        if (address == '') {
+            setAddressError(requiredField);
+            valid = false;
+        } else {
+            setAddressError(null);
         }
+
+        if (profession == '') {
+            setProfessionError(requiredField);
+            valid = false;
+        } else {
+            setProfessionError(null);
+        }
+
+        if (image == '') {
+            setImageError(requiredField);
+            valid = false;
+        } else {
+            setImageError(null);
+        }
+
+        if (!validateEmail(email)) {
+            setEmailError('*Correo electrónico incorrecto');
+            valid = false;
+        } else {
+            setEmailError(null);
+        }
+
+        if (password == '') {
+            setPasswordError(requiredField);
+            valid = false;
+        } else {
+            setPasswordError(null);
+        }
+
+        if (valid) {
+            console.log('correcto');
+        } else {
+            console.log('incorrecto');
+        }
+
+        return valid;
     }
 
 
+    const datosIngresados = async () => {
+        const status = verificacionDatos()
+        if (status == true) {
+            const userRegistration = {
+                fullName: name,
+                email: email,
+                password: password,
+                phoneNumber: phone,
+                address: address,
+                profession: profession,
+                imageUrl: image
+            }
+
+            console.log(userRegistration)
+            const status = await CreateNewUser({ user: userRegistration })
+            console.log(status)
+            if (status == '200') {
+                console.log('El usuario' + {name} + 'se ha registrado de manera exitosa')
+                toggleModalVisibility()
+            }
+        }
+
+    }
 
 
     return (
 
-        <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='fade' transparent={true}>
+        <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='slide' transparent={true}>
             <View style={themeComponent.modal.registerModal.backgroundView}>
 
                 <View style={themeComponent.modal.registerModal.mainView}>
@@ -60,13 +129,13 @@ export default function RegisterModal({ isVisible, toggleModalVisibility }) {
                         <Text style={themeComponent.headers.header2}>Ingresa tus datos</Text>
                     </View>
 
-                    <TextInputRegister encabezado={'Nombre completo'} anyText={name} setText={setName} />
-                    <TextInputRegister encabezado={'Teléfono'} anyText={phone} setText={setPhone} />
-                    <TextInputRegister encabezado={'Dirección'} anyText={address} setText={setAddress} />
-                    <TextInputRegister encabezado={'Profesión/Oficio'} anyText={profession} setText={setProfession} />
-                    <TextInputRegister encabezado={'Foto de perfil'} anyText={image} setText={setImage} />
-                    <TextInputRegister encabezado={'Correo Electrónico'} anyText={email} setText={setEmail} />
-                    <TextInputPassword encabezado={'Contraseña'} anyText={password} setText={setPassword} />
+                    <TextInputRegister encabezado={'Nombre completo'} anyText={name} setText={setName} errorMessage={nameError} />
+                    <TextInputRegister encabezado={'Teléfono'} anyText={phone} setText={setPhone} errorMessage={phoneError} />
+                    <TextInputRegister encabezado={'Dirección'} anyText={address} setText={setAddress} errorMessage={addressError}/>
+                    <TextInputRegister encabezado={'Profesión/Oficio'} anyText={profession} setText={setProfession} errorMessage={professionError} />
+                    <TextInputRegister encabezado={'Foto de perfil'} anyText={image} setText={setImage} errorMessage={imageError}/>
+                    <TextInputRegister encabezado={'Correo Electrónico'} anyText={email} setText={setEmail} errorMessage={emailError} />
+                    <TextInputPassword encabezado={'Contraseña'} anyText={password} setText={setPassword} errorMessage={passwordError}/>
 
                     <Button title="Confirmar" onPress={datosIngresados} />
                 </View>
