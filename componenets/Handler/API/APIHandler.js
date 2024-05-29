@@ -99,4 +99,35 @@ async function LoginUser({ user }) {
     }
 }
 
-export { GetAllAvailableDates, GetDateById, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken};
+async function CreateNewDateAPI({ date }) {
+    //eric: 25
+    try {
+        const response = await axios.post('https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/create', user)
+    
+        const responseDescription = response.data;
+        return responseDescription;
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+        throw error;
+    }
+}
+
+function GlobalContextToAPIJson({data}) {
+    const jsonAPI ={
+        clientName: data.clientName,
+        phoneNumber: "",
+        startDate: data.startDate,
+        startTime: data.startTime,
+        durationMinutes: 0,
+        userImage: data.userImage,
+        serviceProviderId: data.id,
+        status: 2,
+        clientFBID: 0
+    }
+
+    return jsonAPI;
+
+}
+
+export { GetAllAvailableDates, GetDateById, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken, CreateNewDateAPI, GlobalContextToAPIJson};
