@@ -14,7 +14,9 @@ const DisplayNewDateRequests = () => {
         const fetchData = async () => {
             if (state.token) {
                 try {
-                    const userDatesData = await GetDateById({ id: state.userData.id });
+                    const userDatesData = await GetDateById({ id: state.userData.id , status: 1});
+                    console.log('La informacion inical es')
+                    console.log(userDatesData)
                     dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
 
                 } catch (error) {

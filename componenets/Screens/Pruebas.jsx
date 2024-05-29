@@ -64,6 +64,8 @@ export default function PruebaScreen() {
             <RegisterModal isVisible={isVisible} toggleModalVisibility={toggleVisibility} />
             <Button title={'Abrir modal'} onPress={toggleVisibility} />
 
+            <Button title={'GetIds'} onPress={() => GetDateById({id:29, status:2})} />
+
         </View>
     );
 };

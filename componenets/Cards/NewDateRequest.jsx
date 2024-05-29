@@ -11,6 +11,7 @@ import AcceptedDate from "./AccepedDate";
 import RescheduleModal from "./RescheduleModal";
 import { useDataContext } from '../Context/GlobalStateContext';
 import convertirFecha from "../Handler/ConvertirFecha";
+import { ConfirmRequestedDate, DeleteDateById } from "../Handler/API/APIHandler";
 
 export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     const { state, dispatch } = useDataContext();
@@ -46,7 +47,6 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
-
     const handleAccept = (id) => {
         setAceptado(true);
 
@@ -60,11 +60,14 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     }
 
     const confirmDate = id => {
-        dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
+        
+        ConfirmRequestedDate({data: state.citasPendientes, id:id})
+        //dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
     };
 
     const removeDate = id => {
         dispatch({ type: 'REMOVE_DATE', payload: id });
+        console.log(DeleteDateById({id:id}) )
     };
 
     const cancelarAccion = () => {

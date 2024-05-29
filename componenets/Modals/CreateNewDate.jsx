@@ -20,6 +20,24 @@ export default function CreateNewDate() {
     const [hourSelected, setHourSelected] = useState(null);
     const [clientsName, setClientsName] = useState(null);
 
+    function obtenerHoraActual(fecha) {
+    
+        // Obtener las horas, minutos y segundos actuales
+        var horas = fecha.getHours();
+        var minutos = fecha.getMinutes();
+        var segundos = fecha.getSeconds();
+    
+        // Asegurarse de que cada componente tenga dos dígitos
+        horas = horas < 10 ? '0' + horas : horas;
+        minutos = minutos < 10 ? '0' + minutos : minutos;
+        segundos = segundos < 10 ? '0' + segundos : segundos;
+    
+        // Formatear la hora como 00:00:00
+        var horaFormateada = horas + ':' + minutos + ':' + segundos;
+    
+        return horaFormateada;
+    }
+
     function convertirFecha(fecha) {
         // Divide la fecha en partes separadas por '/'
         const partes = fecha.split('/');
@@ -43,7 +61,7 @@ export default function CreateNewDate() {
     // Función para manejar la confirmación del botón
     const handleConfirmation = () => {
         const data = {
-            id: state.id,
+            id: state.userData.id,
             clientName: clientsName,
             startDate: convertirFecha(dateSelected.toLocaleDateString()),
             startTime: hourSelected,
@@ -54,10 +72,11 @@ export default function CreateNewDate() {
         // Llama a la función de devolución de llamada del componente padre
         dispatch({ type: 'CREATE_NEW_DATE', payload: data });
 
-        const jsonAPI = GlobalContextToAPIJson(data);
+        const jsonAPI = GlobalContextToAPIJson({data:data});
+        console.log(jsonAPI)
 
         try {
-            const response = CreateNewDateAPI(jsonAPI);
+            const response = CreateNewDateAPI({date:jsonAPI});
             console.log(response)
         } catch (error) {
             console.log(error)
@@ -94,11 +113,10 @@ export default function CreateNewDate() {
                 mode="time"
                 onConfirm={(time) => {
                     // Formatear la hora seleccionada a HH:mm
-                    const formattedHour = time.getHours() + ":" + time.getMinutes() + ":" +time.getSeconds();
+                    const formattedHour = obtenerHoraActual(time)
                     setHourSelected(formattedHour);
                     setIsVisibleForm(false); // Cambiado de true a false
                     setIsResultVisble(true);
-                    
                 }}
             />
 

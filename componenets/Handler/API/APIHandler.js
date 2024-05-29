@@ -14,12 +14,28 @@ async function GetAllAvailableDates({ status }) {
     }
 }
 
-async function GetDateById({ id }) {
+
+async function GetDateById({ id, status }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {
         const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/GetAppointmentsUser/${id}`)
-        console.log(response.data)
-        return response.data;
+
+        //filtra el arreglo según el valor de status
+        return response.data.filter(date => date.status == status);
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+        throw error;
+    }
+}
+
+async function DeleteDateById({ id }) {
+    // 0 = rechazado, 1 = solicitados, 2= aceptado
+    try {
+        const response = await axios.delete(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/Delete/${id}`)
+
+        //filtra el arreglo según el valor de status
+        return response.data
 
     } catch (error) {
         console.error('Error al obtener los datos:', error);
@@ -51,7 +67,6 @@ async function GetUserInfoById({ id }) {
 }
 
 async function GetUserInfoByToken({ token }) {
-
     try {
         const userData = jwtDecode(token)
 
@@ -102,32 +117,58 @@ async function LoginUser({ user }) {
 async function CreateNewDateAPI({ date }) {
     //eric: 25
     try {
-        const response = await axios.post('https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/create', user)
-    
+        const response = await axios.post('https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/create', date)
+
         const responseDescription = response.data;
         return responseDescription;
 
     } catch (error) {
-        console.error('Error al obtener los datos:', error);
+        console.error('Error al crear una nueva cita:', error);
         throw error;
     }
 }
 
-function GlobalContextToAPIJson({data}) {
-    const jsonAPI ={
+function GlobalContextToAPIJson({ data }) {
+    const jsonAPI = {
         clientName: data.clientName,
-        phoneNumber: "",
+        phoneNumber: "6461234567",
         startDate: data.startDate,
         startTime: data.startTime,
-        durationMinutes: 0,
+        durationMinutes: 60,
         userImage: data.userImage,
         serviceProviderId: data.id,
         status: 2,
         clientFBID: 0
     }
-
     return jsonAPI;
-
 }
 
-export { GetAllAvailableDates, GetDateById, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken, CreateNewDateAPI, GlobalContextToAPIJson};
+async function ConfirmRequestedDate({ data, id }) {
+
+    const citaAceptada = data.find(objeto => objeto.id === id);
+
+    if (citaAceptada) {
+        citaAceptada.status = 2;
+        delete citaAceptada.id;
+        delete citaAceptada.creationDate;
+        delete citaAceptada.description;
+        delete citaAceptada.modificationDate;
+
+        console.log('La cita editada es:')
+        console.log(citaAceptada)
+
+        try {
+            const response = await axios.put(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/update/${id}`, citaAceptada)
+    
+            const responseDescription = response.data;
+            return responseDescription;
+    
+        } catch (error) {
+            console.error('Error al crear una actualizar cita:', error);
+            throw error;
+        }
+
+    }
+}
+
+export { GetAllAvailableDates, GetDateById, DeleteDateById, ConfirmRequestedDate, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken, CreateNewDateAPI, GlobalContextToAPIJson };

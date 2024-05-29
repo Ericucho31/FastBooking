@@ -86,7 +86,6 @@ export const DataProvider = ({ children }) => {
         try {
           const userData = await GetUserInfoByToken({ token: state.token });
           dispatch({ type: 'SET_USER_DATA', payload: userData });
-         
 
         } catch (error) {
           console.error('Error fetching data:', error);
