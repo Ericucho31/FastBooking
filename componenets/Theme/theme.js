@@ -69,6 +69,11 @@ export const theme = {
             height: 120,
             borderRadius:60,
         },
+        emptySpace: {
+            width: 120,
+            height: 120,
+            
+        },
 
     }
 }

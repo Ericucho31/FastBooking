@@ -9,7 +9,7 @@ import { useDataContext } from "../Context/GlobalStateContext";
 
 export default function PruebaScreen() {
 
-    const {state, dispatch} = useDataContext()
+    const { state, dispatch } = useDataContext()
 
     const allDates = async () => {
         const allDates = await GetAllAvailableDates({ status: 1 })
@@ -41,10 +41,22 @@ export default function PruebaScreen() {
         getData();
     }, []);
 
-    const toggleVisibility = () => {
-        setIsVIsible(!isVisible)
-    }
+    const update = async () => {
+        try {
+            const dates = await GetDateById({ id: state.userData.id, status: 2 })
+            dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
 
+            const userDatesData = await GetDateById({ id: state.userData.id, status: 1 });
+            dispatch({ type: 'SET_INITIAL_DATA', payload: userDatesData });
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+
+        const toggleVisibility = () => {
+            setIsVIsible(!isVisible)
+        }
+    }
 
 
     return (
@@ -64,10 +76,10 @@ export default function PruebaScreen() {
 
                     </View>
                 } />
-            <RegisterModal isVisible={isVisible} toggleModalVisibility={toggleVisibility} />
-            <Button title={'Abrir modal'} onPress={toggleVisibility} />
 
-            <Button title={'GetIds'} onPress={() => console.log(JSON.stringify(state.citasAgendadas, null, 2)) } />
+            <Button title={'Citas aceptadas'} onPress={() => console.log(JSON.stringify(state.citasAgendadas, null, 2))} />
+
+            <Button title={'Actualizar'} onPress={update} />
 
         </View>
     );

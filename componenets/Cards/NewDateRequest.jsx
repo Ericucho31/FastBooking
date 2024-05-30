@@ -10,8 +10,9 @@ import useAnimation from "./logicJS/animationNewDateRequest";
 import AcceptedDate from "./AccepedDate";
 import RescheduleModal from "./RescheduleModal";
 import { useDataContext } from '../Context/GlobalStateContext';
-import convertirFecha from "../Handler/ConvertirFecha";
-import { ConfirmRequestedDate, DeleteDateById } from "../Handler/API/APIHandler";
+import fechaEnEspaniol from "../Handler/ConvertirFecha";
+import { ConfirmRequestedDate, DeleteDateById, UpdatedDate } from "../Handler/API/APIHandler";
+import { obtenerHoraActual, convertirFecha } from "../Handler/FormatoFechas";
 
 export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     const { state, dispatch } = useDataContext();
@@ -42,8 +43,14 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
 
     // Función para manejar la actualización de la fecha
     const handleDateUpdate = (newDate) => {
-        setFechaRecibida(newDate.toDateString());
-        setHoraRecibida(newDate.toTimeString());
+
+        const fechaFormato= convertirFecha(newDate.toLocaleDateString())
+        setFechaRecibida(fechaFormato)
+        const horaFormato = obtenerHoraActual(newDate)
+        setHoraRecibida(horaFormato)
+
+        UpdatedDate({data:state.citasPendientes, id: id, hour: horaFormato, date:fechaFormato})
+
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
@@ -59,16 +66,21 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
         //resto del acciones para manejar la aceptación de la cita
     }
 
-    const confirmDate = id => {
-        dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
+    const confirmDate = async id => {
+        console.log('el id aceptado es')
+        console.log(id)
+        //dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
         
         ConfirmRequestedDate({data: state.citasPendientes, id:id})
-        
+
     };
 
     const removeDate = id => {
         dispatch({ type: 'REMOVE_DATE', payload: id });
-        console.log(DeleteDateById({id:id}) )
+    };
+
+    const deleteDate = id => {
+        DeleteDateById({id:id})
     };
 
     const cancelarAccion = () => {
@@ -145,7 +157,7 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
             <SimpleModal isVisible={modalVisibility} toggleModalVisibility={toggleModalVisibility}
                 Component={<ConfirmationModal name={name}
                     onCancel={toggleModalVisibility}
-                    onPress={() => removeDate(id)} />} />
+                    onPress={() => deleteDate(id)} />} />
 
             {aceptado && (<AcceptedDate name={name} onPress={cancelarAccion} />)}
 

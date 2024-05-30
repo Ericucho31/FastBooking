@@ -7,7 +7,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import PrimaryIconAndtextButton from "../Buttons/PrimaryIconAndtextButton";
 import { useDataContext } from "../Context/GlobalStateContext";
 import { CreateNewDateAPI, GlobalContextToAPIJson } from "../Handler/API/APIHandler";
-
+import { convertirFecha, obtenerHoraActual } from "../Handler/FormatoFechas";
 
 export default function CreateNewDate() {
     const { state, dispatch } = useDataContext();
@@ -19,39 +19,6 @@ export default function CreateNewDate() {
     const [dateSelected, setDateSelected] = useState();
     const [hourSelected, setHourSelected] = useState(null);
     const [clientsName, setClientsName] = useState(null);
-
-    function obtenerHoraActual(fecha) {
-    
-        // Obtener las horas, minutos y segundos actuales
-        var horas = fecha.getHours();
-        var minutos = fecha.getMinutes();
-        var segundos = fecha.getSeconds();
-    
-        // Asegurarse de que cada componente tenga dos dígitos
-        horas = horas < 10 ? '0' + horas : horas;
-        minutos = minutos < 10 ? '0' + minutos : minutos;
-        segundos = segundos < 10 ? '0' + segundos : segundos;
-    
-        // Formatear la hora como 00:00:00
-        var horaFormateada = horas + ':' + minutos + ':' + segundos;
-    
-        return horaFormateada;
-    }
-
-    function convertirFecha(fecha) {
-        // Divide la fecha en partes separadas por '/'
-        const partes = fecha.split('/');
-
-        // Extrae el día, mes y año de las partes
-        const dia = partes[0];
-        const mes = partes[1];
-        const año = partes[2];
-
-        // Crea la nueva cadena en formato 'yyyy-mm-dd'
-        const nuevaFecha = `${año}-${mes.padStart(2, '0')}-${dia.padStart(2, '0')}`;
-
-        return nuevaFecha;
-    }
 
     // Función de devolución de llamada para manejar el cambio de texto
     const handleName = (text) => {
@@ -67,7 +34,6 @@ export default function CreateNewDate() {
             startTime: hourSelected,
             userImage: "https://cdn-icons-png.flaticon.com/512/9131/9131529.png",
         };
-        console.log(JSON.stringify(data, null, 2));
 
         // Llama a la función de devolución de llamada del componente padre
         dispatch({ type: 'CREATE_NEW_DATE', payload: data });

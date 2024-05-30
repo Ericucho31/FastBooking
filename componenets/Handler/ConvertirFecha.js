@@ -1,4 +1,4 @@
-function convertirFecha(fecha) {
+function fechaEnEspaniol(fecha) {
     // Dividir la fecha en año, mes y día
     var partesFecha = fecha.split("-");
     var año = partesFecha[0];
@@ -20,4 +20,4 @@ function convertirFecha(fecha) {
     return fechaEnEspañol;
 }
 
-export default convertirFecha;
+export default fechaEnEspaniol;

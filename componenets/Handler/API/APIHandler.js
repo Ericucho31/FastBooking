@@ -28,16 +28,28 @@ async function GetDateById({ id, status }) {
     }
 }
 
+async function GetOnlyOneDateById({ id }) {
+    try {
+        const response = await axios.get(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/read/${id}`)
+
+        return response.data;
+
+    } catch (error) {
+        console.error('Error al obtener los datos:', error);
+        throw error;
+    }
+}
+
 async function DeleteDateById({ id }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {
-        const response = await axios.delete(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/Delete/${id}`)
+        const response = await axios.delete(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/delete/${id}`)
 
         //filtra el arreglo según el valor de status
         return response.data
 
     } catch (error) {
-        console.error('Error al obtener los datos:', error);
+        console.error('Error al borrar los datos:', error);
         throw error;
     }
 }
@@ -146,6 +158,9 @@ async function ConfirmRequestedDate({ data, id }) {
 
     const citaAceptada = data.find(objeto => objeto.id === id);
 
+    console.log('el id de confirmacion es')
+    console.log(id)
+
     if (citaAceptada) {
         citaAceptada.status = 2;
         delete citaAceptada.id;
@@ -153,12 +168,14 @@ async function ConfirmRequestedDate({ data, id }) {
         delete citaAceptada.description;
         delete citaAceptada.modificationDate;
 
-        console.log('La cita editada es:')
+        console.log('La cita aceptada es:')
         console.log(citaAceptada)
 
         try {
             const response = await axios.put(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/update/${id}`, citaAceptada)
-    
+            
+            console.log('la respuesta de la confirmación es ')
+            console.log(response)
             const responseDescription = response.data;
             return responseDescription;
     
@@ -170,4 +187,36 @@ async function ConfirmRequestedDate({ data, id }) {
     }
 }
 
-export { GetAllAvailableDates, GetDateById, DeleteDateById, ConfirmRequestedDate, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken, CreateNewDateAPI, GlobalContextToAPIJson };
+async function UpdatedDate({ data, id, hour, date}) {
+
+    const citaModificada = GetOnlyOneDateById({id:id});
+
+    if (citaModificada) {
+        citaModificada.startDate = date;
+        citaModificada.startTime = hour;
+        delete citaModificada.id;
+        delete citaModificada.creationDate;
+        delete citaModificada.description;
+        delete citaModificada.modificationDate;
+
+        console.log('La cita reagendada es:')
+        console.log(citaModificada)
+
+        try {
+            const response = await axios.put(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/update/${id}`, citaModificada)
+            
+            console.log('la respuesta de la confirmación es ')
+            console.log(response)
+            const responseDescription = response.data;
+            return responseDescription;
+    
+        } catch (error) {
+            console.error('Error al crear una actualizar cita:', error);
+            throw error;
+        }
+    }
+}
+
+
+
+export { GetAllAvailableDates, GetDateById, GetOnlyOneDateById, DeleteDateById, ConfirmRequestedDate, GetUserInfoById, CreateNewUser, LoginUser, GetUserInfoByToken, CreateNewDateAPI, GlobalContextToAPIJson, UpdatedDate };

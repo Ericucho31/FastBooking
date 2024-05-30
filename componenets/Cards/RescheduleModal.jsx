@@ -4,20 +4,20 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import themeComponent from "../Theme/themeComponent";
 import { Button } from "@rneui/base";
 
-export default function RescheduleModal({SimpleModalToggle, onDateSelected}) {
+export default function RescheduleModal({SimpleModalToggle, onDateSelected, confirmDate, confirmHour}) {
 
-    const [dateSelected, setDateSelected] = useState(new Date());
+    const [dateSelected, setDateSelected] = useState();
     const [dateModal, SetDateModal] = useState(true);
     const [textVisibility, setTextVisibility] = useState('none');
 
-    const handleDatePicked = (selectedDate) => {
-        setDateSelected(selectedDate);
+    const handleDatePicked = () => {
+        
         SetDateModal(false);
         setTextVisibility('flex');
     }
 
     const handleAccept = () => {
-        onDateSelected(dateSelected);
+        onDateSelected(dateSelected)
         SimpleModalToggle();
     }
 
@@ -26,13 +26,12 @@ export default function RescheduleModal({SimpleModalToggle, onDateSelected}) {
             <DateTimePicker
                 isVisible={dateModal}
                 minimumDate={new Date()}
-                minuteInterval={30}
                 mode="datetime"
-                onConfirm={(date) => handleDatePicked(date)}
+                onConfirm={(datetime) => {setDateSelected(datetime), handleDatePicked(datetime)}}
             />
             <View style={{display:textVisibility}}>
                 <Text style={themeComponent.text.selectDate}>
-                    Estás seguro que quieres reagendar la cita al {dateSelected.toString()}
+                    ¿Quieres guardar los cambios realizados?
                 </Text>
 
                 <Button title={'Aceptar'} onPress={handleAccept}/>

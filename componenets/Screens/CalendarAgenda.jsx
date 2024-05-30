@@ -34,6 +34,11 @@ export default function CalendarAgendaScreen() {
         GetDatesBooked();
     },[]);*/
 
+    const refresh = async () => {
+        const dates = await GetDateById({ id: state.userData.id, status: 2 })
+          dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
+    }
+
     console.log(JSON.stringify(state.citasAgendadas, null, 2));
 
 
@@ -41,11 +46,13 @@ export default function CalendarAgendaScreen() {
         <SafeAreaView style={styles.container}>
             <Agenda
                 items={state.citasAgendadas}
+                onRefresh={refresh}
                 renderEmptyData={() => {
                     return <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
                         <Text style={themeComponent.headers.header3}>No hay citas para este día </Text>
                     </View>;
                 }}
+                
 
                 renderItem={(item, firstItemInDay) => (
                     <View>

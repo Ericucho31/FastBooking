@@ -9,6 +9,8 @@ import ConfirmationModal from "../Modals/ConfirmationModal";
 import useAnimation from "./logicJS/animationNewDateRequest";
 import RescheduleModal from "./RescheduleModal";
 import { useDataContext } from '../Context/GlobalStateContext';
+import { DeleteDateById, UpdatedDate } from "../Handler/API/APIHandler";
+import { convertirFecha, obtenerHoraActual } from "../Handler/FormatoFechas";
 
 export default function CalendarDate2({ imageSource, name, date, hour, id }) {
     const { state, dispatch } = useDataContext();
@@ -32,13 +34,20 @@ export default function CalendarDate2({ imageSource, name, date, hour, id }) {
 
     // Función para manejar la actualización de la fecha
     const handleDateUpdate = (newDate) => {
-        setFechaRecibida(newDate.toDateString());
-        setHoraRecibida(newDate.toLocaleTimeString());
+        const fechaFormato= convertirFecha(newDate.toLocaleDateString())
+        setFechaRecibida(fechaFormato)
+        const horaFormato = obtenerHoraActual(newDate)
+        setHoraRecibida(horaFormato)
+
+        UpdatedDate({data:state.citasAgendadas, id: id, hour: horaFormato, date:fechaFormato})
         //manejo del resto de actualizaciones para la nueva fecha
     };
 
-    const removeDate = (fecha, id) => {
-        dispatch({ type: 'REMOVE_DATE_BOOKED', payload: {fecha, id} });
+    const removeDate = async (fecha, id) => {
+        console.log(id)
+        DeleteDateById({id:id});
+        const dates = await GetDateById({ id: state.userData.id, status: 2 })
+          dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
     };
 
     return (

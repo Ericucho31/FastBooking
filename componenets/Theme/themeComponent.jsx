@@ -46,6 +46,7 @@ const themeComponent = StyleSheet.create({
         calendarDate: theme.image.calendarDate,
         newDateRequest: theme.image.newDateRequest,
         settings: theme.image.Settings,
+        emptySpace: theme.image.emptySpace,
     },
 
     buttons: {
