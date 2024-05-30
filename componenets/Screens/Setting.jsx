@@ -48,11 +48,6 @@ export default function SettingsScreen({}) {
                 <Text style={themeComponent.headers.header3}>{state.userData.fullName}</Text>
             </View>
 
-            <SettingsCard icon={'close-circle-outline'}
-                iconColor={themeComponent.colors.dangerRed}
-                cardName={'Bloquear agenda'}
-                textColor={themeComponent.text.cancelar} />
-
             <SettingsCard icon={'log-out-outline'}
                 iconColor={themeComponent.colors.borderGray}
                 cardName={'Cerrar Sesión'}

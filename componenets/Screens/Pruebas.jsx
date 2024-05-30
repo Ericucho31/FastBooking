@@ -60,8 +60,6 @@ export default function PruebaScreen() {
     return (
         <View style={styles.container}>
 
-            <PaypalPayment link={'https://www.sandbox.paypal.com/checkoutnow?token=25S9319297123101P'} />
-
             <Button title={'Actualizar'} onPress={update} />
             <Button title={'Visible'} onPress={toggleVisibility} />
 

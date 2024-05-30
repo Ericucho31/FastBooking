@@ -1,28 +1,24 @@
 import WebView from "react-native-webview";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
-
-import { GetAllAvailableDates, GetDateById } from "../Handler/API/APIHandler";
-import RegisterModal from "../Modals/RegisterModal";
-import { Button } from "@rneui/base";
+import { Dimensions } from "react-native";
 import { useDataContext } from "../Context/GlobalStateContext";
 
-import { Dimensions } from "react-native";
+export default function PaypalPayment({ route }) {
+  const { link } = route.params; // Acceder al parámetro 'link'
+  const windowWidth = Dimensions.get('window').width;
+  const [paypalLink, setPaypalLink] = useState('')
+  const {state, dispatch} = useDataContext()
 
+  useEffect(() => {
+    const checkPayment = async () => {
+        setPaypalLink(await state.userData.PaypalPaymentUrl)
+        console.log(paypalLink)
+    };
 
+    checkPayment();
+  }, []);
 
-
-export default function PaypalPayment({ link }) {
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
-
-    return (
-
-        <WebView style={{ width: windowWidth }} source={{ uri: link }}>
-
-        </WebView>
-
-
-    )
-
+  return (
+    <WebView style={{ width: windowWidth }} source={{ uri: paypalLink }} />
+  );
 }

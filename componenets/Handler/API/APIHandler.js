@@ -80,7 +80,7 @@ async function GetUserInfoById({ id }) {
 async function GetUserInfoByToken({ token }) {
     try {
         const userData = jwtDecode(token)
-        
+
         const userInfo = {
             id: userData.userId,
             fullName: userData.FullName,
@@ -89,8 +89,10 @@ async function GetUserInfoByToken({ token }) {
             address: userData.Address,
             profession: userData.Profession,
             imageUrl: userData.ImageUrl,
+            PaypalPaymentUrl: userData.PaypalPaymentUrl,
+            PaymentStatus: userData.PaymentStatus,
         }
-        
+
         return userInfo;
 
     } catch (error) {

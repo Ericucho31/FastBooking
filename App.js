@@ -8,6 +8,8 @@ import { DataProvider, useDataContext } from './componenets/Context/GlobalStateC
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import PaymentFailed from './componenets/Screens/PaymentFailed';
+import PaypalPayment from './componenets/Modals/PaypalPayment';
 
 
 
@@ -26,6 +28,8 @@ function InsideMainApp() {
 function MainAppContent() {
   const { state, dispatch } = useDataContext();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [hasPaid, setHasPaid] = useState(false);
+  const [paypalLink, setPaypalLink] = useState('');
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -42,16 +46,42 @@ function MainAppContent() {
     checkAuth();
   }, [state.token]);
 
+  useEffect(() => {
+    const checkPayment = async () => {
+      //const token = await AsyncStorage.getItem('jwtToken');
+      const paymentStatus = state.userData.PaymentStatus;
+      console.log('El estado de pago es')
+      console.log(paymentStatus)
+
+      if (paymentStatus== 'True') {
+        setPaypalLink(state.userData.PaypalPaymentUrl)
+        setHasPaid(true);
+      }
+      if(paymentStatus== 'False') {
+        setHasPaid(false)
+      }
+    };
+
+    checkPayment();
+  }, [state.userData]);
+
+  
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {isAuthenticated ? (
-        <Stack.Screen name="Inside" component={InsideMainApp} />
+        hasPaid ? (
+          <Stack.Screen name="Inside" component={InsideMainApp} />
+        ) : (
+          <Stack.Screen name="Payment" component={PaypalPayment}  initialParams={{ link: `${paypalLink}` }} />
+        )
       ) : (
         <Stack.Screen name="Login" component={Login} />
       )}
     </Stack.Navigator>
   );
 }
+
 
 
 

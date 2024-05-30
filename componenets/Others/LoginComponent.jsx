@@ -35,9 +35,7 @@ export default function LoginComponent({ navigation }) {
         try {
             const token = await LoginUser({ user: user })
             console.log(token)
-
             //await AsyncStorage.setItem('jwtToken', token);
-
             //const tokenGuardado = await AsyncStorage.getItem('jwtToken');
             dispatch({ type: 'SET_USER_TOKEN', payload: token });
 
