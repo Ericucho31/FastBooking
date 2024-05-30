@@ -22,8 +22,6 @@ export default function LoginComponent({ navigation }) {
 
     const { state, dispatch } = useDataContext();
 
-    const auth = FIREBASE_AUTH;
-
     const logIn = async () => {
         setLoading(true);
 
@@ -38,13 +36,10 @@ export default function LoginComponent({ navigation }) {
             const token = await LoginUser({ user: user })
             console.log(token)
 
-            if (token == {}) {
-                console.log('No se pudo iniciar sesión')
-            }
-            await AsyncStorage.setItem('jwtToken', token);
+            //await AsyncStorage.setItem('jwtToken', token);
 
-            const tokenGuardado = await AsyncStorage.getItem('jwtToken');
-            dispatch({ type: 'SET_USER_TOKEN', payload: tokenGuardado });
+            //const tokenGuardado = await AsyncStorage.getItem('jwtToken');
+            dispatch({ type: 'SET_USER_TOKEN', payload: token });
 
             return token;
         }
@@ -82,7 +77,7 @@ export default function LoginComponent({ navigation }) {
                 <TextInput style={themeComponent.textInput.textInput} value={password} secureTextEntry={true} placeholder="******" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
             </View>
 
-            {loading ? <ActivityIndicator size="large" color="#00ff00" />
+            {loading ? <ActivityIndicator size="large" color={themeComponent.colors.primary} />
                 : <View style={{ width: '100%', alignItems: 'center' }}>
                     <LoginButton onPress={logIn} text={'Iniciar Sesión'} />
                     <SignInButton onPress={toggleVisibility} text={'Registrarse'} />

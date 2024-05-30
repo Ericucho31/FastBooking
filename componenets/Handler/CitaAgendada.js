@@ -1,6 +1,5 @@
 const agregarCita = (citasAgendadas, nuevaCita) => {
 
-    console.log(JSON.stringify(nuevaCita))
     // Verificar si existe una cita con la misma fecha
     if (citasAgendadas.hasOwnProperty(nuevaCita.startDate)) {
         // Si existe una cita con la misma fecha, agregar la nueva cita al arreglo existente

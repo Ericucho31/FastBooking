@@ -21,25 +21,26 @@ export default function CalendarAgendaScreen() {
             setVisibility('none')
     }
 
-    /*useEffect(() => {
+    useEffect(() => {
         const GetDatesBooked = async () => {
-                try {
-                    
+            try {
+                const dates = await GetDateById({ id: state.userData.id, status: 2 })
+                dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
 
-                } catch (error) {
-                    console.error('Error al obtener las citas agendadas de la agenda:', error);
-                }
-            
+            } catch (error) {
+                console.error('Error al obtener las citas agendadas de la agenda:', error);
+            }
+
         };
         GetDatesBooked();
-    },[]);*/
+    }, [state.userData]);
 
     const refresh = async () => {
         const dates = await GetDateById({ id: state.userData.id, status: 2 })
-          dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
+        dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
     }
 
-    console.log(JSON.stringify(state.citasAgendadas, null, 2));
+    //console.log(JSON.stringify(state.citasAgendadas, null, 2));
 
 
     return (
@@ -52,7 +53,7 @@ export default function CalendarAgendaScreen() {
                         <Text style={themeComponent.headers.header3}>No hay citas para este día </Text>
                     </View>;
                 }}
-                
+
 
                 renderItem={(item, firstItemInDay) => (
                     <View>

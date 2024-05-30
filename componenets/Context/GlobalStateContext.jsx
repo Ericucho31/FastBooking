@@ -6,7 +6,7 @@ import { GetAllAvailableDates, GetDateById, GetUserInfoById, GetUserInfoByToken 
 const DataContext = createContext();
 
 const initialState = {
-  token: {},
+  token: null,
   userData: {},
   citasPendientes: [],
   citasAgendadas: {}
@@ -19,14 +19,14 @@ const dataReducer = (state, action) => {
         ...state,
         citasPendientes: action.payload,
       };
-      case 'GET_DATES_BOOKED':
-        const nuevasCitasAgendadas = action.payload.reduce((acc, date) => {
-          return agregarCita(acc, date);
-        }, {});
-        return {
-          ...state,
-          citasAgendadas: nuevasCitasAgendadas,
-        };
+    case 'GET_DATES_BOOKED':
+      const nuevasCitasAgendadas = action.payload.reduce((acc, date) => {
+        return agregarCita(acc, date);
+      }, {});
+      return {
+        ...state,
+        citasAgendadas: nuevasCitasAgendadas,
+      };
     case 'SET_USER_DATA':
       return {
         ...state,
@@ -37,6 +37,15 @@ const dataReducer = (state, action) => {
       return {
         ...state,
         token: action.payload,
+      };
+
+    case 'LOG_OUT':
+      return {
+        ...state,
+        token: null,
+        userData: {},
+        citasPendientes: [],
+        citasAgendadas: {}
       };
 
     case 'ADD_DATE':
@@ -93,10 +102,8 @@ export const DataProvider = ({ children }) => {
       if (state.token) {
         try {
           const userData = await GetUserInfoByToken({ token: state.token });
+          console.log(userData)
           dispatch({ type: 'SET_USER_DATA', payload: userData });
-
-          const dates = await GetDateById({ id: state.userData.id, status: 2 })
-          dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
 
         } catch (error) {
           console.error('Error fetching data:', error);

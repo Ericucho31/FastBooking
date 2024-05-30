@@ -8,7 +8,7 @@ import { GetDateById } from './API/APIHandler';
 const DisplayNewDateRequests = () => {
     const { state, dispatch } = useDataContext();
 
-    //console.log(JSON.stringify(state, null, 2));
+    console.log(JSON.stringify(state, null, 2));
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +25,12 @@ const DisplayNewDateRequests = () => {
             }
         };
         fetchData();
-    },[]);
+    },[state.userData]);
+
+    const refresh = async () => {
+        const dates = await GetDateById({ id: state.userData.id, status: 1 })
+        dispatch({ type: 'SET_INITIAL_DATA', payload: dates });
+    }
 
     return (
         <View style={{ flex: 1, justifyContent: 'center' }}>

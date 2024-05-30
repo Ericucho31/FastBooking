@@ -20,8 +20,8 @@ export default function SettingsScreen({}) {
 
     const removeToken = async () => {
         try {
-          await AsyncStorage.removeItem('jwtToken');
-          dispatch({ type: 'SET_USER_TOKEN', payload: {} });
+          //await AsyncStorage.removeItem('jwtToken');
+          dispatch({ type: 'LOG_OUT', payload: null });
         } catch (error) {
           console.error('Error removing token', error);
         }

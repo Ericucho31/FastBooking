@@ -7,7 +7,6 @@ export default function SimpleModal({ isVisible, toggleModalVisibility, Componen
 
     return (
         <View>
-
             <Modal visible={isVisible} onRequestClose={() => setIsVisible(false)} animationType='fade' transparent={true}>
                 <View style={{ backgroundColor: 'rgba(0,0,0,0.5)', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
 

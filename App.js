@@ -29,8 +29,9 @@ function MainAppContent() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = await AsyncStorage.getItem('jwtToken');
-      if (token) {
+      //const token = await AsyncStorage.getItem('jwtToken');
+      const token2 = state.token;
+      if (token2) {
         setIsAuthenticated(true);
       }
       else {
@@ -39,7 +40,7 @@ function MainAppContent() {
     };
 
     checkAuth();
-  }, [state]);
+  }, [state.token]);
 
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>

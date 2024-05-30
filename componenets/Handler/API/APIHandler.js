@@ -80,7 +80,7 @@ async function GetUserInfoById({ id }) {
 async function GetUserInfoByToken({ token }) {
     try {
         const userData = jwtDecode(token)
-
+        
         const userInfo = {
             id: userData.userId,
             fullName: userData.FullName,
@@ -90,6 +90,7 @@ async function GetUserInfoByToken({ token }) {
             profession: userData.Profession,
             imageUrl: userData.ImageUrl,
         }
+        
         return userInfo;
 
     } catch (error) {
@@ -173,12 +174,12 @@ async function ConfirmRequestedDate({ data, id }) {
 
         try {
             const response = await axios.put(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/update/${id}`, citaAceptada)
-            
+
             console.log('la respuesta de la confirmación es ')
             console.log(response)
             const responseDescription = response.data;
             return responseDescription;
-    
+
         } catch (error) {
             console.error('Error al crear una actualizar cita:', error);
             throw error;
@@ -187,9 +188,9 @@ async function ConfirmRequestedDate({ data, id }) {
     }
 }
 
-async function UpdatedDate({ data, id, hour, date}) {
+async function UpdatedDate({ data, id, hour, date }) {
 
-    const citaModificada = GetOnlyOneDateById({id:id});
+    const citaModificada = GetOnlyOneDateById({ id: id });
 
     if (citaModificada) {
         citaModificada.startDate = date;
@@ -204,12 +205,12 @@ async function UpdatedDate({ data, id, hour, date}) {
 
         try {
             const response = await axios.put(`https://a4b3-187-190-138-154.ngrok-free.app/api/Appointment/update/${id}`, citaModificada)
-            
+
             console.log('la respuesta de la confirmación es ')
             console.log(response)
             const responseDescription = response.data;
             return responseDescription;
-    
+
         } catch (error) {
             console.error('Error al crear una actualizar cita:', error);
             throw error;
