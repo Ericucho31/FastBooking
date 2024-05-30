@@ -54,10 +54,11 @@ function MainAppContent() {
       console.log(paymentStatus)
 
       if (paymentStatus== 'True') {
-        setPaypalLink(state.userData.PaypalPaymentUrl)
+        
         setHasPaid(true);
       }
       if(paymentStatus== 'False') {
+        setPaypalLink(state.userData.PaypalPaymentUrl)
         setHasPaid(false)
       }
     };
@@ -73,7 +74,7 @@ function MainAppContent() {
         hasPaid ? (
           <Stack.Screen name="Inside" component={InsideMainApp} />
         ) : (
-          <Stack.Screen name="Payment" component={PaypalPayment}  initialParams={{ link: `${paypalLink}` }} />
+          <Stack.Screen name="Payment" component={PaypalPayment}  initialParams={{ link: `${state.userData.PaypalPaymentUrl}` }} />
         )
       ) : (
         <Stack.Screen name="Login" component={Login} />

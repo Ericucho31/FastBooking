@@ -21,11 +21,17 @@ export default function RescheduleModal({SimpleModalToggle, onDateSelected, conf
         SimpleModalToggle();
     }
 
+    const onCancel = () => {
+        SetDateModal(false);
+        SimpleModalToggle();
+    }
+
     return (
         <View>
             <DateTimePicker
                 isVisible={dateModal}
                 minimumDate={new Date()}
+                onCancel={onCancel}
                 mode="datetime"
                 onConfirm={(datetime) => {setDateSelected(datetime), handleDatePicked(datetime)}}
             />

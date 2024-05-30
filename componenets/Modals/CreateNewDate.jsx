@@ -19,14 +19,25 @@ export default function CreateNewDate() {
     const [dateSelected, setDateSelected] = useState();
     const [hourSelected, setHourSelected] = useState(null);
     const [clientsName, setClientsName] = useState(null);
+    const [inputError, setInputError] = useState();
 
     // Función de devolución de llamada para manejar el cambio de texto
     const handleName = (text) => {
         setClientsName(text);
     };
 
+    const onCancel = () => {
+
+    }
+
     // Función para manejar la confirmación del botón
     const handleConfirmation = () => {
+        if(clientsName == '' ) {
+            setInputError('Debes agregar un nombre')
+            return;
+
+        }
+
         const data = {
             id: state.userData.id,
             clientName: clientsName,
@@ -73,6 +84,7 @@ export default function CreateNewDate() {
                         setIsVisibleForm(true),
                         console.log(dateSelected)
                 }}
+                onCancel={ () => setIsVisibleCalendar(false)}
             />
             <DateTimePickerModal
                 isVisible={isVisibleForm}
@@ -84,6 +96,7 @@ export default function CreateNewDate() {
                     setIsVisibleForm(false); // Cambiado de true a false
                     setIsResultVisble(true);
                 }}
+                onCancel={() => setIsVisibleForm(false)}
             />
 
             <Modal visible={isResultVisible} animationType='fade' transparent={true}>
@@ -99,6 +112,8 @@ export default function CreateNewDate() {
                                 texto={hourSelected}
                                 icon={'time-outline'} />
                         </View>
+
+                        {inputError && <Text style={themeComponent.text.cancelar}>{inputError}</Text>}
 
 
                         <TextInputSimple onTextChange={handleName} encabezado={'Nombre'} />

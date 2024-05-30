@@ -19,6 +19,6 @@ export default function PaypalPayment({ route }) {
   }, []);
 
   return (
-    <WebView style={{ width: windowWidth }} source={{ uri: paypalLink }} />
+    <WebView style={{ width: windowWidth }} source={{ uri: state.userData.PaypalPaymentUrl }} />
   );
 }
