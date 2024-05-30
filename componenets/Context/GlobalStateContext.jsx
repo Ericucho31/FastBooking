@@ -20,10 +20,13 @@ const dataReducer = (state, action) => {
         citasPendientes: action.payload,
       };
       case 'GET_DATES_BOOKED':
-      return {
-        ...state,
-        citasPendientes: action.payload,
-      };
+        const nuevasCitasAgendadas = action.payload.reduce((acc, date) => {
+          return agregarCita(acc, date);
+        }, {});
+        return {
+          ...state,
+          citasAgendadas: nuevasCitasAgendadas,
+        };
     case 'SET_USER_DATA':
       return {
         ...state,
@@ -91,6 +94,9 @@ export const DataProvider = ({ children }) => {
         try {
           const userData = await GetUserInfoByToken({ token: state.token });
           dispatch({ type: 'SET_USER_DATA', payload: userData });
+
+          const dates = await GetDateById({ id: state.userData.id, status: 2 })
+          dispatch({ type: 'GET_DATES_BOOKED', payload: dates });
 
         } catch (error) {
           console.error('Error fetching data:', error);

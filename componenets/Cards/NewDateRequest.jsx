@@ -60,9 +60,10 @@ export default function NewDateRequest({ imageSource, name, date, hour, id }) {
     }
 
     const confirmDate = id => {
+        dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
         
         ConfirmRequestedDate({data: state.citasPendientes, id:id})
-        dispatch({ type: 'CONFIRM_DATE_REQUEST', payload: id });
+        
     };
 
     const removeDate = id => {

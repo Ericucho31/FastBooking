@@ -14,7 +14,6 @@ async function GetAllAvailableDates({ status }) {
     }
 }
 
-
 async function GetDateById({ id, status }) {
     // 0 = rechazado, 1 = solicitados, 2= aceptado
     try {

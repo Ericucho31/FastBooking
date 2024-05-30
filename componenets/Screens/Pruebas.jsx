@@ -5,8 +5,11 @@ import { WebView } from 'react-native-webview';
 import { GetAllAvailableDates, GetDateById } from "../Handler/API/APIHandler";
 import RegisterModal from "../Modals/RegisterModal";
 import { Button } from "@rneui/base";
+import { useDataContext } from "../Context/GlobalStateContext";
 
 export default function PruebaScreen() {
+
+    const {state, dispatch} = useDataContext()
 
     const allDates = async () => {
         const allDates = await GetAllAvailableDates({ status: 1 })
@@ -64,7 +67,7 @@ export default function PruebaScreen() {
             <RegisterModal isVisible={isVisible} toggleModalVisibility={toggleVisibility} />
             <Button title={'Abrir modal'} onPress={toggleVisibility} />
 
-            <Button title={'GetIds'} onPress={() => GetDateById({id:29, status:2})} />
+            <Button title={'GetIds'} onPress={() => console.log(JSON.stringify(state.citasAgendadas, null, 2)) } />
 
         </View>
     );

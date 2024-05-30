@@ -21,26 +21,26 @@ export default function CalendarAgendaScreen() {
             setVisibility('none')
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         const GetDatesBooked = async () => {
                 try {
-                    const dates = await GetDateById({ id: state.userData.id, status: 2 })
-                    console.log('Las citas agendadas inical es')
-                    console.log(dates)
-                    setCitas(dates)
+                    
 
                 } catch (error) {
-                    console.error('Error fetching data:', error);
+                    console.error('Error al obtener las citas agendadas de la agenda:', error);
                 }
             
         };
         GetDatesBooked();
-    },[]);
+    },[]);*/
+
+    console.log(JSON.stringify(state.citasAgendadas, null, 2));
+
 
     return (
-        <SafeAreaView style={citas}>
+        <SafeAreaView style={styles.container}>
             <Agenda
-                items={citas}
+                items={state.citasAgendadas}
                 renderEmptyData={() => {
                     return <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 50 }}>
                         <Text style={themeComponent.headers.header3}>No hay citas para este día </Text>
