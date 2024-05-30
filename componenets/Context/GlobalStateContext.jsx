@@ -19,6 +19,11 @@ const dataReducer = (state, action) => {
         ...state,
         citasPendientes: action.payload,
       };
+      case 'GET_DATES_BOOKED':
+      return {
+        ...state,
+        citasPendientes: action.payload,
+      };
     case 'SET_USER_DATA':
       return {
         ...state,
